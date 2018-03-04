@@ -6,7 +6,7 @@ clc;
 %% Set Up Webcam
 cam = webcam('HP USB Webcam');
 preview(cam);
-
+% 
 % while (1)
 %     back = snapshot(cam);
 %     imshow(back);
@@ -87,19 +87,47 @@ for c1 = 1:numel(properties)
     greenColor = snapShot(floor(properties(c1).Centroid(2) - halfRadius), floor(properties(c1).Centroid(1)), 2);
     blueColor = snapShot(floor(properties(c1).Centroid(2) - halfRadius), floor(properties(c1).Centroid(1)), 3);
     fprintf('Washer #%d | R(%d), G(%d), B(%d) | ', c1, redColor, greenColor, blueColor);
-    if (redColor > 118)
-        fprintf("RED\n", c1);
+    %If color is RED
+    if ((redColor >= 58) && (greenColor >=0) && (greenColor <=90) && (blueColor >= 21) && (blueColor <= 100))
+        fprintf("RED\n");
+    % IF Color is Blue
+    elseif ((redColor >=44) && (redColor <= 72) && (greenColor >=50) && (greenColor <= 92) && (blueColor >= 61))
+        fprintf('BLUE\n');
     else
-        fprintf('Not RED\n');
+        fprintf('GREEN\n');
     end
 end
 fprintf('\n');
 
 %%  Determine the angle of Washers based on Pixels 
 for c1= 1:numel(properties)
-    x(c1) =  (640 / 2) - properties(c1).Centroid(1);
-    y(c1) = (480 / 2) - properties(c1).Centroid(2);
-    degrees(c1) = atand(y / x);
+    centerX = 320;
+    centerY = 240;
+    currentX = properties(c1).Centroid(1);
+    currentY = properties(c1).Centroid(2);
+    
+    if (currentX > centerX)
+        x(c1) = abs(centerX - currentX);
+    else
+        x(c1) =  currentX - centerX;
+    end
+    
+    if (currentY < centerY)
+        y(c1) = abs(centerY - currentY);
+    else
+        y(c1) = centerY - currentY;
+    end
+  
+    if ((y(c1) >= 0) && (x(c1) <= 0))
+        degrees(c1) = -180 + atand(abs(y(c1) / x(c1)));
+    elseif ((y(c1) >= 0) && (x(c1) >= 0))
+        degrees(c1) = -1 * atand(abs(y(c1) / x(c1))); 
+    elseif ((y(c1) <= 0) && (x(c1) >= 0))
+        degrees(c1) = atand(abs(y(c1) / x(c1)));
+    else
+        degrees(c1) = 180 - atand(abs(y(c1) / x(c1)));
+    end
+   
     fprintf('Washer #%d | X: %.3f | Y: %.3f | Degree: %.3f\n', c1, x(c1), y(c1), degrees(c1));
 end
 
