@@ -149,9 +149,9 @@ end
 %% Degree Test
 
 for c1 = 1:numel(degrees)
-    tg.setparam(tg.getparamid('DC Input','Value'), degrees(c1));
+    tg.setparam(tg.getparamid('Desired position in degrees','Value'), degrees(c1));
     pause(3);
-    tg.setparam(tg.getparamid('DC Input','Value'), 0);
+    tg.setparam(tg.getparamid('Desired position in degrees','Value'), 0);
     pause(3);
 end
 
