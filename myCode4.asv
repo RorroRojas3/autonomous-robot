@@ -97,7 +97,7 @@ fprintf('\n');
 
 %%  Determine the angle of Washers based on Pixels 
 for c1= 1:numel(properties)
-    x(c1) =  (640 / 2) - properties(c1).Centroid(1);
+    x(c1) =  properties(c1).Centroid(1) - (640 / 2) ;
     y(c1) = (480 / 2) - properties(c1).Centroid(2);
     degrees(c1) = atand(y / x);
     fprintf('Washer #%d | X: %.3f | Y: %.3f | Degree: %.3f\n', c1, x(c1), y(c1), degrees(c1));

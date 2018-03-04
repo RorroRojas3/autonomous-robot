@@ -22,7 +22,7 @@ function varargout = ColorGUI(varargin)
 
 % Edit the above text to modify the response to help ColorGUI
 
-% Last Modified by GUIDE v2.5 01-Mar-2018 18:48:04
+% Last Modified by GUIDE v2.5 04-Mar-2018 17:28:54
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -100,3 +100,21 @@ function Yellow_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 fprintf("User Chose Yellow\n");
+
+
+% --- Executes on button press in alignCamera.
+function alignCamera_Callback(hObject, eventdata, handles)
+% hObject    handle to alignCamera (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+cam = webcam('HP USB Webcam');
+preview(cam);
+
+
+
+
+% --- Executes on button press in pushbutton10.
+function pushbutton10_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton10 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
