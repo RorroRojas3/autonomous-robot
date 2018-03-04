@@ -3,6 +3,21 @@ clear all;
 close all;
 clc;
 
+%% Target PC Set Up
+
+tg =xpc; % MUST BE DECLARED AT THE START OF EVERY FUNCTION USING xPC CMDS
+filename = 'electromagnetAndLoadCell';
+
+%only need load or rtwbuild, rtwbuild is redundant if you haven't made any
+%changes to the model file and only need to load the .dlm file
+if strcmp(tg.application,filename)
+    tg.load(filename); 
+else
+    rtwbuild(filename);
+end
+    
+tg.start;
+
 %% Set Up Webcam
 cam = webcam('HP USB Webcam');
 preview(cam);
@@ -130,4 +145,14 @@ for c1= 1:numel(properties)
    
     fprintf('Washer #%d | X: %.3f | Y: %.3f | Degree: %.3f\n', c1, x(c1), y(c1), degrees(c1));
 end
+
+%% Degree Test
+
+for c1 = 1:numel(degrees)
+    tg.setparam(tg.getparamid('DC Input','Value'), degrees(c1));
+    pause(3);
+    tg.setparam(tg.getparamid('DC Input','Value'), 0);
+    pause(3);
+end
+
 
