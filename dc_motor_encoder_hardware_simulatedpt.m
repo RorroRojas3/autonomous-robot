@@ -35,7 +35,7 @@ pt(2).dtname     = 'real_T';
 
 
   
-pt(3).blockname = 'Desired position  in degrees';
+pt(3).blockname = 'Degree';
 pt(3).paramname = 'Value';
 pt(3).class     = 'scalar';
 pt(3).nrows     = 1;
@@ -44,8 +44,8 @@ pt(3).subsource = 'SS_DOUBLE';
 pt(3).ndims     = '2';
 pt(3).size      = '[]';
 pt(3).isStruct  = false;
-pt(3).symbol     = 'dc_motor_encoder_hardware_simulated_P.Desiredpositionindegrees_Value';
-pt(3).baseaddr   = '&dc_motor_encoder_hardware_simulated_P.Desiredpositionindegrees_Value';
+pt(3).symbol     = 'dc_motor_encoder_hardware_simulated_P.Degree_Value';
+pt(3).baseaddr   = '&dc_motor_encoder_hardware_simulated_P.Degree_Value';
 pt(3).dtname     = 'real_T';
 
 

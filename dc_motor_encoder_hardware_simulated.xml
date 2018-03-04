@@ -577,10 +577,9 @@ input1</sigName>
           </parameter>
           </block>
             <block>
-            <blkName>Desired position 
-in degrees</blkName>
-            <xpcblkName>Desired position  in degrees</xpcblkName>
-            <SLblockPath>dc_motor_encoder_hardware_simulated/Desired position  in degrees</SLblockPath>
+            <blkName>Degree</blkName>
+            <xpcblkName>Degree</xpcblkName>
+            <SLblockPath>dc_motor_encoder_hardware_simulated/Degree</SLblockPath>
             <isSrc>[1 0 1]</isSrc>
           <parameter>
           <paramName>Value</paramName>

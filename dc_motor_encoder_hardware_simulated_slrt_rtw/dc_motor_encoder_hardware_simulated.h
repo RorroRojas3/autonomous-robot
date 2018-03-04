@@ -10,7 +10,7 @@
  *
  * Model version              : 1.89
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Sun Mar 04 16:32:07 2018
+ * C source code generated on : Sun Mar 04 16:42:21 2018
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -957,9 +957,9 @@ typedef struct {
 
 /* Parameters (auto storage) */
 struct P_dc_motor_encoder_hardware_simulated_T_ {
-  real_T Desiredpositionindegrees_Value;/* Expression: 0
-                                         * Referenced by: '<Root>/Desired position  in degrees'
-                                         */
+  real_T Degree_Value;                 /* Expression: 0
+                                        * Referenced by: '<Root>/Degree'
+                                        */
   real_T gain_Gain;                    /* Expression: 1
                                         * Referenced by: '<Root>/gain'
                                         */

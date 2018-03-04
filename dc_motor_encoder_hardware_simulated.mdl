@@ -27,7 +27,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.89"
+    ComputedModelVersion    "1.90"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -89,8 +89,8 @@ Model {
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
 	Extents			[913.0, 823.0]
-	ZoomFactor		[1.076464533602834]
-	Offset			[1.330399869193343, -38.058279082265869]
+	ZoomFactor		[1.0764645336028342]
+	Offset			[-57.524044736290207, -38.058279082265926]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -124,9 +124,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Rorro"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sun Mar 04 16:32:02 2018"
-  RTWModifiedTimeStamp	  442081921
-  ModelVersionFormat	  "1.%<AutoIncrement:89>"
+  LastModifiedDate	  "Sun Mar 04 16:56:30 2018"
+  RTWModifiedTimeStamp	  442083386
+  ModelVersionFormat	  "1.%<AutoIncrement:90>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1220,7 +1220,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "108"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "111"
+    SIDHighWatermark	    "112"
     Block {
       BlockType		      Constant
       Name		      "1 - Use simulated motor\n0 - Use real motor"
@@ -1287,20 +1287,19 @@ Model {
       maxwritefilesize	      "512*1024^2"
     }
     Block {
+      BlockType		      Constant
+      Name		      "Degree"
+      SID		      "112"
+      Position		      [45, 240, 75, 270]
+      ZOrder		      14
+      Value		      "0"
+    }
+    Block {
       BlockType		      Derivative
       Name		      "Derivative1"
       SID		      "2"
       Position		      [330, 320, 360, 350]
       ZOrder		      -3
-    }
-    Block {
-      BlockType		      Constant
-      Name		      "Desired position \nin degrees"
-      SID		      "3"
-      Position		      [25, 232, 80, 278]
-      ZOrder		      -4
-      BackgroundColor	      "red"
-      Value		      "0"
     }
     Block {
       BlockType		      Gain
@@ -2554,8 +2553,8 @@ Model {
       }
     }
     Line {
-      ZOrder		      13
-      SrcBlock		      "Desired position \nin degrees"
+      ZOrder		      121
+      SrcBlock		      "Degree"
       SrcPort		      1
       DstBlock		      "gain"
       DstPort		      1

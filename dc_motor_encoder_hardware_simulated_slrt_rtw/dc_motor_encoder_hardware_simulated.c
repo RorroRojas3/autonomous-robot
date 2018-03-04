@@ -10,7 +10,7 @@
  *
  * Model version              : 1.89
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Sun Mar 04 16:32:07 2018
+ * C source code generated on : Sun Mar 04 16:42:21 2018
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -181,11 +181,11 @@ void dc_motor_encoder_hardware_simulated_output(void)
     dc_motor_encoder_hardware_simulated_P.uUsesimulatedmotor0Userealmotor;
   if (rtmIsMajorTimeStep(dc_motor_encoder_hardware_simulated_M)) {
     /* Gain: '<Root>/gain' incorporates:
-     *  Constant: '<Root>/Desired position  in degrees'
+     *  Constant: '<Root>/Degree'
      */
     dc_motor_encoder_hardware_simulated_B.Setpoint =
       dc_motor_encoder_hardware_simulated_P.gain_Gain *
-      dc_motor_encoder_hardware_simulated_P.Desiredpositionindegrees_Value;
+      dc_motor_encoder_hardware_simulated_P.Degree_Value;
 
     /* Outport: '<Root>/setpoint_Out' */
     dc_motor_encoder_hardware_simulated_Y.setpoint_Out =

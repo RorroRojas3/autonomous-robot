@@ -10,7 +10,7 @@
  *
  * Model version              : 1.89
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Sun Mar 04 16:32:07 2018
+ * C source code generated on : Sun Mar 04 16:42:21 2018
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -26,7 +26,7 @@
 P_dc_motor_encoder_hardware_simulated_T dc_motor_encoder_hardware_simulated_P =
   {
   0.0,                                 /* Expression: 0
-                                        * Referenced by: '<Root>/Desired position  in degrees'
+                                        * Referenced by: '<Root>/Degree'
                                         */
   1.0,                                 /* Expression: 1
                                         * Referenced by: '<Root>/gain'

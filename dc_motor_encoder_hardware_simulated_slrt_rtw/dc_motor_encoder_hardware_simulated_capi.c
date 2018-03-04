@@ -10,7 +10,7 @@
  *
  * Model version              : 1.89
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Sun Mar 04 16:32:07 2018
+ * C source code generated on : Sun Mar 04 16:42:21 2018
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -164,7 +164,7 @@ static const rtwCAPI_BlockParameters rtBlockParameters[] = {
   { 35, TARGET_STRING("Constant"),
     TARGET_STRING("Value"), 0, 0, 0 },
 
-  { 36, TARGET_STRING("Desired position  in degrees"),
+  { 36, TARGET_STRING("Degree"),
     TARGET_STRING("Value"), 0, 0, 0 },
 
   { 37, TARGET_STRING("Gain"),
@@ -335,7 +335,7 @@ static void* rtDataAddrMap[] = {
   &dc_motor_encoder_hardware_simulated_B.Sum2,/* 33: Signal */
   &dc_motor_encoder_hardware_simulated_P.uUsesimulatedmotor0Userealmotor,/* 34: Block Parameter */
   &dc_motor_encoder_hardware_simulated_P.Constant_Value,/* 35: Block Parameter */
-  &dc_motor_encoder_hardware_simulated_P.Desiredpositionindegrees_Value,/* 36: Block Parameter */
+  &dc_motor_encoder_hardware_simulated_P.Degree_Value,/* 36: Block Parameter */
   &dc_motor_encoder_hardware_simulated_P.Gain_Gain,/* 37: Block Parameter */
   &dc_motor_encoder_hardware_simulated_P.Kd_Gain,/* 38: Block Parameter */
   &dc_motor_encoder_hardware_simulated_P.Ki_Gain,/* 39: Block Parameter */
@@ -470,10 +470,10 @@ static rtwCAPI_ModelMappingStaticInfo mmiStatic = {
     rtElementMap, rtSampleTimeMap, rtDimensionArray },
   "float",
 
-  { 3353291908U,
-    913454694U,
-    3400381436U,
-    2508820466U },
+  { 2483795227U,
+    2662520569U,
+    1014945458U,
+    3874355620U },
   (NULL), 0,
   0
 };
