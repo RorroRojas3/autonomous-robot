@@ -22,7 +22,7 @@ function varargout = ColorGUI(varargin)
 
 % Edit the above text to modify the response to help ColorGUI
 
-% Last Modified by GUIDE v2.5 04-Mar-2018 17:04:08
+% Last Modified by GUIDE v2.5 04-Mar-2018 17:06:46
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -120,9 +120,6 @@ while (1)
     hold off;
 end
 
-
-
-
 % --- Executes on button press in pushbutton10.
 function pushbutton10_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton10 (see GCBO)
@@ -130,12 +127,3 @@ function pushbutton10_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 
-% --- Executes on button press in closeCamera.
-function closeCamera_Callback(hObject, eventdata, handles)
-% hObject    handle to closeCamera (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-clear all;
-close all;
-clc;
-imaqreset;
