@@ -2,11 +2,11 @@
 clear all;
 close all;
 clc;
-
+imaqreset;
 %% Target PC Set Up
 
 tg =xpc; % MUST BE DECLARED AT THE START OF EVERY FUNCTION USING xPC CMDS
-filename = 'electromagnetAndLoadCell';
+filename = 'dc_motor_encoder_hardware_simulated';
 
 %only need load or rtwbuild, rtwbuild is redundant if you haven't made any
 %changes to the model file and only need to load the .dlm file
@@ -149,9 +149,9 @@ end
 %% Degree Test
 
 for c1 = 1:numel(degrees)
-    tg.setparam(tg.getparamid('Desired position in degrees','Value'), degrees(c1));
+    tg.setparam(tg.getparamid('Degrees','Value'), degrees(c1));
     pause(3);
-    tg.setparam(tg.getparamid('Desired position in degrees','Value'), 0);
+    tg.setparam(tg.getparamid('Degrees','Value'), 0);
     pause(3);
 end
 
