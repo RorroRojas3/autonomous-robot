@@ -80,6 +80,10 @@ for c1 = 1:numel(properties)
    plot(floor(properties(c1).Centroid(1) + halfRadius), floor(properties(c1).Centroid(2)), 'rx');
    plot(floor(properties(c1).Centroid(1)), floor(properties(c1).Centroid(2) - halfRadius), 'rx');
    plot(floor(properties(c1).Centroid(1)), floor(properties(c1).Centroid(2) + halfRadius), 'rx');
+   plot(floor(properties(c1).Centroid(1) - halfRadius) + 1, floor(properties(c1).Centroid(2)) - 6, 'rx');
+   plot(floor(properties(c1).Centroid(1) - halfRadius) + 1, floor(properties(c1).Centroid(2)) + 6, 'rx');
+   plot(floor(properties(c1).Centroid(1) + halfRadius) + 1, floor(properties(c1).Centroid(2)) - 6, 'rx');
+   plot(floor(properties(c1).Centroid(1) + halfRadius) + 1, floor(properties(c1).Centroid(2)) + 6, 'rx');
 end
 plot(640/2, 480/2, 'rx');
 hold off;
@@ -94,27 +98,47 @@ for c1 = 1:numel(properties)
     color2 = sum(sum(snapShot(floor(properties(c1).Centroid(2) + halfRadius), floor(properties(c1).Centroid(1)), 1)));
     color3 = sum(sum(snapShot(floor(properties(c1).Centroid(2)), floor(properties(c1).Centroid(1) - halfRadius), 1)));
     color4 = sum(sum(snapShot(floor(properties(c1).Centroid(2)), floor(properties(c1).Centroid(1) + halfRadius), 1)));
-    redColor  = color1 + color2 + color3 + color4;
+    color5 = sum(sum(snapShot(floor(properties(c1).Centroid(2) - halfRadius) + 1, floor(properties(c1).Centroid(1)) - 6, 1)));
+    color6 = sum(sum(snapShot(floor(properties(c1).Centroid(2) - halfRadius) + 1, floor(properties(c1).Centroid(1)) + 6, 1)));
+    color7 = sum(sum(snapShot(floor(properties(c1).Centroid(2) + halfRadius) + 1, floor(properties(c1).Centroid(1)) - 6, 1)));
+    color8 = sum(sum(snapShot(floor(properties(c1).Centroid(2) + halfRadius) + 1, floor(properties(c1).Centroid(1)) + 6, 1)));
+    redColor  = color1 + color2 + color3 + color4 + color5 + color6 + color7 + color8;
     % Obtains Average Green value of current Washer
     color1 = 0;
     color2 = 0;
     color3 = 0;
     color4 = 0;
+    color5 = 0;
+    color6 = 0;
+    color7 = 0;
+    color8=  0;
     color1 = sum(sum(snapShot(floor(properties(c1).Centroid(2) - halfRadius), floor(properties(c1).Centroid(1)), 2)));
     color2 = sum(sum(snapShot(floor(properties(c1).Centroid(2) + halfRadius), floor(properties(c1).Centroid(1)), 2)));
     color3 = sum(sum(snapShot(floor(properties(c1).Centroid(2)), floor(properties(c1).Centroid(1) - halfRadius), 2)));
     color4 = sum(sum(snapShot(floor(properties(c1).Centroid(2)), floor(properties(c1).Centroid(1) + halfRadius), 2)));
-    greenColor = color1 + color2 + color3 + color4;
+    color5 = sum(sum(snapShot(floor(properties(c1).Centroid(2) - halfRadius) + 1, floor(properties(c1).Centroid(1)) - 6, 2)));
+    color6 = sum(sum(snapShot(floor(properties(c1).Centroid(2) - halfRadius) + 1, floor(properties(c1).Centroid(1)) + 6, 2)));
+    color7 = sum(sum(snapShot(floor(properties(c1).Centroid(2) + halfRadius) + 1, floor(properties(c1).Centroid(1)) - 6, 2)));
+    color8 = sum(sum(snapShot(floor(properties(c1).Centroid(2) + halfRadius) + 1, floor(properties(c1).Centroid(1)) + 6, 2)));
+    greenColor = color1 + color2 + color3 + color4 + color5 + color6 + color7 + color8;
     % Obtains Average Blue value of current Washer
     color1 = 0;
     color2 = 0;
     color3 = 0;
     color4 = 0;
+    color5 = 0;
+    color6 = 0;
+    color7 = 0;
+    color8=  0;
     color1 = sum(sum(snapShot(floor(properties(c1).Centroid(2) - halfRadius), floor(properties(c1).Centroid(1)), 3)));
     color2 = sum(sum(snapShot(floor(properties(c1).Centroid(2) + halfRadius), floor(properties(c1).Centroid(1)), 3)));
     color3 = sum(sum(snapShot(floor(properties(c1).Centroid(2)), floor(properties(c1).Centroid(1) - halfRadius), 3)));
     color4 = sum(sum(snapShot(floor(properties(c1).Centroid(2)), floor(properties(c1).Centroid(1) + halfRadius), 3)));
-    blueColor = color1 + color2 + color3 + color4;
+    color5 = sum(sum(snapShot(floor(properties(c1).Centroid(2) - halfRadius) + 1, floor(properties(c1).Centroid(1)) - 6, 3)));
+    color6 = sum(sum(snapShot(floor(properties(c1).Centroid(2) - halfRadius) + 1, floor(properties(c1).Centroid(1)) + 6, 3)));
+    color7 = sum(sum(snapShot(floor(properties(c1).Centroid(2) + halfRadius) + 1, floor(properties(c1).Centroid(1)) - 6, 3)));
+    color8 = sum(sum(snapShot(floor(properties(c1).Centroid(2) + halfRadius) + 1, floor(properties(c1).Centroid(1)) + 6, 3)));
+    blueColor = color1 + color2 + color3 + color4 + color5 + color6 + color7 + color8;
     fprintf('Washer #%d | R(%d), G(%d), B(%d) | ', c1, redColor, greenColor, blueColor);
 %     %If color is RED
 %     if ((redColor >= 58) && (greenColor >=0) && (greenColor <=90) && (blueColor >= 21) && (blueColor <= 100))
@@ -173,32 +197,32 @@ end
 
 %% Target PC Set Up
 
-tg =xpc; % MUST BE DECLARED AT THE START OF EVERY FUNCTION USING xPC CMDS
-filename = 'dc_motor_encoder_hardware_simulated';
-
-%only need load or rtwbuild, rtwbuild is redundant if you haven't made any
-%changes to the model file and only need to load the .dlm file
-if strcmp(tg.application,filename)
-    tg.load(filename); 
-else
-    rtwbuild(filename);
-end
-    
-tg.start;
+% tg =xpc; % MUST BE DECLARED AT THE START OF EVERY FUNCTION USING xPC CMDS
+% filename = 'dc_motor_encoder_hardware_simulated';
+% 
+% %only need load or rtwbuild, rtwbuild is redundant if you haven't made any
+% %changes to the model file and only need to load the .dlm file
+% if strcmp(tg.application,filename)
+%     tg.load(filename); 
+% else
+%     rtwbuild(filename);
+% end
+%     
+% tg.start;
 
 %% Degree Test
 
-for c1 = 1:numel(degrees)
-    for c2 = 1:numel(redWasher)
-        if (c1 == redWasher(c2))
-            tg.setparam(tg.getparamid('Degree','Value'), degrees(c1));
-            pause(3);
-            tg.setparam(tg.getparamid('Degree','Value'), 0);
-            pause(3);
-        end
-    end
-end
-
-tg.stop;
+% for c1 = 1:numel(degrees)
+%     for c2 = 1:numel(redWasher)
+%         if (c1 == redWasher(c2))
+%             tg.setparam(tg.getparamid('Degree','Value'), degrees(c1));
+%             pause(3);
+%             tg.setparam(tg.getparamid('Degree','Value'), 0);
+%             pause(3);
+%         end
+%     end
+% end
+% 
+% tg.stop;
 
 
