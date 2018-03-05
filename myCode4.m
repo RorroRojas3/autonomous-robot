@@ -5,8 +5,8 @@ clc;
 imaqreset;
 
 %% Set Up Webcam
-cam = webcam('HP USB Webcam');
-preview(cam);
+% cam = webcam('HP USB Webcam');
+% preview(cam);
 % 
 % while (1)
 %     back = snapshot(cam);
@@ -16,38 +16,23 @@ preview(cam);
 %     hold off;
 % end
 
-command = input('Take Background Picture? [Y/N]: ', 's');
-if (strcmp('Y', command) == 1)
-    background = snapshot(cam);
-    %figure, imshow(background);
-end
+% command = input('Take Background Picture? [Y/N]: ', 's');
+% if (strcmp('Y', command) == 1)
+%     background = snapshot(cam);
+%     %figure, imshow(background);
+% end
 
 %% Get SnapShot
-command2 = input('Take Snapshot Picture? [Y/N]: ', 's');
-if (strcmp('Y', command2) == 1)
-    snapShot = snapshot(cam);
-    %figure, imshow(snapShot);
-end
-
-%% Target PC Set Up
-
-tg =xpc; % MUST BE DECLARED AT THE START OF EVERY FUNCTION USING xPC CMDS
-filename = 'dc_motor_encoder_hardware_simulated';
-
-%only need load or rtwbuild, rtwbuild is redundant if you haven't made any
-%changes to the model file and only need to load the .dlm file
-if strcmp(tg.application,filename)
-    tg.load(filename); 
-else
-    rtwbuild(filename);
-end
-    
-tg.start;
+% command2 = input('Take Snapshot Picture? [Y/N]: ', 's');
+% if (strcmp('Y', command2) == 1)
+%     snapShot = snapshot(cam);
+%     %figure, imshow(snapShot);
+% end
 
 %% Get Images and Turn it to Gray Scale
 
-% background = imread('gameboard.png');
-% snapShot = imread('colors.png');
+background = imread('gameboard.png');
+snapShot = imread('colors.png');
 backgroundG = rgb2gray(background);
 snapShotG = rgb2gray(snapShot);
 
@@ -92,6 +77,9 @@ for c1 = 1:numel(properties)
    radius = sqrt(properties(c1).Area / pi);
    halfRadius = radius / 2;
    plot(floor(properties(c1).Centroid(1) - halfRadius), floor(properties(c1).Centroid(2)), 'rx'); 
+   plot(floor(properties(c1).Centroid(1) + halfRadius), floor(properties(c1).Centroid(2)), 'rx');
+   plot(floor(properties(c1).Centroid(1)), floor(properties(c1).Centroid(2) - halfRadius), 'rx');
+   plot(floor(properties(c1).Centroid(1)), floor(properties(c1).Centroid(2) + halfRadius), 'rx');
 end
 plot(640/2, 480/2, 'rx');
 hold off;
@@ -101,21 +89,40 @@ c2 = 1;
 for c1 = 1:numel(properties)
     radius = sqrt(properties(c1).Area / pi);
     halfRadius = radius / 2;
+    % Obtains Average Red value of current Washer
     redColor = snapShot(floor(properties(c1).Centroid(2) - halfRadius), floor(properties(c1).Centroid(1)), 1);
+    redColor = redColor + snapShot(floor(properties(c1).Centroid(2) + halfRadius), floor(properties(c1).Centroid(1)), 1);
+    redColor = redColor + snapShot(floor(properties(c1).Centroid(2)), floor(properties(c1).Centroid(1) - halfRadius), 1);
+    redColor = redColor + snapShot(floor(properties(c1).Centroid(2)), floor(properties(c1).Centroid(1) + halfRadius), 1);
+    % Obtains Average Green value of current Washer
     greenColor = snapShot(floor(properties(c1).Centroid(2) - halfRadius), floor(properties(c1).Centroid(1)), 2);
+    greenColor = greenColor + snapShot(floor(properties(c1).Centroid(2) + halfRadius), floor(properties(c1).Centroid(1)), 2);
+    greenColor = greenColor + snapShot(floor(properties(c1).Centroid(2)), floor(properties(c1).Centroid(1) - halfRadius), 2);
+    greenColor = greenColor + snapShot(floor(properties(c1).Centroid(2)), floor(properties(c1).Centroid(1) + halfRadius), 2);
+    % Obtains Average Blue value of current Washer
     blueColor = snapShot(floor(properties(c1).Centroid(2) - halfRadius), floor(properties(c1).Centroid(1)), 3);
+    blueColor = blueColor + snapShot(floor(properties(c1).Centroid(2) + halfRadius), floor(properties(c1).Centroid(1)), 3);
+    blueColor = blueColor + snapShot(floor(properties(c1).Centroid(2)), floor(properties(c1).Centroid(1) - halfRadius), 3);
+    blueColor = blueColor + snapShot(floor(properties(c1).Centroid(2)), floor(properties(c1).Centroid(1) + halfRadius), 3);
     fprintf('Washer #%d | R(%d), G(%d), B(%d) | ', c1, redColor, greenColor, blueColor);
-    %If color is RED
-    if ((redColor >= 58) && (greenColor >=0) && (greenColor <=90) && (blueColor >= 21) && (blueColor <= 100))
-        fprintf("RED\n");
-        redWasher(c2) = c1;
-    % IF Color is Blue
-    elseif ((redColor >=44) && (redColor <= 72) && (greenColor >=50) && (greenColor <= 92) && (blueColor >= 61))
-        fprintf('BLUE\n');
+%     %If color is RED
+%     if ((redColor >= 58) && (greenColor >=0) && (greenColor <=90) && (blueColor >= 21) && (blueColor <= 100))
+%         fprintf("RED\n");
+%         redWasher(c2) = c1;
+%     % IF Color is Blue
+%     elseif ((redColor >=44) && (redColor <= 72) && (greenColor >=50) && (greenColor <= 92) && (blueColor >= 61))
+%         fprintf('BLUE\n');
+%     else
+%         fprintf('GREEN\n');
+%     end
+%     c2 = c2 + 1;
+    if ((redColor > greenColor) && (redColor > blueColor))
+        fprintf("Red\n");
+    elseif ((greenColor > redColor) && (greenColor > blueColor))
+        fprintf("Green\n");
     else
-        fprintf('GREEN\n');
+        fprintf("Blue\n");
     end
-    c2 = c2 + 1;
 end
 fprintf('\n');
 
@@ -151,15 +158,30 @@ for c1= 1:numel(properties)
     fprintf('Washer #%d | X: %.3f | Y: %.3f | Degree: %.3f\n', c1, x(c1), y(c1), degrees(c1));
 end
 
-%% Degree Test
-
-for c1 = 1:numel(degrees)
-    if (c1 == redWasher(c1))
-        tg.setparam(tg.getparamid('Degree','Value'), degrees(c1));
-        pause(3);
-        tg.setparam(tg.getparamid('Degree','Value'), 0);
-        pause(3);
-    end
-end
+% %% Target PC Set Up
+% 
+% tg =xpc; % MUST BE DECLARED AT THE START OF EVERY FUNCTION USING xPC CMDS
+% filename = 'dc_motor_encoder_hardware_simulated';
+% 
+% %only need load or rtwbuild, rtwbuild is redundant if you haven't made any
+% %changes to the model file and only need to load the .dlm file
+% if strcmp(tg.application,filename)
+%     tg.load(filename); 
+% else
+%     rtwbuild(filename);
+% end
+%     
+% tg.start;
+% 
+% %% Degree Test
+% 
+% for c1 = 1:numel(degrees)
+%     if (c1 == redWasher(c1))
+%         tg.setparam(tg.getparamid('Degree','Value'), degrees(c1));
+%         pause(3);
+%         tg.setparam(tg.getparamid('Degree','Value'), 0);
+%         pause(3);
+%     end
+% end
 
 
