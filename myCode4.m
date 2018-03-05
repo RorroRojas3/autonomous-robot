@@ -80,10 +80,10 @@ for c1 = 1:numel(properties)
    plot(floor(properties(c1).Centroid(1) + halfRadius), floor(properties(c1).Centroid(2)), 'rx');
    plot(floor(properties(c1).Centroid(1)), floor(properties(c1).Centroid(2) - halfRadius), 'rx');
    plot(floor(properties(c1).Centroid(1)), floor(properties(c1).Centroid(2) + halfRadius), 'rx');
-   plot(floor(properties(c1).Centroid(1) - halfRadius) + 1, floor(properties(c1).Centroid(2)) - 6, 'rx');
-   plot(floor(properties(c1).Centroid(1) - halfRadius) + 1, floor(properties(c1).Centroid(2)) + 6, 'rx');
-   plot(floor(properties(c1).Centroid(1) + halfRadius) + 1, floor(properties(c1).Centroid(2)) - 6, 'rx');
-   plot(floor(properties(c1).Centroid(1) + halfRadius) + 1, floor(properties(c1).Centroid(2)) + 6, 'rx');
+   plot(floor(properties(c1).Centroid(1) - halfRadius) + 3, floor(properties(c1).Centroid(2)) - 8, 'rx');
+   plot(floor(properties(c1).Centroid(1) - halfRadius) + 3, floor(properties(c1).Centroid(2)) + 8, 'rx');
+   plot(floor(properties(c1).Centroid(1) + halfRadius) - 3, floor(properties(c1).Centroid(2)) - 8, 'rx');
+   plot(floor(properties(c1).Centroid(1) + halfRadius) - 3, floor(properties(c1).Centroid(2)) + 8, 'rx');
 end
 plot(640/2, 480/2, 'rx');
 hold off;
@@ -98,10 +98,10 @@ for c1 = 1:numel(properties)
     color2 = sum(sum(snapShot(floor(properties(c1).Centroid(2) + halfRadius), floor(properties(c1).Centroid(1)), 1)));
     color3 = sum(sum(snapShot(floor(properties(c1).Centroid(2)), floor(properties(c1).Centroid(1) - halfRadius), 1)));
     color4 = sum(sum(snapShot(floor(properties(c1).Centroid(2)), floor(properties(c1).Centroid(1) + halfRadius), 1)));
-    color5 = sum(sum(snapShot(floor(properties(c1).Centroid(2) - halfRadius) + 1, floor(properties(c1).Centroid(1)) - 6, 1)));
-    color6 = sum(sum(snapShot(floor(properties(c1).Centroid(2) - halfRadius) + 1, floor(properties(c1).Centroid(1)) + 6, 1)));
-    color7 = sum(sum(snapShot(floor(properties(c1).Centroid(2) + halfRadius) + 1, floor(properties(c1).Centroid(1)) - 6, 1)));
-    color8 = sum(sum(snapShot(floor(properties(c1).Centroid(2) + halfRadius) + 1, floor(properties(c1).Centroid(1)) + 6, 1)));
+    color5 = sum(sum(snapShot(floor(properties(c1).Centroid(2) - halfRadius) + 3, floor(properties(c1).Centroid(1)) - 8, 1)));
+    color6 = sum(sum(snapShot(floor(properties(c1).Centroid(2) - halfRadius) + 3, floor(properties(c1).Centroid(1)) + 8, 1)));
+    color7 = sum(sum(snapShot(floor(properties(c1).Centroid(2) + halfRadius) - 3, floor(properties(c1).Centroid(1)) - 8, 1)));
+    color8 = sum(sum(snapShot(floor(properties(c1).Centroid(2) + halfRadius) - 3, floor(properties(c1).Centroid(1)) + 8, 1)));
     redColor  = color1 + color2 + color3 + color4 + color5 + color6 + color7 + color8;
     % Obtains Average Green value of current Washer
     color1 = 0;
@@ -116,10 +116,10 @@ for c1 = 1:numel(properties)
     color2 = sum(sum(snapShot(floor(properties(c1).Centroid(2) + halfRadius), floor(properties(c1).Centroid(1)), 2)));
     color3 = sum(sum(snapShot(floor(properties(c1).Centroid(2)), floor(properties(c1).Centroid(1) - halfRadius), 2)));
     color4 = sum(sum(snapShot(floor(properties(c1).Centroid(2)), floor(properties(c1).Centroid(1) + halfRadius), 2)));
-    color5 = sum(sum(snapShot(floor(properties(c1).Centroid(2) - halfRadius) + 1, floor(properties(c1).Centroid(1)) - 6, 2)));
-    color6 = sum(sum(snapShot(floor(properties(c1).Centroid(2) - halfRadius) + 1, floor(properties(c1).Centroid(1)) + 6, 2)));
-    color7 = sum(sum(snapShot(floor(properties(c1).Centroid(2) + halfRadius) + 1, floor(properties(c1).Centroid(1)) - 6, 2)));
-    color8 = sum(sum(snapShot(floor(properties(c1).Centroid(2) + halfRadius) + 1, floor(properties(c1).Centroid(1)) + 6, 2)));
+    color5 = sum(sum(snapShot(floor(properties(c1).Centroid(2) - halfRadius) + 3, floor(properties(c1).Centroid(1)) - 8, 2)));
+    color6 = sum(sum(snapShot(floor(properties(c1).Centroid(2) - halfRadius) + 3, floor(properties(c1).Centroid(1)) + 8, 2)));
+    color7 = sum(sum(snapShot(floor(properties(c1).Centroid(2) + halfRadius) - 3, floor(properties(c1).Centroid(1)) - 8, 2)));
+    color8 = sum(sum(snapShot(floor(properties(c1).Centroid(2) + halfRadius) - 3, floor(properties(c1).Centroid(1)) + 8, 2)));
     greenColor = color1 + color2 + color3 + color4 + color5 + color6 + color7 + color8;
     % Obtains Average Blue value of current Washer
     color1 = 0;
@@ -134,10 +134,10 @@ for c1 = 1:numel(properties)
     color2 = sum(sum(snapShot(floor(properties(c1).Centroid(2) + halfRadius), floor(properties(c1).Centroid(1)), 3)));
     color3 = sum(sum(snapShot(floor(properties(c1).Centroid(2)), floor(properties(c1).Centroid(1) - halfRadius), 3)));
     color4 = sum(sum(snapShot(floor(properties(c1).Centroid(2)), floor(properties(c1).Centroid(1) + halfRadius), 3)));
-    color5 = sum(sum(snapShot(floor(properties(c1).Centroid(2) - halfRadius) + 1, floor(properties(c1).Centroid(1)) - 6, 3)));
-    color6 = sum(sum(snapShot(floor(properties(c1).Centroid(2) - halfRadius) + 1, floor(properties(c1).Centroid(1)) + 6, 3)));
-    color7 = sum(sum(snapShot(floor(properties(c1).Centroid(2) + halfRadius) + 1, floor(properties(c1).Centroid(1)) - 6, 3)));
-    color8 = sum(sum(snapShot(floor(properties(c1).Centroid(2) + halfRadius) + 1, floor(properties(c1).Centroid(1)) + 6, 3)));
+    color5 = sum(sum(snapShot(floor(properties(c1).Centroid(2) - halfRadius) + 3, floor(properties(c1).Centroid(1)) - 8, 3)));
+    color6 = sum(sum(snapShot(floor(properties(c1).Centroid(2) - halfRadius) + 3, floor(properties(c1).Centroid(1)) + 8, 3)));
+    color7 = sum(sum(snapShot(floor(properties(c1).Centroid(2) + halfRadius) - 3, floor(properties(c1).Centroid(1)) - 8, 3)));
+    color8 = sum(sum(snapShot(floor(properties(c1).Centroid(2) + halfRadius) - 3, floor(properties(c1).Centroid(1)) + 8, 3)));
     blueColor = color1 + color2 + color3 + color4 + color5 + color6 + color7 + color8;
     fprintf('Washer #%d | R(%d), G(%d), B(%d) | ', c1, redColor, greenColor, blueColor);
 %     %If color is RED
