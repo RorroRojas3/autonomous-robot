@@ -5,8 +5,8 @@ clc;
 imaqreset;
 
 %% Set Up Webcam
-% cam = webcam('HP USB Webcam');
-% preview(cam);
+cam = webcam('HP USB Webcam');
+preview(cam);
 
 % while (1)
 %     back = snapshot(cam);
@@ -16,23 +16,17 @@ imaqreset;
 %     hold off;
 % end
 
-% command = input('Take Background Picture? [Y/N]: ', 's');
-% if (strcmp('Y', command) == 1)
-%     background = snapshot(cam);
-%     %figure, imshow(background);
-% end
+%% Get Background Image
+background = getBackgroundImage(cam);
 
-%% Get SnapShot
-% command2 = input('Take Snapshot Picture? [Y/N]: ', 's');
-% if (strcmp('Y', command2) == 1)
-%     snapShot = snapshot(cam);
-%     %figure, imshow(snapShot);
-% end
+%% Get SnapShot Image
+
+snapShot = getSnapshotImage(cam);
 
 %% Get Images and Turn it to Gray Scale
 
-background = imread('gameboard.png');
-snapShot = imread('colors.png');
+%background = imread('gameboard.png');
+%snapShot = imread('colors.png');
 backgroundG = rgb2gray(background);
 snapShotG = rgb2gray(snapShot);
 
@@ -73,11 +67,13 @@ fprintf('\n');
 degrees = getWashersDegrees(properties);
 
 %% Target PC Set Up
-%tg = setTargetPC();
+tg = setTargetPC();
 
 %% Degree Test
-%rotateMotor(degrees, redWasher, tg);
-% 
-% tg.stop;
+rotateMotor(degrees, redWasher, tg);
+
+tg.stop;
+
+
 
 
