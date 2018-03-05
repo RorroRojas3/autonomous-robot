@@ -53,8 +53,9 @@ function [washer] = getGreenWasher(snapShot, properties)
         color8 = sum(sum(snapShot(floor(properties(c1).Centroid(2) + halfRadius) - 3, floor(properties(c1).Centroid(1)) + 8, 3)));
         blueColor = color1 + color2 + color3 + color4 + color5 + color6 + color7 + color8;
 
+        fprintf('Washer #%d | R(%d), G(%d), B(%d) | ', c1, redColor, greenColor, blueColor);
         if ((greenColor > redColor) && (greenColor > blueColor))
-            fprintf('Washer #%d | R(%d), G(%d), B(%d) | ', c1, redColor, greenColor, blueColor);
+            
             fprintf("Washer #%d is GREEN\n", c1);
             washer(c2) = c1;
         end
