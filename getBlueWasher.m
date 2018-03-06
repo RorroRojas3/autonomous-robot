@@ -56,7 +56,7 @@ function [washer] = getBlueWasher(snapShot, properties)
         
 
         if ((blueColor > greenColor) && (blueColor > redColor))
-            fprintf('Washer #%d | R(%d), G(%d), B(%d) | \n', c1, redColor, greenColor, blueColor);
+            fprintf('Washer #%d | R(%d), G(%d), B(%d) | ', c1, redColor, greenColor, blueColor);
             fprintf("Washer #%d is BLUE\n", c1);
             washer(c2) = c1;
         end
