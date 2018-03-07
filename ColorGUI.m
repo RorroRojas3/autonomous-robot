@@ -22,7 +22,7 @@ function varargout = ColorGUI(varargin)
 
 % Edit the above text to modify the response to help ColorGUI
 
-% Last Modified by GUIDE v2.5 04-Mar-2018 17:06:46
+% Last Modified by GUIDE v2.5 06-Mar-2018 20:02:52
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -78,13 +78,13 @@ function redColors_Callback(hObject, eventdata, handles)
 % hObject    handle to redColors (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-fprintf("User Chose Red\n");
+
 %%
 clear all;
 close all;
 clc;
 imaqreset;
-
+fprintf("User Chose Red\n");
 %% Set Up Webcam
 cam = webcam('HP USB Webcam');
 preview(cam);
@@ -160,13 +160,13 @@ function greenColors_Callback(hObject, eventdata, handles)
 % hObject    handle to greenColors (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-fprintf("User Chose Green\n");
+
 %%
 clear all;
 close all;
 clc;
 imaqreset;
-
+fprintf("User Chose Green\n");
 %% Set Up Webcam
 cam = webcam('HP USB Webcam');
 preview(cam);
@@ -242,13 +242,12 @@ function blueColors_Callback(hObject, eventdata, handles)
 % hObject    handle to blueColors (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-fprintf("User Chose Blue\n");
 %%
 clear all;
 close all;
 clc;
 imaqreset;
-
+fprintf("User Chose Blue\n");
 %% Set Up Webcam
 cam = webcam('HP USB Webcam');
 preview(cam);
@@ -319,38 +318,8 @@ rotateMotor(degrees, blueColor, tg);
 
 tg.stop;
 
-% --- Executes on button press in Yellow.
-function Yellow_Callback(hObject, eventdata, handles)
-% hObject    handle to Yellow (see GCBO)
+% --- Executes on button press in allColors.
+function allColors_Callback(hObject, eventdata, handles)
+% hObject    handle to allColors (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-fprintf("User Chose Yellow\n");
-
-
-% --- Executes on button press in alignCamera.
-function alignCamera_Callback(hObject, eventdata, handles)
-% hObject    handle to alignCamera (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-clear all;
-close all;
-clc;
-imaqreset;
-cam = webcam('HP USB Webcam');
-while (1)
-    back = snapshot(cam);
-    imshow(back);
-    hold on;
-    plot(320, 240, 'rx');
-    hold off;
-end
-
-tg.stop;
-
-% --- Executes on button press in pushbutton10.
-function pushbutton10_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton10 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-
