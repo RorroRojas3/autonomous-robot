@@ -38,6 +38,7 @@ function rotateMotorAll(degrees, washers, tg)
         % User decided to terminate program and breaks from loop
         elseif (command == 3)
             fprintf('Program terminated\n');
+            break;
         end
     end
 

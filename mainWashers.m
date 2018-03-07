@@ -25,8 +25,8 @@ snapShot = getSnapshotImage(cam);
 
 %% Get Images and Turn it to Gray Scale
 
-%background = imread('gameboard.png');
-%snapShot = imread('colors.png');
+% background = imread('gameboard.png');
+% snapShot = imread('colors.png');
 backgroundG = rgb2gray(background);
 snapShotG = rgb2gray(snapShot);
 

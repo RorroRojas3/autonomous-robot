@@ -57,8 +57,8 @@ function [washer] = getGreenWasher(snapShot, properties)
             fprintf('Washer #%d | R(%d), G(%d), B(%d) | ', c1, redColor, greenColor, blueColor);
             fprintf("Washer #%d is GREEN\n", c1);
             washer(c2) = c1;
+            c2 = c2 + 1;
         end
-        c2 = c2 + 1;
     end
 
 end

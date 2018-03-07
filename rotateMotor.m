@@ -1,3 +1,4 @@
+
 function rotateMotor(degrees, redWasher, tg)
     while(1)
         %Menu is displayed
@@ -42,6 +43,7 @@ function rotateMotor(degrees, redWasher, tg)
         % User decided to terminate program and breaks from loop
         elseif (command == 3)
             fprintf('Program terminated\n');
+            break;
         end
     end
 end
