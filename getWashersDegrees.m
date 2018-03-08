@@ -27,6 +27,8 @@ function degrees = getWashersDegrees(properties)
             degrees(c1) = 180 - atand(abs(y(c1) / x(c1)));
         end
 
-        fprintf('Washer #%d | X: %.3f | Y: %.3f | Degree: %.3f\n', c1, x(c1), y(c1), degrees(c1));
+        
+        %fprintf('Washer #%d | X: %.3f | Y: %.3f | Degree: %.3f\n', c1, x(c1), y(c1), degrees(c1));
     end
+    fprintf('\nDegrees have been obtained\n');
 end

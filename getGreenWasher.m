@@ -1,5 +1,6 @@
 function [washer] = getGreenWasher(snapShot, properties)
     c2 = 1;
+    true = 0;
     for c1 = 1:numel(properties)
         radius = sqrt(properties(c1).Area / pi);
         halfRadius = radius / 2;
@@ -58,7 +59,11 @@ function [washer] = getGreenWasher(snapShot, properties)
             fprintf("Washer #%d is GREEN\n", c1);
             washer(c2) = c1;
             c2 = c2 + 1;
+            true = 1;
         end
     end
 
+    if (true == 0)
+        washer = 0;
+    end
 end

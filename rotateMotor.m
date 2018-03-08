@@ -2,7 +2,7 @@
 function rotateMotor(degrees, redWasher, tg)
     while(1)
         %Menu is displayed
-        fprintf('Enter: 1) For All Selected Color Washers | 2) For Specific Selected Color Washer | 3) To Exit | \n');
+        fprintf('\nEnter: 1) For All Selected Color Washers | 2) For Specific Selected Color Washer | 3) To Exit | \n');
         command = input('Enter: ');
         % Motor will rotate to the all washers of desired color selected
         if (command == 1)
@@ -18,7 +18,7 @@ function rotateMotor(degrees, redWasher, tg)
             end
         % Motor will rotate to specific Washer
         elseif (command == 2)
-            fprintf('Select one of the of these Washers: ');
+            fprintf('Select one of these Washers: ');
             for c1 = 1:numel(redWasher)
                 fprintf('%d ', redWasher(c1));
             end

@@ -5,9 +5,10 @@ clc;
 imaqreset;
 
 %% Set Up Webcam
-cam = webcam('HP USB Webcam');
-preview(cam);
+gameState.cam = webcam('HP USB Webcam');
+preview(gameState.cam);
 
+%% Align Board with Camera
 % while (1)
 %     back = snapshot(cam);
 %     imshow(back);
@@ -17,62 +18,72 @@ preview(cam);
 % end
 
 %% Get Background Image
-background = getBackgroundImage(cam);
+gameState.background = getBackgroundImage(gameState.cam);
 
 %% Get SnapShot Image
 
-snapShot = getSnapshotImage(cam);
+gameState.snapShot = getSnapshotImage(gameState.cam);
 
 %% Get Images and Turn it to Gray Scale
 
 % background = imread('gameboard.png');
 % snapShot = imread('colors.png');
-backgroundG = rgb2gray(background);
-snapShotG = rgb2gray(snapShot);
+gameState.backgroundG = rgb2gray(gameState.background);
+gameState.snapShotG = rgb2gray(gameState.snapShot);
 
 %% Take difference between Backgroun and Snapshot
-difference = backgroundG - snapShotG;
-figure, imshow(difference);
+gameState.difference = gameState.backgroundG - gameState.snapShotG;
+figure, imshow(gameState.difference);
 
 %% Obtain Gray Scale of Difference
-diffI = im2bw(difference, 0.15);
+gameState.diffI = im2bw(gameState.difference, 0.15);
 %imshow(diffI);
 
 %% Erosion and Dilution
 se = strel('disk', 3);
-erode = imerode(diffI,se);
+gameState.erode = imerode(gameState.diffI,se);
 %figure, imshow(erode);
 se2 = strel('disk', 10);
-dilute = imdilate(erode, se2);
+gameState.dilute = imdilate(gameState.erode, se2);
 %figure, imshow(dilute);
 
 %% Fill Image
-image = imfill(dilute, 'holes');
-figure, imshow(image);
+gameState.fillImage = imfill(gameState.dilute, 'holes');
+figure, imshow(gameState.fillImage);
 
 %% Get Area and Centroid Information
-properties = regionprops(image);
+gameState.props = regionprops(gameState.fillImage);
 
 %% Labels each Washer by their number
-centroidNumber(snapShot, properties);
+centroidNumber(gameState.snapShot, gameState.props);
 
 %% Labels where program is getting RGB value for each washer
-rgbPoints(snapShot, properties);
+rgbPoints(gameState.snapShot, gameState.props);
 
 %% Determines number of RED Washers
-redWasher = getRedWasher(snapShot, properties);
+gameState.redWasher = getRedWasher(gameState.snapShot, gameState.props);
 fprintf('\n');
 
-%%  Determine the angle of Washers based on Pixels 
-degrees = getWashersDegrees(properties);
+if (gameState.redWasher(1) == 0)
+    clear all;
+    close all;
+    clc;
+    imaqreset;
+    fprintf('No Red Washers detected\n');
+    fprintf('Program will be terminated\n');
+else
+    %%  Determine the angle of Washers based on Pixels 
+    gameState.degrees = getWashersDegrees(gameState.props);
 
-%% Target PC Set Up
-tg = setTargetPC();
+    %% Target PC Set Up
+    tg = setTargetPC();
 
-%% Degree Test
-rotateMotor(degrees, redWasher, tg);
+    %% Degree Test
+    rotateMotor(gameState.degrees, gameState.redWasher, tg);
 
-tg.stop;
+    %% Stop Simulink
+    tg.stop;
+end
 
 
 
