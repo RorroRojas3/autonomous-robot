@@ -1,5 +1,6 @@
 function rotateMotorDemo(degrees, washers, tg)
     firstTime = 0;
+    lastWasher = 0;
     while(1)
         %Menu is displayed
         fprintf('\nEnter: 1) For All Selected Color Washers | 2) For Specific Selected Color Washer | 3) To Exit | \n');
@@ -12,53 +13,73 @@ function rotateMotorDemo(degrees, washers, tg)
                         if (firstTime == 0)
                             tg.setparam(tg.getparamid('Degree','Value'), degrees(c1));
                             firstTime = 1;
+                            lastWasher = c2;
                             pause(3);
                         else
-                            if ((washers(c2) > 0) && (washers(c2 - 1) > 0))
-                                if (washers(c2 - 1) > washers(c2))   
-                                    tg.setparam(tg.getparamid('Degree','Value'), washers(c2) - (washers(c2 - 1)));
-                                    pause(3);
-                                    if (c2 == max(washers))
-                                        tg.setparam(tg.getparamid('Degree','Value'), 0);
-                                    end
-                                elseif (washers(c2) > washers(c2 - 1))
-                                    diff = washers(c2) - (washers(c2 - 1);
-                                    tg.setparam(tg.getparamid('Degree','Value'), washers(c2) + diff);
-                                    pause(3);
-                                    if (c2 == max(washers))
-                                        tg.setparam(tg.getparamid('Degree','Value'), 0);
-                                    end
-                                end
-                            elseif ((washers(c2) < 0) && (washers(c2 - 1) < 0))
-                                if (washers(c2 - 1) < washers(c2))
-                                    diff = abs(washers(c2 - 1)) - abs(washers(c2));
-                                    pause(3);
+                            if ((degrees(c2) > 0) && (degrees(lastWasher) > 0))
+                                if (degrees(lastWasher) > degrees(c2))   
+                                    diff = degrees(lastWasher) - (degrees(c2));
+                                    diff = diff;
+                                    fprintf('Diff: %.2f\n', diff);
                                     tg.setparam(tg.getparamid('Degree','Value'), diff);
+                                    pause(3);
                                     if (c2 == max(washers))
                                         tg.setparam(tg.getparamid('Degree','Value'), 0);
                                     end
-                                elseif (washers(c2) < washers(c2 - 1))
-                                    diff = abs(washers(c2)) - abs(washers(c2 - 1));
+                                    lastWasher = c2;
+                                elseif (degrees(c2) > degrees(lastWasher))
+                                    diff = degrees(c2) - degrees(lastWasher);
+                                    tg.setparam(tg.getparamid('Degree','Value'), diff);
+                                    fprintf('Diff: %.2f\n', diff);
+                                    pause(3);
+                                    if (c2 == max(washers))
+                                        tg.setparam(tg.getparamid('Degree','Value'), 0);
+                                    end
+                                    lastWasher = c2;
+                                end
+                            elseif ((degrees(c2) < 0) && (degrees(lastWasher) < 0))
+                                if (degrees(lastWasher) < degrees(c2))
+                                    diff = abs(degrees(lastWasher)) - abs(degrees(c2));
+                                    fprintf('Diff: %.2f\n', diff);
+                                    tg.setparam(tg.getparamid('Degree','Value'), diff);
+                                    pause(3);
+                                    if (c2 == max(washers))
+                                        tg.setparam(tg.getparamid('Degree','Value'), 0);
+                                    end
+                                    lastWasher = c2;
+                                elseif (degrees(c2) < degrees(lastWasher))
+                                    diff = abs(degrees(c2)) - abs(degrees(lastWasher));
+                                    diff = diff * -1;
+                                    fprintf('Diff: %.2f\n', diff);
+                                    tg.setparam(tg.getparamid('Degree','Value'), diff);
+                                    pause(3);
+                                    lastWasher = c2;
+                                end    
+                            elseif ((degrees(c2) > 0) && (degrees(lastWasher) < 0))
+                                if ((degrees(c2) > abs(degrees(lastWasher))))
+                                    diff = degrees(c2) - abs(degrees(lastWasher));
+                                    fprintf('Diff: %.2f\n', diff);
+                                    tg.setparam(tg.getparamid('Degree','Value'), diff);
+                                    pause(3);
+                                    lastWasher = c2;
+                                elseif (degrees(c2) < abs(degrees(lastWasher)))
+                                    diff = abs(degrees(lastWasher)) - degrees(c2);
+                                    tg.setparam(tg.getparamid('Degree','Value'), diff);
+                                    pause(3);
+                                    lastWasher = c2;
+                                end
+                            elseif ((degrees(c2) < 0) && (degrees(lastWasher) > 0))
+                                if (abs(degrees(c2)) > degrees(lastWasher))
+                                    diff = abs(degrees(c2)) - degrees(lastWasher);
                                     diff = diff * -1;
                                     tg.setparam(tg.getparamid('Degree','Value'), diff);
                                     pause(3);
-                                end    
-                            elseif ((washers(c2) > 0) && (washers(c2 - 1) < 0))
-                                sum = washers(c2) + abs(washers(c2 - 1));
-                                tg.setparam(tg.getparamid('Degree','Value'), sum);
-                                pause(3);
-                                if (c2 == max(washers))
-                                    tg.setparam(tg.getparamid('Degree','Value'), 0);
+                                elseif (abs(degrees(c2)) < degrees(lastwWasher))
+                                    diff = degrees(lastWasher) - abs(degrees(c2));
+                                    tg.setparam(tg.getparamid('Degree','Value'), diff);
+                                    pause(3);
                                 end
-                            elseif ((washers(c2) < 0) && (washers(c2 - 1) > 0))
-                                sum = washers(c2) - washers(c2 - 1);
-                                tg.setparam(tg.getparamid('Degree','Value'), sum);
-                                pause(3);
-                                if (c2 == max(washers))
-                                    tg.setparam(tg.getparamid('Degree','Value'), 0);
-                                end
-                            end
-                                
+                            end  
                         end
                     end
                 end

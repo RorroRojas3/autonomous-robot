@@ -10,7 +10,7 @@ preview(gameState.cam);
 
 %% Align Board with Camera
 % while (1)
-%     back = snapshot(cam);
+%     back = snapshot(gameState.cam);
 %     imshow(back);
 %     hold on;
 %     plot(320, 240, 'rx');
@@ -79,7 +79,7 @@ else
     tg = setTargetPC();
 
     %% Degree Test
-    rotateMotor(gameState.degrees, gameState.redWasher, tg);
+    rotateMotorDemo(gameState.degrees, gameState.redWasher, tg);
 
     %% Stop Simulink
     tg.stop;
