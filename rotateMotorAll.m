@@ -8,8 +8,10 @@ function rotateMotorAll(degrees, washers, tg)
             for c1 = 1:numel(degrees)
                 tg.setparam(tg.getparamid('Degree','Value'), degrees(c1));
                 pause(3);
-                tg.setparam(tg.getparamid('Degree','Value'), 0);
-                pause(3);
+                if (c1 == numel(degrees))
+                    fprintf('Going back to origin\n');
+                    tg.setparam(tg.getparamid('Degree','Value'), 0);
+                end
             end
         % Motor will rotate to specific Washer
         elseif (command == 2)

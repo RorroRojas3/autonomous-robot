@@ -13,7 +13,7 @@ function rotateMotor(degrees, washers, tg)
                     end
                 end
                 if (c1 == numel(degrees))
-                    fprintf('Going back to zero\n');
+                    fprintf('Going back to origin\n');
                     tg.setparam(tg.getparamid('Degree','Value'), 0);
                 end
             end

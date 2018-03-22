@@ -19,11 +19,10 @@ preview(gameState.cam);
 
 %% Get Background Image
 gameState.background = getBackgroundImage(gameState.cam);
-
+figure, imshow(gameState.background);
 %% Get SnapShot Image
-
 gameState.snapShot = getSnapshotImage(gameState.cam);
-
+figure, imshow(gameState.snapShot);
 %% Get Images and Turn it to Gray Scale
 
 % background = imread('gameboard.png');
@@ -37,15 +36,15 @@ figure, imshow(gameState.difference);
 
 %% Obtain Gray Scale of Difference
 gameState.diffI = im2bw(gameState.difference, 0.15);
-%imshow(diffI);
+%figure, imshow(gameState.diffI);
 
 %% Erosion and Dilution
 se = strel('disk', 3);
 gameState.erode = imerode(gameState.diffI,se);
-%figure, imshow(erode);
+figure, imshow(gameState.erode);
 se2 = strel('disk', 10);
 gameState.dilute = imdilate(gameState.erode, se2);
-%figure, imshow(dilute);
+figure, imshow(gameState.dilute);
 
 %% Fill Image
 gameState.fillImage = imfill(gameState.dilute, 'holes');
@@ -61,8 +60,8 @@ centroidNumber(gameState.snapShot, gameState.props);
 rgbPoints(gameState.snapShot, gameState.props);
 
 %% Determines number of RED Washers
+fprintf('\n\n');
 gameState.redWasher = getRedWasher(gameState.snapShot, gameState.props);
-fprintf('\n');
 
 if (gameState.redWasher(1) == 0)
     clear all;
