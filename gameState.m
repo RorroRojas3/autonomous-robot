@@ -16,5 +16,6 @@ classdef gameState
         blueWasher
         allWashers
         degrees
+        tg
     end
 end

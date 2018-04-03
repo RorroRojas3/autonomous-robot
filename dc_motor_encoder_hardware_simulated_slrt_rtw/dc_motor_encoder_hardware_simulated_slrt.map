@@ -1,6 +1,6 @@
  dc_motor_encoder_hardware_simulated_slrt
 
- Timestamp is 5aa80b2d (Tue Mar 13 13:32:29 2018)
+ Timestamp is 5ac3b0c0 (Tue Apr  3 12:50:08 2018)
 
  Preferred load address is 10000000
 
@@ -20,13 +20,13 @@
  0002:00000b40 0000e250H .rdata                  DATA
  0002:0000ed90 00000390H .rdata$r                DATA
  0002:0000f120 00000110H .rdata$sxdata           DATA
- 0002:0000f230 000001e8H .rdata$zzzdbg           DATA
- 0002:0000f418 00000104H .rtc$IAA                DATA
- 0002:0000f51c 00000104H .rtc$IZZ                DATA
- 0002:0000f620 00000104H .rtc$TAA                DATA
- 0002:0000f724 00000104H .rtc$TZZ                DATA
- 0002:0000f828 00000ac8H .xdata$x                DATA
- 0002:000102f0 00000202H .edata                  DATA
+ 0002:0000f230 000001dcH .rdata$zzzdbg           DATA
+ 0002:0000f40c 00000104H .rtc$IAA                DATA
+ 0002:0000f510 00000104H .rtc$IZZ                DATA
+ 0002:0000f614 00000104H .rtc$TAA                DATA
+ 0002:0000f718 00000108H .rtc$TZZ                DATA
+ 0002:0000f820 00000ac0H .xdata$x                DATA
+ 0002:000102e0 00000202H .edata                  DATA
  0003:00000000 00001374H .data                   DATA
  0003:00001374 000001ecH .data$r                 DATA
  0003:00001560 00014218H .bss                    DATA
@@ -4040,10 +4040,10 @@
  0002:0000efe0       ??_R2type_info@@8          10073fe0     LIBCMT:std_type_info_static.obj
  0002:0000efe8       ??_R1A@?0A@EA@type_info@@8 10073fe8     LIBCMT:std_type_info_static.obj
  0002:0000f120       ___safe_se_handler_table   10074120     <linker-defined>
- 0002:0000f418       ___rtc_iaa                 10074418     LIBCMT:_initsect_.obj
- 0002:0000f51c       ___rtc_izz                 1007451c     LIBCMT:_initsect_.obj
- 0002:0000f620       ___rtc_taa                 10074620     LIBCMT:_initsect_.obj
- 0002:0000f724       ___rtc_tzz                 10074724     LIBCMT:_initsect_.obj
+ 0002:0000f40c       ___rtc_iaa                 1007440c     LIBCMT:_initsect_.obj
+ 0002:0000f510       ___rtc_izz                 10074510     LIBCMT:_initsect_.obj
+ 0002:0000f614       ___rtc_taa                 10074614     LIBCMT:_initsect_.obj
+ 0002:0000f718       ___rtc_tzz                 10074718     LIBCMT:_initsect_.obj
  0003:00000360       _dc_motor_encoder_hardware_simulated_P 10076360     dc_motor_encoder_hardware_simulated_data.obj
  0003:00000778       _pci20041digout            10076778     xpctarget.obj
  0003:0000077c       _nipcdio24cnfg             1007677c     xpctarget.obj

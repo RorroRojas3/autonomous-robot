@@ -9,13 +9,13 @@ gameState.cam = webcam('HP USB Webcam');
 preview(gameState.cam);
 
 %% Align Board with Camera
-% while (1)
-%     back = snapshot(gameState.cam);
-%     imshow(back);
-%     hold on;
-%     plot(320, 240, 'rx');
-%     hold off;
-% end
+while (1)
+    back = snapshot(gameState.cam);
+    imshow(back);
+    hold on;
+    plot(320, 240, 'rx');
+    hold off;
+end
 
 %% Get Background Image
 gameState.background = getBackgroundImage(gameState.cam);

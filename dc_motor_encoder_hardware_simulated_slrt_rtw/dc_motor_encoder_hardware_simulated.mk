@@ -67,7 +67,7 @@ ALT_MATLAB_ROOT = C:\PROGRA~1\MATLAB\R2017a
 MATLAB_BIN      = C:\Program Files\MATLAB\R2017a\bin
 ALT_MATLAB_BIN  = C:\PROGRA~1\MATLAB\R2017a\bin
 MASTER_ANCHOR_DIR = 
-START_DIR       = C:\Users\Rorro\Documents\MATLAB\project3\imageRecognition
+START_DIR       = C:\Users\Rorro\Documents\github\image-recognition
 S_FUNCTIONS     = daquanserq8.c encquanserq8.c
 S_FUNCTIONS_LIB = 
 NUMST           = 2
@@ -76,7 +76,7 @@ NCSTATES        = 4
 BUILDARGS       =  ISPROTECTINGMODEL=NOTPROTECTING EXT_MODE=1
 MULTITASKING    = 0
 EXT_MODE        = 0
-MEX_OPT_FILE    = -f "C:\Program Files\MATLAB\R2017a\bin\win64\mexopts\msvc2015.xml"
+MEX_OPT_FILE    = -f "C:\Users\Rorro\AppData\Roaming\MathWorks\MATLAB\R2017a\mex_C_win64.xml"
 
 MODELREFS       = 
 SHARED_SRC      = 
