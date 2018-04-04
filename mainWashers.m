@@ -25,7 +25,7 @@ gameState.snapShot = imread('back2.jpg');%getSnapshotImage(gameState.cam);
 figure, imshow(gameState.snapShot);
 %% Get Images and Turn it to Gray Scale
 
-% background = imread('gameboard.png');
+% background = imread('gameboard.png');a
 % snapShot = imread('colors.png');
 gameState.backgroundG = rgb2gray(gameState.background);
 gameState.snapShotG = rgb2gray(gameState.snapShot);
@@ -61,28 +61,30 @@ rgbPoints(gameState.snapShot, gameState.props);
 
 %% Determines number of RED Washers
 fprintf('\n\n');
-gameState.redWasher = getRedWasher(gameState.snapShot, gameState.props);
+gameState.allWashers = getAllWashers(gameState.snapShot, gameState.props);
 
-if (gameState.redWasher(1) == 0)
-    clear all;
-    close all;
-    clc;
-    imaqreset;
-    fprintf('No Red Washers detected\n');
-    fprintf('Program will be terminated\n');
-else
+% if (gameState.allWashers(1) == 0)
+%     clear all;
+%     close all;
+%     clc;
+%     imaqreset;
+%     fprintf('No Red Washers detected\n');
+%     fprintf('Program will be terminated\n');
+% else
     %%  Determine the angle of Washers based on Pixels 
     gameState.degrees = getWashersDegrees(gameState.props);
-
-    %% Target PC Set Up
-    tg = setTargetPC();
-
-    %% Degree Test
-    rotateMotorDemo(gameState.degrees, gameState.redWasher, tg);
-
-    %% Stop Simulink
-    tg.stop;
-end
+    
+    cell = sortColorAndDegrees(gameState.wellLocations, gameState.allWashers, gameState.degrees);
+    
+%     %% Target PC Set Up
+%     tg = setTargetPC();
+% 
+%     %% Degree Test
+%     rotateMotorDemo(gameState.degrees, gameState.redWasher, tg);
+% 
+%     %% Stop Simulink
+%     tg.stop;
+% end
 
 
 

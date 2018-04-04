@@ -17,5 +17,7 @@ classdef gameState
         allWashers
         degrees
         tg
+        wellLocations 
+        degreeAndColor
     end
 end
