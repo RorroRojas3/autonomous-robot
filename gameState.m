@@ -19,5 +19,6 @@ classdef gameState
         tg
         wellLocations 
         degreeAndColor
+        degreeColorWeight
     end
 end
