@@ -5,23 +5,23 @@ clc;
 imaqreset;
 
 %% Set Up Webcam
-gameState.cam = webcam('HP USB Webcam');
-preview(gameState.cam);
+%gameState.cam = webcam('HP USB Webcam');
+%preview(gameState.cam);
 
 %% Align Board with Camera
-while (1)
-    back = snapshot(gameState.cam);
-    imshow(back);
-    hold on;
-    plot(320, 240, 'rx');
-    hold off;
-end
+% while (1)
+%     back = snapshot(gameState.cam);
+%     imshow(back);
+%     hold on;
+%     plot(320, 240, 'rx');
+%     hold off;
+% end
 
 %% Get Background Image
-gameState.background = getBackgroundImage(gameState.cam);
+gameState.background = imread('back1.jpg'); %getBackgroundImage(gameState.cam);
 figure, imshow(gameState.background);
 %% Get SnapShot Image
-gameState.snapShot = getSnapshotImage(gameState.cam);
+gameState.snapShot = imread('back2.jpg');%getSnapshotImage(gameState.cam);
 figure, imshow(gameState.snapShot);
 %% Get Images and Turn it to Gray Scale
 
