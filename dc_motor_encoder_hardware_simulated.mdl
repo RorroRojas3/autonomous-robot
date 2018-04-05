@@ -27,7 +27,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.92"
+    ComputedModelVersion    "1.94"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -124,9 +124,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Rorro"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Apr 03 12:50:13 2018"
-  RTWModifiedTimeStamp	  444660598
-  ModelVersionFormat	  "1.%<AutoIncrement:92>"
+  LastModifiedDate	  "Thu Apr 05 11:36:09 2018"
+  RTWModifiedTimeStamp	  444828949
+  ModelVersionFormat	  "1.%<AutoIncrement:94>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1453,7 +1453,7 @@ Model {
       Position		      [375, 310, 430, 360]
       ZOrder		      -7
       BackgroundColor	      "yellow"
-      Gain		      "0.01"
+      Gain		      "0.0125"
       ParamDataTypeStr	      "Inherit: Inherit via internal rule"
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
       SaturateOnIntegerOverflow	off
@@ -1465,7 +1465,7 @@ Model {
       Position		      [390, 390, 450, 430]
       ZOrder		      -8
       BackgroundColor	      "yellow"
-      Gain		      "0.01"
+      Gain		      "0.025"
       ParamDataTypeStr	      "Inherit: Inherit via internal rule"
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
       SaturateOnIntegerOverflow	off
@@ -1477,7 +1477,7 @@ Model {
       Position		      [360, 236, 415, 274]
       ZOrder		      -9
       BackgroundColor	      "yellow"
-      Gain		      "0.1"
+      Gain		      "0.05"
       ParamDataTypeStr	      "Inherit: Inherit via internal rule"
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
       SaturateOnIntegerOverflow	off

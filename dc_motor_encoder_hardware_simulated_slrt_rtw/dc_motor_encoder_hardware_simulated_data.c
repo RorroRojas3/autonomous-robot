@@ -8,9 +8,9 @@
  *
  * Code generation for model "dc_motor_encoder_hardware_simulated".
  *
- * Model version              : 1.91
+ * Model version              : 1.92
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Tue Apr 03 12:50:01 2018
+ * C source code generated on : Thu Apr 05 11:29:57 2018
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -142,16 +142,16 @@ P_dc_motor_encoder_hardware_simulated_T dc_motor_encoder_hardware_simulated_P =
   1.0,                                 /* Expression: 1
                                         * Referenced by: '<Root>/Gain'
                                         */
-  0.1,                                 /* Expression: 0.1
+  0.05,                                /* Expression: 0.05
                                         * Referenced by: '<Root>/Kp'
                                         */
-  0.01,                                /* Expression: 0.01
+  0.0125,                              /* Expression: 0.0125
                                         * Referenced by: '<Root>/Kd'
                                         */
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<Root>/Integrator1'
                                         */
-  0.01,                                /* Expression: 0.01
+  0.025,                               /* Expression: 0.025
                                         * Referenced by: '<Root>/Ki'
                                         */
   5.0,                                 /* Expression: 5
