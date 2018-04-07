@@ -1,5 +1,5 @@
 function sortWashers(initial, final, tg)
-    
+    servo = arduinoSetup();
     for c1 = 1:10
         color = final{c1, 2};
         if ((strcmp(color, '')) == 0)
@@ -14,13 +14,14 @@ function sortWashers(initial, final, tg)
                         degree = initial{c2}{1};
                         %Rotates motor to the corresponding degree
                         tg.setparam(tg.getparamid('Degree','Value'), degree);
-                        
+                        writePosition(servo, 0);
                         %Calculate weight of picked up washer
                         %weightPicked = loadCellFunction
                         pause(3);
                         degree = 0;
+                        %writePosition(servo, 1);
                         tg.setparam(tg.getparamid('Degree','Value'), degree);
-                        pause(3);
+                        %pause(3);
 %                         if ((weightPicked < 10) && (weight < 10))
 %                             %Level one picked up and moved
 %                             %Erase value from original 
@@ -36,4 +37,6 @@ function sortWashers(initial, final, tg)
             end
         end
     end
+    writePosition(servo, 1);
+    pause(3);
 end
