@@ -1,0 +1,7 @@
+function ri = electromagnetAndLoadCellri
+
+ri = [];
+
+
+
+

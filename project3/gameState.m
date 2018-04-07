@@ -1,0 +1,24 @@
+classdef gameState
+    properties
+        cam
+        background
+        snapShot
+        backgroundG
+        snapShotG
+        difference
+        diffI
+        erode
+        dilute
+        fillImage
+        props
+        redWasher
+        greenWasher
+        blueWasher
+        allWashers
+        degrees
+        tg
+        wellLocations 
+        degreeAndColor
+        degreeColorWeight
+    end
+end
