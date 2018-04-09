@@ -34,93 +34,93 @@ function sortWashers(initial, final, tg)
                         %weightPicked = loadCellFunction
                         
                         
-                        pause(3);
+                        pause(5);
                         
                         
                         degree = 0;
-                        %writePosition(servo, 1);
+                        %writePosition(s1, 1);
                         tg.setparam(tg.getparamid('Degree','Value'), degree);
-                        %pause(3);
-%                         if ((weightPicked < 10) && (weight < 10))
-                              desiredDegree = final{c1, 1};
-                            
-                              %Looks for the location on the desired
-                              %degree on the initial Table
-                              for c3 = 1:10
-                                if (initial{c2, 1} == desiredDegree)
-                                    colorOnDesiredDegree = initial{c3, 2};
-                                    break;
-                                end
-                              end
-                              
-%                             %Spot is empty
-                              if (strcmp(colorOnDesiredDegree, '') == 1)
-                                  %Pick up washer again
-                                  
-                                  %Go to empty spot
-                                  tg.setparam(tg.getparamid('Degree', 'Value'), desiredDegree);
-                                  pause(2);
-                                  
-                                  %Drop the washer
-                                  
-                                  
-                                  %Delete the position of washer in initial
-                                  %Table
-                                  initial{c3, 2} = '';
-                                  
-                              %Spot is filled
-                              else
-                                  %Search for an empty spot
-                                  for c4 = 1:10
-                                      if (strcmp(initial{c4, 2}, '') == 1)
-                                          break;
-                                      end
-                                  end
-                                  emptyDegree = initial{c4, 1};
-                                  
-                                  %Go to filled spot
-                                  tg.setparam(tg.getparamid('Degree', 'Value'), desiredDegree);
-                                  
-                                  %Pick up washer
-                                  
-                                  %Move washer to empty spot 
-                                  tg.setparam(tg.getparamid('Degree', 'Value'), emptyDegree);
-                                  
-                                  %Drop the washer
-                                  
-                                  %Modify initial table 
-                                  initial{c4, 2} = colorOnDesiredDegree;
-                                  
-                                  %Go to Washer 
-                                  tg.setparam(tg.getparamid('Degree', 'Value'), degree);
-                                  
-                                  %Pick up Washer
-                                  
-                                  tg.setparam(tg.getparamid('Degree', 'Value'), desiredDegree);
-                                  
-                                  %Drop Washer
-                                  
-                                  %Delete the position of washer in initial
-                                  %Table
-                                  initial{c3, 2} = '';
-                                  
-                                  
-                              end
-                                  
-                        
-%                             %Erase value from original 
-%                         elseif ((weightPicked > 10) && (weightPicked  < 15) && (weight > 10) && (weight < 15))
-%                             %Level two picked and moved
-%                             %Erase value from original
-%                         elseif ((weightPicked > 15) && (weight > 15))
-%                             %Level three picked and moved
-%                             %Erase value from original
-%                         end
+                        pause(5);
+% %                         if ((weightPicked < 10) && (weight < 10))
+%                               desiredDegree = final{c1, 1};
+%                             
+%                               %Looks for the location on the desired
+%                               %degree on the initial Table
+%                               for c3 = 1:10
+%                                 if (initial{c2, 1} == desiredDegree)
+%                                     colorOnDesiredDegree = initial{c3, 2};
+%                                     break;
+%                                 end
+%                               end
+%                               
+% %                             %Spot is empty
+%                               if (strcmp(colorOnDesiredDegree, '') == 1)
+%                                   %Pick up washer again
+%                                   
+%                                   %Go to empty spot
+%                                   tg.setparam(tg.getparamid('Degree', 'Value'), desiredDegree);
+%                                   pause(2);
+%                                   
+%                                   %Drop the washer
+%                                   
+%                                   
+%                                   %Delete the position of washer in initial
+%                                   %Table
+%                                   initial{c3, 2} = '';
+%                                   
+%                               %Spot is filled
+%                               else
+%                                   %Search for an empty spot
+%                                   for c4 = 1:10
+%                                       if (strcmp(initial{c4, 2}, '') == 1)
+%                                           break;
+%                                       end
+%                                   end
+%                                   emptyDegree = initial{c4, 1};
+%                                   
+%                                   %Go to filled spot
+%                                   tg.setparam(tg.getparamid('Degree', 'Value'), desiredDegree);
+%                                   
+%                                   %Pick up washer
+%                                   
+%                                   %Move washer to empty spot 
+%                                   tg.setparam(tg.getparamid('Degree', 'Value'), emptyDegree);
+%                                   
+%                                   %Drop the washer
+%                                   
+%                                   %Modify initial table 
+%                                   initial{c4, 2} = colorOnDesiredDegree;
+%                                   
+%                                   %Go to Washer 
+%                                   tg.setparam(tg.getparamid('Degree', 'Value'), degree);
+%                                   
+%                                   %Pick up Washer
+%                                   
+%                                   tg.setparam(tg.getparamid('Degree', 'Value'), desiredDegree);
+%                                   
+%                                   %Drop Washer
+%                                   
+%                                   %Delete the position of washer in initial
+%                                   %Table
+%                                   initial{c3, 2} = '';
+%                                   
+%                                   
+%                               end
+%                                   
+%                         
+% %                             %Erase value from original 
+% %                         elseif ((weightPicked > 10) && (weightPicked  < 15) && (weight > 10) && (weight < 15))
+% %                             %Level two picked and moved
+% %                             %Erase value from original
+% %                         elseif ((weightPicked > 15) && (weight > 15))
+% %                             %Level three picked and moved
+% %                             %Erase value from original
+% %                         end
                     end
                 end
             end
         end
     end
-    writePosition(servo, 1);
+    writePosition(s1, 1);
     pause(3);
 end

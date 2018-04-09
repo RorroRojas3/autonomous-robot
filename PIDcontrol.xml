@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8"?><Root>
+      		<SubSystem>
+		<Name>Data Display</Name>
+		<xPCName>PIDcontrol/Data Display</xPCName>
+		
+		
+
+		</SubSystem>
+		<SubSystem>
+		<Name>Else1 Subsystem</Name>
+		<xPCName>PIDcontrol/Else1 Subsystem</xPCName>
+		
+		
+			  
+			  
+              <signal>
+              <sigName>In1</sigName>
+              <xpcsigName>Else1 Subsystem/In1</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>PIDcontrol/Else1 Subsystem</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+
+		</SubSystem>
+		<SubSystem>
+		<Name>Else2 Subsystem</Name>
+		<xPCName>PIDcontrol/Else2 Subsystem</xPCName>
+		
+		
+			  
+			  
+              <signal>
+              <sigName>In1</sigName>
+              <xpcsigName>Else2 Subsystem/In1</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>PIDcontrol/Else2 Subsystem</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+
+		</SubSystem>
+		<SubSystem>
+		<Name>If1 Subsystem</Name>
+		<xPCName>PIDcontrol/If1 Subsystem</xPCName>
+		
+		
+			  
+			  
+              <signal>
+              <sigName>In1</sigName>
+              <xpcsigName>If1 Subsystem/In1</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>PIDcontrol/If1 Subsystem</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+
+		</SubSystem>
+		<SubSystem>
+		<Name>If2 Subsystem</Name>
+		<xPCName>PIDcontrol/If2 Subsystem</xPCName>
+		
+		
+			  
+			  
+              <signal>
+              <sigName>In1</sigName>
+              <xpcsigName>If2 Subsystem/In1</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>PIDcontrol/If2 Subsystem</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+
+		</SubSystem>
+		<SubSystem>
+		<Name>Real motor</Name>
+		<xPCName>PIDcontrol/Real motor</xPCName>
+		
+		
+            <block>
+            <blkName>angular_position = 
+[relative_count//COUNTS_PER_REV] *360 degrees</blkName>
+            <xpcblkName>Real motor/angular_position =  [relative_count//COUNTS_PER_REV] *360 degrees</xpcblkName>
+            <SLblockPath>PIDcontrol/Real motor/angular_position =  [relative_count//COUNTS_PER_REV] *360 degrees</SLblockPath>
+            <isSrc>[0 1 1]</isSrc>
+          <parameter>
+          <paramName>Gain</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Saturation</blkName>
+            <xpcblkName>Real motor/Saturation</xpcblkName>
+            <SLblockPath>PIDcontrol/Real motor/Saturation</SLblockPath>
+            <isSrc>[0 1 1]</isSrc>
+          <parameter>
+          <paramName>UpperLimit</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>LowerLimit</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Channel 0 -Control signal to 
+motor through amplifier </blkName>
+            <xpcblkName>Real motor/Channel 0 -Control signal to  motor through amplifier </xpcblkName>
+            <SLblockPath>PIDcontrol/Real motor/Channel 0 -Control signal to  motor through amplifier </SLblockPath>
+            <isSrc>[0 1 0]</isSrc>
+          <parameter>
+          <paramName>P1</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P2</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P3</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P4</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P5</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P6</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P7</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P8</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P9</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Channel 0 of 
+Encoder Inputs </blkName>
+            <xpcblkName>Real motor/Channel 0 of  Encoder Inputs </xpcblkName>
+            <SLblockPath>PIDcontrol/Real motor/Channel 0 of  Encoder Inputs </SLblockPath>
+            <isSrc>[1 0 1]</isSrc>
+          <parameter>
+          <paramName>P1</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P2</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P3</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P4</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P5</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P6</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P7</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P8</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P9</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P10</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P11</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P12</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+          </parameter>
+          </block>
+			  
+			  
+              <signal>
+              <sigName>angular_position = 
+[relative_count//COUNTS_PER_REV] *360 degrees</sigName>
+              <xpcsigName>Real motor/angular_position =  [relative_count//COUNTS_PER_REV] *360 degrees</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Saturation</sigName>
+              <xpcsigName>Real motor/Saturation</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Channel 0 of 
+Encoder Inputs </sigName>
+              <xpcsigName>Real motor/Channel 0 of  Encoder Inputs </xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>PIDcontrol/Real motor</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+
+		</SubSystem>
+		<SubSystem>
+		<Name>error signal</Name>
+		<xPCName>PIDcontrol/error signal</xPCName>
+		
+		
+
+		</SubSystem>
+		<SubSystem>
+		<Name>motor position</Name>
+		<xPCName>PIDcontrol/motor position</xPCName>
+		
+		
+
+		</SubSystem>
+		<SubSystem>
+		<Name>setpoint</Name>
+		<xPCName>PIDcontrol/setpoint</xPCName>
+		
+		
+
+		</SubSystem>
+
+      
+            <block>
+            <blkName>Degree</blkName>
+            <xpcblkName>Degree</xpcblkName>
+            <SLblockPath>PIDcontrol/Degree</SLblockPath>
+            <isSrc>[1 0 1]</isSrc>
+          <parameter>
+          <paramName>Value</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>DegreeErrorThresh</blkName>
+            <xpcblkName>DegreeErrorThresh</xpcblkName>
+            <SLblockPath>PIDcontrol/DegreeErrorThresh</SLblockPath>
+            <isSrc>[1 0 1]</isSrc>
+          <parameter>
+          <paramName>Value</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>NullConstant1</blkName>
+            <xpcblkName>NullConstant1</xpcblkName>
+            <SLblockPath>PIDcontrol/NullConstant1</SLblockPath>
+            <isSrc>[1 0 1]</isSrc>
+          <parameter>
+          <paramName>Value</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>NullConstant2</blkName>
+            <xpcblkName>NullConstant2</xpcblkName>
+            <SLblockPath>PIDcontrol/NullConstant2</SLblockPath>
+            <isSrc>[1 0 1]</isSrc>
+          <parameter>
+          <paramName>Value</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>RateErrorThresh</blkName>
+            <xpcblkName>RateErrorThresh</xpcblkName>
+            <SLblockPath>PIDcontrol/RateErrorThresh</SLblockPath>
+            <isSrc>[1 0 1]</isSrc>
+          <parameter>
+          <paramName>Value</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>SmallDegree1</blkName>
+            <xpcblkName>SmallDegree1</xpcblkName>
+            <SLblockPath>PIDcontrol/SmallDegree1</SLblockPath>
+            <isSrc>[1 0 1]</isSrc>
+          <parameter>
+          <paramName>Value</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>SmallDegree2</blkName>
+            <xpcblkName>SmallDegree2</xpcblkName>
+            <SLblockPath>PIDcontrol/SmallDegree2</SLblockPath>
+            <isSrc>[1 0 1]</isSrc>
+          <parameter>
+          <paramName>Value</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Gain</blkName>
+            <xpcblkName>Gain</xpcblkName>
+            <SLblockPath>PIDcontrol/Gain</SLblockPath>
+            <isSrc>[0 1 1]</isSrc>
+          <parameter>
+          <paramName>Gain</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Kd</blkName>
+            <xpcblkName>Kd</xpcblkName>
+            <SLblockPath>PIDcontrol/Kd</SLblockPath>
+            <isSrc>[0 1 1]</isSrc>
+          <parameter>
+          <paramName>Gain</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Ki</blkName>
+            <xpcblkName>Ki</xpcblkName>
+            <SLblockPath>PIDcontrol/Ki</SLblockPath>
+            <isSrc>[0 1 1]</isSrc>
+          <parameter>
+          <paramName>Gain</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>KiSmall</blkName>
+            <xpcblkName>KiSmall</xpcblkName>
+            <SLblockPath>PIDcontrol/KiSmall</SLblockPath>
+            <isSrc>[0 1 1]</isSrc>
+          <parameter>
+          <paramName>Gain</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Kp</blkName>
+            <xpcblkName>Kp</xpcblkName>
+            <SLblockPath>PIDcontrol/Kp</SLblockPath>
+            <isSrc>[0 1 1]</isSrc>
+          <parameter>
+          <paramName>Gain</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>KpSmall</blkName>
+            <xpcblkName>KpSmall</xpcblkName>
+            <SLblockPath>PIDcontrol/KpSmall</SLblockPath>
+            <isSrc>[0 1 1]</isSrc>
+          <parameter>
+          <paramName>Gain</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>gain</blkName>
+            <xpcblkName>gain</xpcblkName>
+            <SLblockPath>PIDcontrol/gain</SLblockPath>
+            <isSrc>[0 1 1]</isSrc>
+          <parameter>
+          <paramName>Gain</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>IntegratorPID</blkName>
+            <xpcblkName>IntegratorPID</xpcblkName>
+            <SLblockPath>PIDcontrol/IntegratorPID</SLblockPath>
+            <isSrc>[0 1 1]</isSrc>
+          <parameter>
+          <paramName>InitialCondition</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PIDcontrol</SubSystemName>
+          </parameter>
+          </block>
+			  
+			  
+              <signal>
+              <sigName>AbsDError</sigName>
+              <xpcsigName>AbsDError</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>PIDcontrol</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>AbsError1</sigName>
+              <xpcsigName>AbsError1</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>PIDcontrol</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>AbsError2</sigName>
+              <xpcsigName>AbsError2</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>PIDcontrol</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>DerivativePID</sigName>
+              <xpcsigName>DerivativePID</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>PIDcontrol</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Gain</sigName>
+              <xpcsigName>Gain</xpcsigName>
+              <sigWidth>3</sigWidth>
+              <sigDim>[3, 1]</sigDim>
+			  <SubSystemName>PIDcontrol</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Kd</sigName>
+              <xpcsigName>Kd</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>PIDcontrol</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Ki</sigName>
+              <xpcsigName>Ki</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>PIDcontrol</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>KiSmall</sigName>
+              <xpcsigName>KiSmall</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>PIDcontrol</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Kp</sigName>
+              <xpcsigName>Kp</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>PIDcontrol</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>KpSmall</sigName>
+              <xpcsigName>KpSmall</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>PIDcontrol</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>gain</sigName>
+              <xpcsigName>gain</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>PIDcontrol</SubSystemName>
+                <sigLabel>Setpoint</sigLabel>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>IntegratorPID</sigName>
+              <xpcsigName>IntegratorPID</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>PIDcontrol</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Merge1</sigName>
+              <xpcsigName>Merge1</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>PIDcontrol</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Merge2</sigName>
+              <xpcsigName>Merge2</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>PIDcontrol</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Sum1</sigName>
+              <xpcsigName>Sum1</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>PIDcontrol</SubSystemName>
+                <sigLabel>Error Sigal</sigLabel>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Sum2</sigName>
+              <xpcsigName>Sum2</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>PIDcontrol</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Sum4</sigName>
+              <xpcsigName>Sum4</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>PIDcontrol</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+
+</Root>

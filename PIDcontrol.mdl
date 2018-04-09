@@ -27,7 +27,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.107"
+    ComputedModelVersion    "1.109"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -64,7 +64,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [-7.0, 1.0, 1709.0, 935.0]
+      Location		      [-7.0, 1.0, 1550.0, 878.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -88,9 +88,9 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[2486.0, 1155.0]
-	ZoomFactor		[1.5]
-	Offset			[193.75088299734591, 117.87896643608019]
+	Extents			[3755.0, 1805.0]
+	ZoomFactor		[0.59999999999999964]
+	Offset			[-15.289117002654848, -223.6067478496343]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -103,18 +103,18 @@ Model {
 	UserData		""
 	Floating		[0]
 	DockPosition		"Right"
-	Width			[426]
-	Height			[320]
+	Width			[256]
+	Height			[192]
       }
       WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAAB+PwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
-      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAACSAP///wAAAAEAAAAAAAAAAPwCA"
+      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAADtAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAAPQD///8AAAnuAAAE0QAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAAYwD///8AAA8DAAAHhwAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
-      "////wEAAACp/////wAAAAAAAAAA/////wEAAAEu/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAHX/////wAAAAAAAAAA/"
-      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAQl/////wAAAAAAAAAA/"
-      "////wEAAARm/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA"
+      "////wEAAAEL/////wAAAAAAAAAA/////wEAAAHa/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAALl/////wAAAAAAAAAA/"
+      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAab/////wAAAAAAAAAA/"
+      "////wEAAAcC/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA"
     }
   }
   HideAutomaticNames	  on
@@ -122,11 +122,11 @@ Model {
   Creator		  "Ninad"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "mishi"
+  LastModifiedBy	  "Rorro"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sun Apr 08 19:32:56 2018"
-  RTWModifiedTimeStamp	  445111342
-  ModelVersionFormat	  "1.%<AutoIncrement:107>"
+  LastModifiedDate	  "Mon Apr 09 13:43:54 2018"
+  RTWModifiedTimeStamp	  445182233
+  ModelVersionFormat	  "1.%<AutoIncrement:109>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -760,7 +760,7 @@ Model {
 	      Version		      "1.17.0"
 	      Array {
 		Type			"Cell"
-		Dimension		18
+		Dimension		19
 		Cell			"GeneratePreprocessorConditionals"
 		Cell			"IncludeMdlTerminateFcn"
 		Cell			"RemoveResetFunc"
@@ -779,6 +779,7 @@ Model {
 		Cell			"RemoveDisableFunc"
 		Cell			"GRTInterface"
 		Cell			"MatFileLogging"
+		Cell			"CombineOutputUpdateFcns"
 		PropName		"DisabledProps"
 	      }
 	      Description	      ""
@@ -1182,7 +1183,7 @@ Model {
   }
   System {
     Name		    "PIDcontrol"
-    Location		    [-7, 1, 1702, 936]
+    Location		    [-7, 1, 1543, 879]
     Open		    on
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  off
@@ -1195,7 +1196,7 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "150"
+    ZoomFactor		    "60"
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    "163"
     Block {
@@ -1261,19 +1262,19 @@ Model {
     }
     Block {
       BlockType		      Constant
+      Name		      "Degree"
+      SID		      "126"
+      Position		      [90, 240, 120, 270]
+      ZOrder		      30
+      Value		      "0"
+    }
+    Block {
+      BlockType		      Constant
       Name		      "DegreeErrorThresh"
       SID		      "128"
       Position		      [515, 305, 545, 335]
       ZOrder		      32
       Value		      "0.75"
-    }
-    Block {
-      BlockType		      Constant
-      Name		      "Degrees"
-      SID		      "126"
-      Position		      [90, 240, 120, 270]
-      ZOrder		      30
-      Value		      "0"
     }
     Block {
       BlockType		      Derivative
@@ -2129,7 +2130,7 @@ Model {
     }
     Line {
       ZOrder		      163
-      SrcBlock		      "Degrees"
+      SrcBlock		      "Degree"
       SrcPort		      1
       DstBlock		      "gain"
       DstPort		      1
