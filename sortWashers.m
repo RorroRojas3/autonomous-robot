@@ -5,14 +5,17 @@ function sortWashers(initial, final, tg)
     
     for c1 = 1:10
         color = final{c1, 2};
+        
         %Checks if the user input a color in certain degree
         if ((strcmp(color, '')) == 0)
             for c2 = 1:10
                 color2 = initial{c2}{2};
+                
                 %Compares the initial color and the color input by user
                 if ((strcmp(color, color2)) == 1)
                     weight = final(c1, 3);
                     weight = str2double(weight);
+                    
                     %Checks that the user has input a weight of the washer
                     %desired to be moved 
                     if ((strcmp(weight, '')) == 0)
@@ -51,7 +54,7 @@ function sortWashers(initial, final, tg)
                               end
                               
 %                             %Spot is empty
-                              if (strcmp(initial{c3, 2}, '') == 1)
+                              if (strcmp(colorOnDesiredDegree, '') == 1)
                                   %Pick up washer again
                                   
                                   %Go to empty spot
@@ -89,7 +92,17 @@ function sortWashers(initial, final, tg)
                                   initial{c4, 2} = colorOnDesiredDegree;
                                   
                                   %Go to Washer 
+                                  tg.setparam(tg.getparamid('Degree', 'Value'), degree);
+                                  
+                                  %Pick up Washer
+                                  
                                   tg.setparam(tg.getparamid('Degree', 'Value'), desiredDegree);
+                                  
+                                  %Drop Washer
+                                  
+                                  %Delete the position of washer in initial
+                                  %Table
+                                  initial{c3, 2} = '';
                                   
                                   
                               end
