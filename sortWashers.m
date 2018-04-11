@@ -122,5 +122,6 @@ function sortWashers(initial, final, tg)
         end
     end
     writePosition(s1, 1);
-    pause(3);
+    pause(5);
+    clear s1 s2;
 end

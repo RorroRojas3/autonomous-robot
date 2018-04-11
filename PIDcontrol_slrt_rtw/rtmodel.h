@@ -8,9 +8,9 @@
  *
  * Code generation for model "PIDcontrol".
  *
- * Model version              : 1.108
+ * Model version              : 1.109
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Mon Apr 09 13:43:26 2018
+ * C source code generated on : Wed Apr 11 17:29:05 2018
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
