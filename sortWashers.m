@@ -42,11 +42,10 @@ function sortWashers(initialTable, finalTable, tg)
                         writePosition(s2, 1);
                         pause(2);
                         
+                        %Dummy asked user for weightPicked
+                        weightPicked = input('Enter weight: ');
                         
-                        degree = 0;
-                        
-                        tg.setparam(tg.getparamid('Degree','Value'), degree);
-                        pause(5);
+                       
                         if ((weightPicked < 10) && (washerWeight == 1))
                               desiredDegree = finalTable{c1, 1};
                             
@@ -130,14 +129,13 @@ function sortWashers(initialTable, finalTable, tg)
                                   end
 
                               end
-                                  
-                        %Erase value from original 
-                        elseif ((weightPicked > 10) && (weightPicked  < 15) && (weight > 10) && (weight < 15))
-                        %Level two picked and moved
-                        %Erase value from original
-                        elseif ((weightPicked > 15) && (weight > 15))
-                        %Level three picked and moved
-                        %Erase value from original
+                                 
+%                         elseif ((weightPicked > 10) && (weightPicked  < 15) && (washerWeight == 2))
+%                             %Level two picked and moved
+%                             %Erase value from original
+%                         elseif ((weightPicked > 15) && (washerWeight == 2))
+%                             %Level three picked and moved
+%                             %Erase value from original
                         end
                     end
                 end
@@ -149,4 +147,6 @@ function sortWashers(initialTable, finalTable, tg)
     writePosition(s2, 1);
     pause(3);
     clear a s1 s2;
+    tg.setparam(tg.getparamid('Degree', 'Value'), 0);
+    pause(2);
 end
