@@ -1,19 +1,19 @@
-function sortWashers(initial, final, tg)
+function sortWashers(initialTable, finalTable, tg)
 
     % Sets up the Arm to initial position
     [a, s1, s2] = arduinoSetup();
     
     for c1 = 1:10
-        color = final{c1, 2};
+        color = finalTable{c1, 2};
         
         %Checks if the user input a color in certain degree
         if ((strcmp(color, '')) == 0)
             for c2 = 1:10
-                color2 = initial{c2}{2};
+                color2 = initialTable{c2}{2};
                 
                 %Compares the initial color and the color input by user
                 if ((strcmp(color, color2)) == 1)
-                    washerWeight = final(c1, 3);
+                    washerWeight = finalTable(c1, 3);
                     
                     %Checks that the user has input a weight of the washer
                     %desired to be moved 
@@ -22,7 +22,7 @@ function sortWashers(initial, final, tg)
                         washerWeight = str2double(washerWeight);
                         
                         %Degree of the Washer to be weighted
-                        degree = initial{c2}{1};
+                        degree = initialTable{c2}{1};
                         
                         %Rotates motor to the corresponding degree
                         tg.setparam(tg.getparamid('Degree','Value'), degree);
@@ -47,70 +47,88 @@ function sortWashers(initial, final, tg)
                         
                         tg.setparam(tg.getparamid('Degree','Value'), degree);
                         pause(5);
-                        if ((weightPicked < 10) && (weight < 10))
-                              desiredDegree = final{c1, 1};
+                        if ((weightPicked < 10) && (washerWeight == 1))
+                              desiredDegree = finalTable{c1, 1};
                             
-                              Looks for the location on the desired
-                              degree on the initial Table
+                              %Looks for the location on the desired degree
+                              %on the Initial table
                               for c3 = 1:10
-                                if (initial{c2, 1} == desiredDegree)
-                                    colorOnDesiredDegree = initial{c3, 2};
+                                if (initialTable{c2, 1} == desiredDegree)
+                                    colorOnDesiredDegree = initialTable{c3, 2};
                                     break;
                                 end
                               end
                               
-                            %Spot is empty
+                              %Spot is empty
                               if (strcmp(colorOnDesiredDegree, '') == 1)
-                                  Pick up washer again
-                                  
-                                  Go to empty spot
+
+                                  %Move arm down and pick up washer
+                                  writePosition(s2, 0.9);
+
+                                  %Move arm up
+                                  writePosition(s2, 1);
+
+
+                                  %Go to empty spot
                                   tg.setparam(tg.getparamid('Degree', 'Value'), desiredDegree);
                                   pause(2);
-                                  
-                                  Drop the washer
-                                  
-                                  
-                                  Delete the position of washer in initial
-                                  Table
-                                  initial{c3, 2} = '';
-                                  
+
+                                  %Drop the washer
+                                  writePosition(s2, 0.9);
+
+
+                                  %Delete position of washer in the initial
+                                  %Table
+                                  initialTable{c3, 2} = '';
+
                               %Spot is filled
                               else
                                   %Search for an empty spot
                                   for c4 = 1:10
-                                      if (strcmp(initial{c4, 2}, '') == 1)
+                                      if (strcmp(initialTable{c4, 2}, '') == 1)
+                                          foundEmpty = 1;
                                           break;
                                       end
                                   end
-                                  emptyDegree = initial{c4, 1};
-                                  
-                                  %Go to filled spot
-                                  tg.setparam(tg.getparamid('Degree', 'Value'), desiredDegree);
-                                  
-                                  %Pick up washer
-                                  
-                                  %Move washer to empty spot 
-                                  tg.setparam(tg.getparamid('Degree', 'Value'), emptyDegree);
-                                  
-                                  %Drop the washer
-                                  
-                                  %Modify initial table 
-                                  initial{c4, 2} = colorOnDesiredDegree;
-                                  
-                                  %Go to Washer 
-                                  tg.setparam(tg.getparamid('Degree', 'Value'), degree);
-                                  
-                                  %Pick up Washer
-                                  
-                                  tg.setparam(tg.getparamid('Degree', 'Value'), desiredDegree);
-                                  
-                                  %Drop Washer
-                                  
-                                  %Delete the position of washer in initial
-                                  %Table
-                                  initial{c3, 2} = '';
-                                  
-                                  
+
+                                  %Found empty spot
+                                  if (foundEmpty == 1)
+                                      emptyDegree = initialTable{c4, 1};
+
+                                      %Go to filled spot
+                                      tg.setparam(tg.getparamid('Degree', 'Value'), desiredDegree);
+
+                                      %Pick up washer
+                                      writePosition(s2, 0.9);
+                                      pause(2);
+                                      
+                                      %Move arm up
+                                      writePosition(s2, 1);
+                                      pause(2);
+                                      
+                                      %Move washer to empty spot 
+                                      tg.setparam(tg.getparamid('Degree', 'Value'), emptyDegree);
+
+                                      %Drop the washer
+                                      writePosition(s2, 0.9);
+                                      pause(2);
+                                      
+                                      %Move arm up
+                                      writePosition(s2, 1);
+                                      pause(2);
+                                      
+                                      %Modify initial table 
+                                      initialTable{c4, 2} = colorOnDesiredDegree;
+
+                                      %Delete the position of washer in initial
+                                      %Table
+                                      initialTable{c3, 2} = '';
+                                      
+                                  else
+                                      fprintf('No spots open\n');
+                                      fprintf('Program will be terminated\n');
+                                  end
+
                               end
                                   
                         %Erase value from original 
