@@ -1,4 +1,4 @@
-function [s1, s2] = arduinoSetup()
+function [a, s1, s2] = arduinoSetup()
 
     %MATLAB recognizes and initializes ARDUINOUNO
     a = arduino;
