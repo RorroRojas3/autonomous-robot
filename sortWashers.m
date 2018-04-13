@@ -22,14 +22,17 @@ function sortWashers(initialTable, finalTable, tg)
                         washerWeight = str2double(washerWeight);
                         
                         %Degree of the Washer to be weighted
-                        degree = initialTable{c2}{1};
+                        degree = initialTable{c2}{3};
                         
                         %Rotates motor to the corresponding degree
                         tg.setparam(tg.getparamid('Degree','Value'), degree);
                         pause(5);
                         
+                        degree2 = initialTable{c2}{1};
                         %Moves arm to the board
-                        if ((degree == -13) || (degree == -88) || (degree == -162) || (degree == 30) || (degree == 95) || (degree == 160))
+                        if ((degree2 == -13) || (degree2 == -88) || ...
+                            (degree2 == -162) || (degree2 == 30) || ...
+                            (degree2 == 95) || (degree2 == 160))
                             
                             writePosition(s1, 0);
                             pause(5);
@@ -57,12 +60,12 @@ function sortWashers(initialTable, finalTable, tg)
                         
                        
                         if ((weightPicked < 10) && (washerWeight == 1))
-                              desiredDegree = degreeArray(c1);
+                              desiredDegree2 = degreeArray(c1);
                             
                               %Looks for the location on the desired degree
                               %on the Initial table
                               for c3 = 1:10
-                                if (degreeArray(c3) == desiredDegree)
+                                if (degreeArray(c3) == desiredDegree2)
                                     colorOnDesiredDegree = initialTable{c3}{2};
                                     break;
                                 end
@@ -71,13 +74,17 @@ function sortWashers(initialTable, finalTable, tg)
                               %Spot is empty
                               if (strcmp(colorOnDesiredDegree, '') == 1)
 
-                                 
+                                  desiredDegree = initialTable{c1}{3};
                                   %Go to empty spot
                                   tg.setparam(tg.getparamid('Degree', 'Value'), desiredDegree);
                                   pause(5);
                                   
+                                  desiredDegree2 = initialTable{c1}{1};
+                                  
                                   %Moves arm to the board
-                                  if ((desiredDegree == -13) || (desiredDegree == -88) || (desiredDegree == -162) || (desiredDegree == 30) || (desiredDegree == 95) || (desiredDegree == 160))
+                                  if ((desiredDegree2 == -13) || (desiredDegree2 == -88) || ...
+                                      (desiredDegree2 == -162) || (desiredDegree2 == 30) || ...
+                                      (desiredDegree2 == 95) || (desiredDegree2 == 160))
 
                                       writePosition(s1, 0.4);
                                       pause(5);
@@ -115,7 +122,7 @@ function sortWashers(initialTable, finalTable, tg)
 
                                   %Found empty spot
                                   if (foundEmpty == 1)
-                                      emptyDegree = degreeArray(c4);
+                                      emptyDegree = initialTable{c4}{3};
                                       fprintf('Here2\n');
 
                                       %Go to filled spot

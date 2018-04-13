@@ -12,6 +12,7 @@ function [sortedCell] = sortDegreesAndColors(wellLocation, colors, degrees)
             max = wellLocation(c1) + 10;
             if ((degrees(c2) > min) && (degrees(c2) < max))
                 sortedCell{c1}{2} = colors(c2);
+                sortedCell{c1}{3} = degrees(c2);
             end
 
             min = 0;
