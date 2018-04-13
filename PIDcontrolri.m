@@ -1,7 +1,0 @@
-function ri = PIDcontrolri
-
-ri = [];
-
-
-
-
