@@ -39,17 +39,25 @@ function sortWashers(initialTable, finalTable, tg)
                             writePosition(s1, 0);
                             pause(2);
                         else
-                            writePosition(s1, 0.4);
+                            writePosition(s1, 0.3);
                             pause(2);
                         end
                         
+                        tg.setparam(tg.getparamid('magnetOn','Value'), 1);
+                        pause(1);
+                        
+                        
                         %Moves arm down to pick up washer
-                        writePosition(s2, 0.95);
+                        writePosition(s2, 0.93);
                         pause(2);
-                                          
+                                
+                        
+                        
                         %Moves arm to initial position
                         writePosition(s2, .99);
                         pause(2);
+                        
+                        
                         
                         %Dummy asked user for weightPicked
                         weightPicked = input('Enter weight: ');
@@ -93,13 +101,18 @@ function sortWashers(initialTable, finalTable, tg)
                                       writePosition(s1, 0);
                                       pause(2);
                                   else
-                                      writePosition(s1, 0.4);
+                                      writePosition(s1, 0.3);
                                       pause(2);
                                   end
 
+                                  tg.setparam(tg.getparamid('magnetOn','Value'), 0);
+                                  pause(1);
+                                  
                                   %Drop the washer
-                                  writePosition(s2, 0.95);
+                                  writePosition(s2, 0.93);
                                   pause(2);
+                                  
+                                  
                                   
                                   %Move up arm
                                   writePosition(s2, .99);
@@ -146,7 +159,7 @@ function sortWashers(initialTable, finalTable, tg)
                                         writePosition(s1, 0);
                                         pause(2);
                                       else
-                                        writePosition(s1, 0.4);
+                                        writePosition(s1, 0.3);
                                         pause(2);
                                       end
                                       
