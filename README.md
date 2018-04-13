@@ -1,3 +1,3 @@
 # image-recognition
-#Autonomous robot which uses image processing and a sorting algorithm to
-#sort colored washers based on color and weight. 
+An autonomous robot which processes colored washers through image recognition and sorts them based
+on color and weight.
