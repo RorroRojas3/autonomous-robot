@@ -263,12 +263,20 @@ function sortWashers(initialTable, finalTable, tg)
             end
         end
     end
+    
+    %Reset position of arm in the y-axis
     writePosition(s2, .99);
     pause(2);
+    
+    %Resets position of arm in the x-axis
     writePosition(s1, 1);
     pause(2);
+    
+    %Clears ARDUINO UNO
     clear a s1 s2;
     pause(2);
+    
+    %Moves gameboard to origin position
     tg.setparam(tg.getparamid('Degree', 'Value'), 0);
     pause(2);
 end
