@@ -1,7 +1,7 @@
 %% SETUP
 
 tg =xpc; % MUST BE DECLARED AT THE START OF EVERY FUNCTION USING xPC CMDS
-filename = 'electromagnetAndLoadCell';
+filename = 'PID_LoadCell_Magnet';
 
 %only need load or rtwbuild, rtwbuild is redundant if you haven't made any
 %changes to the model file and only need to load the .dlm file
@@ -17,7 +17,7 @@ tg.start;
 while (1)
     % Obtains value of the load cell
     %loadCell = tg.getparam(tg.getparamid('Q4 AD','Amplitude'));
-    loadCell = tg.getsignal('Q4 AD');
+    loadCell = tg.getsignal('Load Cell');
     %Constant value of voltage given to Load Cell
     %voltageToCell = 7;
     %Constant value of voltage with NO weight on Load Cell
