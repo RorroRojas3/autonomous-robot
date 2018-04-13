@@ -4,14 +4,17 @@ function sortWashers(initialTable, finalTable, tg)
     [a, s1, s2] = arduinoSetup();
     degreeArray = [-25, -55, -88, -130, -162, 10, 40, 85, 130, 160];
     for c1 = 1:10
-        color = finalTable{c1, 2};
+        
+        finalColor = finalTable{c1, 2};
         
         %Checks if the user input a color in certain degree
-        if ((strcmp(color, '')) == 0)
+        if ((strcmp(finalColor, '')) == 0)
             for c2 = 1:10
-                color2 = initialTable{c2}{2};
+                initialColor = initialTable{c2}{2};
                 %Compares the initial color and the color input by user
-                if ((strcmp(color, color2)) == 1)
+                if ((strcmp(finalColor, initialColor)) == 1)
+                    
+                    %Obtains the washer level weight (1, 2, or 3)
                     washerWeight = finalTable(c1, 3);
                     
                     %Checks that the user has input a weight of the washer
@@ -25,91 +28,93 @@ function sortWashers(initialTable, finalTable, tg)
                         
                         %Rotates motor to the corresponding degree
                         tg.setparam(tg.getparamid('Degree','Value'), degree);
-                        pause(3);
+                        pause(2);
                         
+                        %Checks distance that arm must travel in the x-axis
+                        %based on the degree value
                         degree2 = initialTable{c2}{1};
-                        %Moves arm to the board
                         if ((degree2 == -55) || (degree2 == -130) || ...
                             (degree2 == 10) || (degree2 == 85) || ...
                             (degree2 == 160))
-                            
                             writePosition(s1, 0);
-                            pause(3);
+                            pause(2);
                         else
                             writePosition(s1, 0.4);
-                            pause(3);
+                            pause(2);
                         end
                         
                         %Moves arm down to pick up washer
                         writePosition(s2, 0.95);
-                        pause(3);
-                        
-                        %tg.setparam(tg.getparamid('magnetOn','Value'), 1);
-                        %tg.setparam(tg.getparamid('magnetDrop','Value'), 0);
-                        
-                        %Calculate weight of picked up washer
-                        %weightPicked = loadCellFunction
-                        
+                        pause(2);
+                                          
                         %Moves arm to initial position
                         writePosition(s2, .99);
-                        pause(3);
+                        pause(2);
                         
                         %Dummy asked user for weightPicked
                         weightPicked = input('Enter weight: ');
-                        
-                       
+
+                        %Checks the level of weight input by the user and
+                        %the washer weight that has been picked up by the
+                        %electro magnet
                         if ((weightPicked == 1) && (washerWeight == 1))
-                              degreeToGo = degreeArray(c1);
+                              
+                              %Degree which the washer will be
+                              %moved to
+                              nextDegree = degreeArray(c1);
                             
                               %Looks for the location on the desired degree
-                              %on the Initial table
+                              %on the Initial Table with the purpose of
+                              %checking if the spot is either empty or
+                              %filled with a colored washer
                               for c3 = 1:10
-                                if (degreeArray(c3) == degreeToGo)
+                                if (degreeArray(c3) == nextDegree)
                                     colorOnDesiredDegree = initialTable{c3}{2};
                                     break;
                                 end
                               end
                               
-                              %Spot is empty
+                              %Degree which washer will be moved is empty
                               if (strcmp(colorOnDesiredDegree, '') == 1)
-                                  fprintf('%d\n', c3);
-                                  degree = initialTable{c3}{1};
-                                  %Go to empty spot
-                                  tg.setparam(tg.getparamid('Degree','Value'), degree);
-                                  pause(3);
-                                
-                                  %Moves arm to the board
-                                  if ((degreeToGo == -55) || (degreeToGo == -130) || ...
-                                      (degreeToGo == 10) || (degreeToGo == 85) || ...
-                                      (degreeToGo == 160))
 
+                                  %Obtains degree value of empty hole
+                                  emptyDegree = initialTable{c3}{1};
+                                  
+                                  %Go to empty hole
+                                  tg.setparam(tg.getparamid('Degree','Value'), emptyDegree);
+                                  pause(2);
+                                
+                                  %Checks distance that arm must travel in the x-axis
+                                  %based on the degree value
+                                  degree2 = emptyDegree;
+                                  if ((degree2 == -55) || (degree2 == -130) || ...
+                                      (degree2 == 10) || (degree2 == 85) || ...
+                                      (degree2 == 160))
                                       writePosition(s1, 0);
-                                      pause(3);
+                                      pause(2);
                                   else
                                       writePosition(s1, 0.4);
-                                      pause(3);
+                                      pause(2);
                                   end
 
                                   %Drop the washer
                                   writePosition(s2, 0.95);
-                                  pause(3);
-                                  %tg.setparam(tg.getparamid('magnetDrop','Value'), 1);
-                                  %tg.setparam(tg.getparamid('magnetOn','Value'), 0);
-                                  pause(3);
+                                  pause(2);
                                   
                                   %Move up arm
                                   writePosition(s2, .99);
-                                  pause(3);
-                                  %tg.setparam(tg.getparamid('magnetDrop','Value'), 0);
-                                  pause(3);
-
+                                  pause(2);
+                                  
                                   %Delete position of washer in the initial
                                   %Table
-                                  initialTable{c2}{2} = '';
-                                  fprintf('Here\n');
-                              %Spot is filled
+                                  initialTable{c3}{2} = '';
+
+                              %Degree which washer will be moved is not
+                              %empty
                               else
-                                  %Search for an empty spot
+                                  
+                                  %Search for an empty spot on the
+                                  %gameboard
                                   for c4 = 1:10
                                       if (strcmp(initialTable{c4}{2}, '') == 1)
                                           foundEmpty = 1;
@@ -117,60 +122,65 @@ function sortWashers(initialTable, finalTable, tg)
                                       end
                                   end
 
-                                  %Found empty spot
+                                  %An empty spot has been found in the
+                                  %gameboard
                                   if (foundEmpty == 1)
-                                      degree = initialTable{c3}{1};
-                                      emptyDegree = initialTable{c4}{1};
-                                      fprintf('Here2\n');
-
-                                      %Go to filled spot
-                                      tg.setparam(tg.getparamid('Degree','Value'), degree);
-                                      pause(3);
                                       
-                                      degreeToGo = degree;
-                                      %Moves arm to the board
-                                      if ((degreeToGo == -55) || (degreeToGo == -130) || ...
-                                        (degreeToGo == 10) || (degreeToGo == 85) || ...
-                                        (degreeToGo == 160))
+                                      %Degree which washer will be moved to
+                                      nextDegree = initialTable{c3}{1};
+                                      
+                                      %Degree with an empty spot in the
+                                      %gameboard
+                                      emptyDegree = initialTable{c4}{1};
 
+                                      %Goes to the filled spot 
+                                      tg.setparam(tg.getparamid('Degree','Value'), nextDegree);
+                                      pause(2);
+                                      
+                                      %Checks distance that arm must travel in the x-axis
+                                      %based on the degree value
+                                      degree2 = nextDegree;
+                                      if ((degree2 == -55) || (degree2 == -130) || ...
+                                        (degree2 == 10) || (degree2 == 85) || ...
+                                        (degree2 == 160))
                                         writePosition(s1, 0);
-                                        pause(3);
+                                        pause(2);
                                       else
                                         writePosition(s1, 0.4);
-                                        pause(3);
+                                        pause(2);
                                       end
                                       
                                       %Pick up washer
+                                      writePosition(s2, 0.95);
+                                      pause(2);
+                                      
+                                      %Move arm up
+                                      writePosition(s2, .99);
+                                      pause(2);
+                                      
+                                      %Move washer to empty spot 
+                                      tg.setparam(tg.getparamid('Degree','Value'), emptyDegree);
+                                      pause(2);
+
+                                      %Checks distance that arm must travel in the x-axis
+                                      %based on the degree value
+                                      degree2 = emptyDegree;
+                                      if ((degree2 == -55) || (degree2 == -130) || ...
+                                        (degree2 == 10) || (degree2 == 85) || ...
+                                        (degree2 == 160))
+                                        writePosition(s1, 0);
+                                        pause(2);
+                                      else
+                                        writePosition(s1, 0.4);
+                                        pause(2);
+                                      end
+                                      
+                                      %Drop the washer
                                       writePosition(s2, 0.95);
                                       pause(3);
                                       
                                       %Move arm up
                                       writePosition(s2, .99);
-                                      pause(3);
-                                      
-                                      %Move washer to empty spot 
-                                      tg.setparam(tg.getparamid('Degree','Value'), emptyDegree);
-                                      pause(3);
-                                      
-                                      degreeToGo = emptyDegree;
-                                      %Moves arm to the board
-                                      if ((degreeToGo == -55) || (degreeToGo == -130) || ...
-                                        (degreeToGo == 10) || (degreeToGo == 85) || ...
-                                        (degreeToGo == 160))
-
-                                        writePosition(s1, 0);
-                                        pause(3);
-                                      else
-                                        writePosition(s1, 0.4);
-                                        pause(3);
-                                      end
-                                      
-                                      %Drop the washer
-                                      writePosition(s2, 0.9);
-                                      pause(3);
-                                      
-                                      %Move arm up
-                                      writePosition(s2, .95);
                                       pause(3);
                                      
                                       %Degree of the Washer to be weighted
@@ -178,53 +188,62 @@ function sortWashers(initialTable, finalTable, tg)
 
                                         %Rotates motor to the corresponding degree
                                         tg.setparam(tg.getparamid('Degree','Value'), degree);
-                                        pause(3);
+                                        pause(2);
 
+                                        %Checks distance that arm must travel in the x-axis
+                                        %based on the degree value
                                         degree2 = initialTable{c2}{1};
-                                        %Moves arm to the board
                                         if ((degree2 == -55) || (degree2 == -130) || ...
                                             (degree2 == 10) || (degree2 == 85) || ...
                                             (degree2 == 160))
-
                                             writePosition(s1, 0);
-                                            pause(3);
+                                            pause(2);
                                         else
                                             writePosition(s1, 0.4);
-                                            pause(3);
+                                            pause(2);
                                         end
 
                                         %Moves arm down to pick up washer
                                         writePosition(s2, 0.95);
-                                        pause(3);
+                                        pause(2);
                                         
                                         %Move arm up
                                         writePosition(s2, 0.99);
                                         pause(2);
                                         
                                         %Go to filled spot
-                                        degree = initialTable{c3}{1};
-                                      tg.setparam(tg.getparamid('Degree','Value'), degree);
-                                      pause(3);
+                                        emptyDegree = initialTable{c3}{1};
+                                      tg.setparam(tg.getparamid('Degree','Value'), emptyDegree);
+                                      pause(2);
                                       
-                                      degreeToGo = degree;
+                                      degree2 = emptyDegree;
                                       %Moves arm to the board
-                                      if ((degreeToGo == -55) || (degreeToGo == -130) || ...
-                                        (degreeToGo == 10) || (degreeToGo == 85) || ...
-                                        (degreeToGo == 160))
+                                      if ((degree2 == -55) || (degree2 == -130) || ...
+                                        (degree2 == 10) || (degree2 == 85) || ...
+                                        (degree2 == 160))
 
                                         writePosition(s1, 0);
-                                        pause(3);
+                                        pause(2);
                                       else
                                         writePosition(s1, 0.4);
-                                        pause(3);
+                                        pause(2);
                                       end
+                                      
+                                      %Move arm down
+                                      writePosition(s2, 0.95);
+                                      pause(2);
+                                      
+                                      %Move arm up
+                                      writePosition(s2, 0.99);
+                                      pause(2);
 
                                       %Delete the position of washer in initial
                                       %Table
                                       initialTable{c3}{2} = '';
                                       
-                                      
+                                      %Reset value of boolean variable
                                       foundEmpty = 0;
+                                      
                                   else
                                       fprintf('No spots open\n');
                                       fprintf('Program will be terminated\n');
@@ -245,11 +264,11 @@ function sortWashers(initialTable, finalTable, tg)
         end
     end
     writePosition(s2, .99);
-    pause(3);
+    pause(2);
     writePosition(s1, 1);
-    pause(3);
+    pause(2);
     clear a s1 s2;
-    pause(3);
+    pause(2);
     tg.setparam(tg.getparamid('Degree', 'Value'), 0);
-    pause(3);
+    pause(2);
 end
