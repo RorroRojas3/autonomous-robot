@@ -8,9 +8,9 @@
  *
  * Code generation for model "PID_LoadCell_Magnet".
  *
- * Model version              : 1.122
+ * Model version              : 1.125
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Sat Apr 14 10:37:10 2018
+ * C source code generated on : Sat Apr 14 17:38:16 2018
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -71,7 +71,7 @@ static void rt_ertODEUpdateContinuousStates(RTWSolverInfo *si )
   real_T *f2 = id->f[2];
   real_T hB[3];
   int_T i;
-  int_T nXc = 1;
+  int_T nXc = 3;
   rtsiSetSimTimeStep(si,MINOR_TIME_STEP);
 
   /* Save the state values at time t in y, we'll use x as ynew. */
@@ -198,20 +198,28 @@ void PID_LoadCell_Magnet_output(void)
     PID_LoadCell_Magnet_Y.motorPos_Out =
       PID_LoadCell_Magnet_B.angular_positionrelative_countC;
 
-    /* S-Function (adquanserq8): '<Root>/Load Cell' */
-
-    /* Level2 S-Function Block: '<Root>/Load Cell' (adquanserq8) */
-    {
-      SimStruct *rts = PID_LoadCell_Magnet_M->childSfunctions[1];
-      sfcnOutputs(rts,1);
-    }
-
-    /* Outport: '<Root>/loadCell_In' */
-    PID_LoadCell_Magnet_Y.loadCell_In = PID_LoadCell_Magnet_B.LoadCell;
-
     /* Abs: '<Root>/AbsError' */
     PID_LoadCell_Magnet_B.AbsError = fabs(PID_LoadCell_Magnet_B.ErrorSigal);
   }
+
+  /* StateSpace: '<Root>/Analog Filter Design1' */
+  PID_LoadCell_Magnet_B.AnalogFilterDesign1 = 0.0;
+  PID_LoadCell_Magnet_B.AnalogFilterDesign1 +=
+    PID_LoadCell_Magnet_P.AnalogFilterDesign1_C *
+    PID_LoadCell_Magnet_X.AnalogFilterDesign1_CSTATE;
+
+  /* Gain: '<Root>/gain1' */
+  PID_LoadCell_Magnet_B.gain1 = PID_LoadCell_Magnet_P.gain1_Gain *
+    PID_LoadCell_Magnet_B.AnalogFilterDesign1;
+
+  /* Outport: '<Root>/loadCell_In' */
+  PID_LoadCell_Magnet_Y.loadCell_In = PID_LoadCell_Magnet_B.gain1;
+
+  /* StateSpace: '<Root>/Analog Filter Design' */
+  PID_LoadCell_Magnet_B.AnalogFilterDesign = 0.0;
+  PID_LoadCell_Magnet_B.AnalogFilterDesign +=
+    PID_LoadCell_Magnet_P.AnalogFilterDesign_C *
+    PID_LoadCell_Magnet_X.AnalogFilterDesign_CSTATE;
 
   /* Derivative: '<Root>/DerivativePID' */
   if ((PID_LoadCell_Magnet_DW.TimeStampA >= PID_LoadCell_Magnet_M->Timing.t[0]) &&
@@ -236,19 +244,18 @@ void PID_LoadCell_Magnet_output(void)
     }
 
     lastTime = PID_LoadCell_Magnet_M->Timing.t[0] - lastTime;
-    PID_LoadCell_Magnet_B.DerivativePID = (PID_LoadCell_Magnet_B.ErrorSigal -
-      *lastU) / lastTime;
+    PID_LoadCell_Magnet_B.DerivativePID =
+      (PID_LoadCell_Magnet_B.AnalogFilterDesign - *lastU) / lastTime;
   }
 
   /* End of Derivative: '<Root>/DerivativePID' */
 
   /* Abs: '<Root>/AbsDError' */
   PID_LoadCell_Magnet_B.AbsDError = fabs(PID_LoadCell_Magnet_B.DerivativePID);
-  if (rtmIsMajorTimeStep(PID_LoadCell_Magnet_M)) {
-    /* Gain: '<Root>/Kp' */
-    PID_LoadCell_Magnet_B.Kp = PID_LoadCell_Magnet_P.Kp_Gain *
-      PID_LoadCell_Magnet_B.ErrorSigal;
-  }
+
+  /* Gain: '<Root>/Kp' */
+  PID_LoadCell_Magnet_B.Kp = PID_LoadCell_Magnet_P.Kp_Gain *
+    PID_LoadCell_Magnet_B.AnalogFilterDesign;
 
   /* Gain: '<Root>/Kd' */
   PID_LoadCell_Magnet_B.Kd = PID_LoadCell_Magnet_P.Kd_Gain *
@@ -271,9 +278,9 @@ void PID_LoadCell_Magnet_output(void)
    *  Constant: '<Root>/RateErrorThresh'
    */
   if (rtmIsMajorTimeStep(PID_LoadCell_Magnet_M)) {
-    rtAction = (int8_T)!((PID_LoadCell_Magnet_B.AbsError >
+    rtAction = (int8_T)!((PID_LoadCell_Magnet_B.AbsError >=
                           PID_LoadCell_Magnet_P.DegreeErrorThresh_Value) ||
-                         (PID_LoadCell_Magnet_B.AbsDError >
+                         (PID_LoadCell_Magnet_B.AbsDError >=
                           PID_LoadCell_Magnet_P.RateErrorThresh_Value));
     PID_LoadCell_Magnet_DW.If_ActiveSubsystem = rtAction;
   } else {
@@ -322,11 +329,6 @@ void PID_LoadCell_Magnet_output(void)
   }
 
   /* End of Saturate: '<Root>/Saturation' */
-
-  /* Sin: '<Root>/Sine Wave' */
-  PID_LoadCell_Magnet_B.SineWave = sin(PID_LoadCell_Magnet_P.SineWave_Freq *
-    PID_LoadCell_Magnet_M->Timing.t[0] + PID_LoadCell_Magnet_P.SineWave_Phase) *
-    PID_LoadCell_Magnet_P.SineWave_Amp + PID_LoadCell_Magnet_P.SineWave_Bias;
   if (rtmIsMajorTimeStep(PID_LoadCell_Magnet_M)) {
     /* Switch: '<Root>/Switch1' incorporates:
      *  Constant: '<Root>/5V'
@@ -340,32 +342,20 @@ void PID_LoadCell_Magnet_output(void)
     }
 
     /* End of Switch: '<Root>/Switch1' */
-  }
 
-  /* Switch: '<Root>/Switch2' incorporates:
-   *  Constant: '<Root>/magnetDrop'
-   */
-  if (PID_LoadCell_Magnet_P.magnetDrop_Value >
-      PID_LoadCell_Magnet_P.Switch2_Threshold) {
-    PID_LoadCell_Magnet_B.Switch2 = PID_LoadCell_Magnet_B.SineWave;
-  } else {
-    PID_LoadCell_Magnet_B.Switch2 = PID_LoadCell_Magnet_B.Switch1;
-  }
-
-  /* End of Switch: '<Root>/Switch2' */
-  if (rtmIsMajorTimeStep(PID_LoadCell_Magnet_M)) {
     /* S-Function (daquanserq8): '<Root>/Channel 0 -Control signal to  motor through amplifier ' */
 
     /* Level2 S-Function Block: '<Root>/Channel 0 -Control signal to  motor through amplifier ' (daquanserq8) */
     {
-      SimStruct *rts = PID_LoadCell_Magnet_M->childSfunctions[2];
+      SimStruct *rts = PID_LoadCell_Magnet_M->childSfunctions[1];
       sfcnOutputs(rts,1);
     }
+  }
 
-    /* S-Function (scblock): '<S1>/S-Function' */
-    /* ok to acquire for <S1>/S-Function */
-    PID_LoadCell_Magnet_DW.SFunction_IWORK.AcquireOK = 1;
-
+  /* S-Function (scblock): '<S1>/S-Function' */
+  /* ok to acquire for <S1>/S-Function */
+  PID_LoadCell_Magnet_DW.SFunction_IWORK.AcquireOK = 1;
+  if (rtmIsMajorTimeStep(PID_LoadCell_Magnet_M)) {
     /* S-Function (scblock): '<S5>/S-Function' */
     /* ok to acquire for <S5>/S-Function */
     PID_LoadCell_Magnet_DW.SFunction_IWORK_i.AcquireOK = 1;
@@ -377,16 +367,25 @@ void PID_LoadCell_Magnet_output(void)
     /* S-Function (scblock): '<S7>/S-Function' */
     /* ok to acquire for <S7>/S-Function */
     PID_LoadCell_Magnet_DW.SFunction_IWORK_n.AcquireOK = 1;
+  }
 
-    /* Gain: '<Root>/Gain' */
-    PID_LoadCell_Magnet_B.Gain[0] = PID_LoadCell_Magnet_P.Gain_Gain *
-      PID_LoadCell_Magnet_B.Setpoint;
-    PID_LoadCell_Magnet_B.Gain[1] = PID_LoadCell_Magnet_P.Gain_Gain *
-      PID_LoadCell_Magnet_B.angular_positionrelative_countC;
-    PID_LoadCell_Magnet_B.Gain[2] = PID_LoadCell_Magnet_P.Gain_Gain *
-      PID_LoadCell_Magnet_B.ErrorSigal;
-    PID_LoadCell_Magnet_B.Gain[3] = PID_LoadCell_Magnet_P.Gain_Gain *
-      PID_LoadCell_Magnet_B.LoadCell;
+  /* Gain: '<Root>/Gain' */
+  PID_LoadCell_Magnet_B.Gain[0] = PID_LoadCell_Magnet_P.Gain_Gain *
+    PID_LoadCell_Magnet_B.Setpoint;
+  PID_LoadCell_Magnet_B.Gain[1] = PID_LoadCell_Magnet_P.Gain_Gain *
+    PID_LoadCell_Magnet_B.angular_positionrelative_countC;
+  PID_LoadCell_Magnet_B.Gain[2] = PID_LoadCell_Magnet_P.Gain_Gain *
+    PID_LoadCell_Magnet_B.ErrorSigal;
+  PID_LoadCell_Magnet_B.Gain[3] = PID_LoadCell_Magnet_P.Gain_Gain *
+    PID_LoadCell_Magnet_B.gain1;
+  if (rtmIsMajorTimeStep(PID_LoadCell_Magnet_M)) {
+    /* S-Function (adquanserq8): '<Root>/Load Cell' */
+
+    /* Level2 S-Function Block: '<Root>/Load Cell' (adquanserq8) */
+    {
+      SimStruct *rts = PID_LoadCell_Magnet_M->childSfunctions[2];
+      sfcnOutputs(rts,1);
+    }
   }
 }
 
@@ -411,7 +410,7 @@ void PID_LoadCell_Magnet_update(void)
     lastU = &PID_LoadCell_Magnet_DW.LastUAtTimeB;
   }
 
-  *lastU = PID_LoadCell_Magnet_B.ErrorSigal;
+  *lastU = PID_LoadCell_Magnet_B.AnalogFilterDesign;
 
   /* End of Update for Derivative: '<Root>/DerivativePID' */
   if (rtmIsMajorTimeStep(PID_LoadCell_Magnet_M)) {
@@ -462,8 +461,25 @@ void PID_LoadCell_Magnet_derivatives(void)
   XDot_PID_LoadCell_Magnet_T *_rtXdot;
   _rtXdot = ((XDot_PID_LoadCell_Magnet_T *) PID_LoadCell_Magnet_M->derivs);
 
+  /* Derivatives for StateSpace: '<Root>/Analog Filter Design1' */
+  _rtXdot->AnalogFilterDesign1_CSTATE = 0.0;
+  _rtXdot->AnalogFilterDesign1_CSTATE +=
+    PID_LoadCell_Magnet_P.AnalogFilterDesign1_A *
+    PID_LoadCell_Magnet_X.AnalogFilterDesign1_CSTATE;
+  _rtXdot->AnalogFilterDesign1_CSTATE +=
+    PID_LoadCell_Magnet_P.AnalogFilterDesign1_B * PID_LoadCell_Magnet_B.LoadCell;
+
+  /* Derivatives for StateSpace: '<Root>/Analog Filter Design' */
+  _rtXdot->AnalogFilterDesign_CSTATE = 0.0;
+  _rtXdot->AnalogFilterDesign_CSTATE +=
+    PID_LoadCell_Magnet_P.AnalogFilterDesign_A *
+    PID_LoadCell_Magnet_X.AnalogFilterDesign_CSTATE;
+  _rtXdot->AnalogFilterDesign_CSTATE +=
+    PID_LoadCell_Magnet_P.AnalogFilterDesign_B *
+    PID_LoadCell_Magnet_B.ErrorSigal;
+
   /* Derivatives for Integrator: '<Root>/IntegratorPID' */
-  _rtXdot->IntegratorPID_CSTATE = PID_LoadCell_Magnet_B.ErrorSigal;
+  _rtXdot->IntegratorPID_CSTATE = PID_LoadCell_Magnet_B.AnalogFilterDesign;
 }
 
 /* Model initialize function */
@@ -478,22 +494,13 @@ void PID_LoadCell_Magnet_initialize(void)
       return;
   }
 
-  /* Start for S-Function (adquanserq8): '<Root>/Load Cell' */
-  /* Level2 S-Function Block: '<Root>/Load Cell' (adquanserq8) */
-  {
-    SimStruct *rts = PID_LoadCell_Magnet_M->childSfunctions[1];
-    sfcnStart(rts);
-    if (ssGetErrorStatus(rts) != (NULL))
-      return;
-  }
-
   /* Start for If: '<Root>/If' */
   PID_LoadCell_Magnet_DW.If_ActiveSubsystem = -1;
 
   /* Start for S-Function (daquanserq8): '<Root>/Channel 0 -Control signal to  motor through amplifier ' */
   /* Level2 S-Function Block: '<Root>/Channel 0 -Control signal to  motor through amplifier ' (daquanserq8) */
   {
-    SimStruct *rts = PID_LoadCell_Magnet_M->childSfunctions[2];
+    SimStruct *rts = PID_LoadCell_Magnet_M->childSfunctions[1];
     sfcnStart(rts);
     if (ssGetErrorStatus(rts) != (NULL))
       return;
@@ -632,6 +639,23 @@ void PID_LoadCell_Magnet_initialize(void)
     }
   }
 
+  /* Start for S-Function (adquanserq8): '<Root>/Load Cell' */
+  /* Level2 S-Function Block: '<Root>/Load Cell' (adquanserq8) */
+  {
+    SimStruct *rts = PID_LoadCell_Magnet_M->childSfunctions[2];
+    sfcnStart(rts);
+    if (ssGetErrorStatus(rts) != (NULL))
+      return;
+  }
+
+  /* InitializeConditions for StateSpace: '<Root>/Analog Filter Design1' */
+  PID_LoadCell_Magnet_X.AnalogFilterDesign1_CSTATE =
+    PID_LoadCell_Magnet_P.AnalogFilterDesign1_X0;
+
+  /* InitializeConditions for StateSpace: '<Root>/Analog Filter Design' */
+  PID_LoadCell_Magnet_X.AnalogFilterDesign_CSTATE =
+    PID_LoadCell_Magnet_P.AnalogFilterDesign_X0;
+
   /* InitializeConditions for Derivative: '<Root>/DerivativePID' */
   PID_LoadCell_Magnet_DW.TimeStampA = (rtInf);
   PID_LoadCell_Magnet_DW.TimeStampB = (rtInf);
@@ -651,15 +675,15 @@ void PID_LoadCell_Magnet_terminate(void)
     sfcnTerminate(rts);
   }
 
-  /* Terminate for S-Function (adquanserq8): '<Root>/Load Cell' */
-  /* Level2 S-Function Block: '<Root>/Load Cell' (adquanserq8) */
+  /* Terminate for S-Function (daquanserq8): '<Root>/Channel 0 -Control signal to  motor through amplifier ' */
+  /* Level2 S-Function Block: '<Root>/Channel 0 -Control signal to  motor through amplifier ' (daquanserq8) */
   {
     SimStruct *rts = PID_LoadCell_Magnet_M->childSfunctions[1];
     sfcnTerminate(rts);
   }
 
-  /* Terminate for S-Function (daquanserq8): '<Root>/Channel 0 -Control signal to  motor through amplifier ' */
-  /* Level2 S-Function Block: '<Root>/Channel 0 -Control signal to  motor through amplifier ' (daquanserq8) */
+  /* Terminate for S-Function (adquanserq8): '<Root>/Load Cell' */
+  /* Level2 S-Function Block: '<Root>/Load Cell' (adquanserq8) */
   {
     SimStruct *rts = PID_LoadCell_Magnet_M->childSfunctions[2];
     sfcnTerminate(rts);
@@ -1189,7 +1213,7 @@ RT_MODEL_PID_LoadCell_Magnet_T *PID_LoadCell_Magnet(void)
       /* Update the BufferDstPort flags for each input port */
     }
 
-    /* Level2 S-Function Block: PID_LoadCell_Magnet/<Root>/Load Cell (adquanserq8) */
+    /* Level2 S-Function Block: PID_LoadCell_Magnet/<Root>/Channel 0 -Control signal to  motor through amplifier  (daquanserq8) */
     {
       SimStruct *rts = PID_LoadCell_Magnet_M->childSfunctions[1];
 
@@ -1240,24 +1264,38 @@ RT_MODEL_PID_LoadCell_Magnet_T *PID_LoadCell_Magnet(void)
           &PID_LoadCell_Magnet_M->NonInlinedSFcns.periodicStatesInfo[1]);
       }
 
-      /* outputs */
+      /* inputs */
       {
-        ssSetPortInfoForOutputs(rts,
-          &PID_LoadCell_Magnet_M->NonInlinedSFcns.Sfcn1.outputPortInfo[0]);
-        _ssSetNumOutputPorts(rts, 1);
+        _ssSetNumInputPorts(rts, 2);
+        ssSetPortInfoForInputs(rts,
+          &PID_LoadCell_Magnet_M->NonInlinedSFcns.Sfcn1.inputPortInfo[0]);
 
         /* port 0 */
         {
-          _ssSetOutputPortNumDimensions(rts, 0, 1);
-          ssSetOutputPortWidth(rts, 0, 1);
-          ssSetOutputPortSignal(rts, 0, ((real_T *)
-            &PID_LoadCell_Magnet_B.LoadCell));
+          real_T const **sfcnUPtrs = (real_T const **)
+            &PID_LoadCell_Magnet_M->NonInlinedSFcns.Sfcn1.UPtrs0;
+          sfcnUPtrs[0] = &PID_LoadCell_Magnet_B.Saturation;
+          ssSetInputPortSignalPtrs(rts, 0, (InputPtrsType)&sfcnUPtrs[0]);
+          _ssSetInputPortNumDimensions(rts, 0, 1);
+          ssSetInputPortWidth(rts, 0, 1);
+        }
+
+        /* port 1 */
+        {
+          real_T const **sfcnUPtrs = (real_T const **)
+            &PID_LoadCell_Magnet_M->NonInlinedSFcns.Sfcn1.UPtrs1;
+          sfcnUPtrs[0] = &PID_LoadCell_Magnet_B.Switch1;
+          ssSetInputPortSignalPtrs(rts, 1, (InputPtrsType)&sfcnUPtrs[0]);
+          _ssSetInputPortNumDimensions(rts, 1, 1);
+          ssSetInputPortWidth(rts, 1, 1);
         }
       }
 
       /* path info */
-      ssSetModelName(rts, "Load Cell");
-      ssSetPath(rts, "PID_LoadCell_Magnet/Load Cell");
+      ssSetModelName(rts,
+                     "Channel 0 -Control signal to \nmotor through amplifier ");
+      ssSetPath(rts,
+                "PID_LoadCell_Magnet/Channel 0 -Control signal to  motor through amplifier ");
       ssSetRTModel(rts,PID_LoadCell_Magnet_M);
       ssSetParentSS(rts, (NULL));
       ssSetRootSS(rts, rts);
@@ -1267,19 +1305,33 @@ RT_MODEL_PID_LoadCell_Magnet_T *PID_LoadCell_Magnet(void)
       {
         mxArray **sfcnParams = (mxArray **)
           &PID_LoadCell_Magnet_M->NonInlinedSFcns.Sfcn1.params;
-        ssSetSFcnParamsCount(rts, 7);
+        ssSetSFcnParamsCount(rts, 9);
         ssSetSFcnParamsPtr(rts, &sfcnParams[0]);
-        ssSetSFcnParam(rts, 0, (mxArray*)PID_LoadCell_Magnet_P.LoadCell_P1_Size);
-        ssSetSFcnParam(rts, 1, (mxArray*)PID_LoadCell_Magnet_P.LoadCell_P2_Size);
-        ssSetSFcnParam(rts, 2, (mxArray*)PID_LoadCell_Magnet_P.LoadCell_P3_Size);
-        ssSetSFcnParam(rts, 3, (mxArray*)PID_LoadCell_Magnet_P.LoadCell_P4_Size);
-        ssSetSFcnParam(rts, 4, (mxArray*)PID_LoadCell_Magnet_P.LoadCell_P5_Size);
-        ssSetSFcnParam(rts, 5, (mxArray*)PID_LoadCell_Magnet_P.LoadCell_P6_Size);
-        ssSetSFcnParam(rts, 6, (mxArray*)PID_LoadCell_Magnet_P.LoadCell_P7_Size);
+        ssSetSFcnParam(rts, 0, (mxArray*)
+                       PID_LoadCell_Magnet_P.Channel0Controlsignaltomotorthr);
+        ssSetSFcnParam(rts, 1, (mxArray*)
+                       PID_LoadCell_Magnet_P.Channel0Controlsignaltomotort_h);
+        ssSetSFcnParam(rts, 2, (mxArray*)
+                       PID_LoadCell_Magnet_P.Channel0Controlsignaltomotort_e);
+        ssSetSFcnParam(rts, 3, (mxArray*)
+                       PID_LoadCell_Magnet_P.Channel0Controlsignaltomotor_e1);
+        ssSetSFcnParam(rts, 4, (mxArray*)
+                       PID_LoadCell_Magnet_P.Channel0Controlsignaltomotor_cz);
+        ssSetSFcnParam(rts, 5, (mxArray*)
+                       PID_LoadCell_Magnet_P.Channel0Controlsignaltomotort_l);
+        ssSetSFcnParam(rts, 6, (mxArray*)
+                       PID_LoadCell_Magnet_P.Channel0Controlsignaltomotort_b);
+        ssSetSFcnParam(rts, 7, (mxArray*)
+                       PID_LoadCell_Magnet_P.Channel0Controlsignaltomotort_a);
+        ssSetSFcnParam(rts, 8, (mxArray*)
+                       PID_LoadCell_Magnet_P.Channel0Controlsignaltomotor_lv);
       }
 
       /* work vectors */
-      ssSetIWork(rts, (int_T *) &PID_LoadCell_Magnet_DW.LoadCell_IWORK[0]);
+      ssSetRWork(rts, (real_T *)
+                 &PID_LoadCell_Magnet_DW.Channel0Controlsignaltomotorthr[0]);
+      ssSetIWork(rts, (int_T *)
+                 &PID_LoadCell_Magnet_DW.Channel0Controlsignaltomotort_l);
 
       {
         struct _ssDWorkRecord *dWorkRecord = (struct _ssDWorkRecord *)
@@ -1288,17 +1340,25 @@ RT_MODEL_PID_LoadCell_Magnet_T *PID_LoadCell_Magnet(void)
           &PID_LoadCell_Magnet_M->NonInlinedSFcns.Sfcn1.dWorkAux;
         ssSetSFcnDWork(rts, dWorkRecord);
         ssSetSFcnDWorkAux(rts, dWorkAuxRecord);
-        _ssSetNumDWork(rts, 1);
+        _ssSetNumDWork(rts, 2);
+
+        /* RWORK */
+        ssSetDWorkWidth(rts, 0, 16);
+        ssSetDWorkDataType(rts, 0,SS_DOUBLE);
+        ssSetDWorkComplexSignal(rts, 0, 0);
+        ssSetDWork(rts, 0,
+                   &PID_LoadCell_Magnet_DW.Channel0Controlsignaltomotorthr[0]);
 
         /* IWORK */
-        ssSetDWorkWidth(rts, 0, 2);
-        ssSetDWorkDataType(rts, 0,SS_INTEGER);
-        ssSetDWorkComplexSignal(rts, 0, 0);
-        ssSetDWork(rts, 0, &PID_LoadCell_Magnet_DW.LoadCell_IWORK[0]);
+        ssSetDWorkWidth(rts, 1, 1);
+        ssSetDWorkDataType(rts, 1,SS_INTEGER);
+        ssSetDWorkComplexSignal(rts, 1, 0);
+        ssSetDWork(rts, 1,
+                   &PID_LoadCell_Magnet_DW.Channel0Controlsignaltomotort_l);
       }
 
       /* registration */
-      adquanserq8(rts);
+      daquanserq8(rts);
       sfcnInitializeSizes(rts);
       sfcnInitializeSampleTimes(rts);
 
@@ -1311,13 +1371,15 @@ RT_MODEL_PID_LoadCell_Magnet_T *PID_LoadCell_Magnet(void)
       ssSetNumNonsampledZCs(rts, 0);
 
       /* Update connectivity flags for each port */
-      _ssSetOutputPortConnected(rts, 0, 1);
-      _ssSetOutputPortBeingMerged(rts, 0, 0);
+      _ssSetInputPortConnected(rts, 0, 1);
+      _ssSetInputPortConnected(rts, 1, 1);
 
       /* Update the BufferDstPort flags for each input port */
+      ssSetInputPortBufferDstPort(rts, 0, -1);
+      ssSetInputPortBufferDstPort(rts, 1, -1);
     }
 
-    /* Level2 S-Function Block: PID_LoadCell_Magnet/<Root>/Channel 0 -Control signal to  motor through amplifier  (daquanserq8) */
+    /* Level2 S-Function Block: PID_LoadCell_Magnet/<Root>/Load Cell (adquanserq8) */
     {
       SimStruct *rts = PID_LoadCell_Magnet_M->childSfunctions[2];
 
@@ -1368,38 +1430,24 @@ RT_MODEL_PID_LoadCell_Magnet_T *PID_LoadCell_Magnet(void)
           &PID_LoadCell_Magnet_M->NonInlinedSFcns.periodicStatesInfo[2]);
       }
 
-      /* inputs */
+      /* outputs */
       {
-        _ssSetNumInputPorts(rts, 2);
-        ssSetPortInfoForInputs(rts,
-          &PID_LoadCell_Magnet_M->NonInlinedSFcns.Sfcn2.inputPortInfo[0]);
+        ssSetPortInfoForOutputs(rts,
+          &PID_LoadCell_Magnet_M->NonInlinedSFcns.Sfcn2.outputPortInfo[0]);
+        _ssSetNumOutputPorts(rts, 1);
 
         /* port 0 */
         {
-          real_T const **sfcnUPtrs = (real_T const **)
-            &PID_LoadCell_Magnet_M->NonInlinedSFcns.Sfcn2.UPtrs0;
-          sfcnUPtrs[0] = &PID_LoadCell_Magnet_B.Saturation;
-          ssSetInputPortSignalPtrs(rts, 0, (InputPtrsType)&sfcnUPtrs[0]);
-          _ssSetInputPortNumDimensions(rts, 0, 1);
-          ssSetInputPortWidth(rts, 0, 1);
-        }
-
-        /* port 1 */
-        {
-          real_T const **sfcnUPtrs = (real_T const **)
-            &PID_LoadCell_Magnet_M->NonInlinedSFcns.Sfcn2.UPtrs1;
-          sfcnUPtrs[0] = &PID_LoadCell_Magnet_B.Switch2;
-          ssSetInputPortSignalPtrs(rts, 1, (InputPtrsType)&sfcnUPtrs[0]);
-          _ssSetInputPortNumDimensions(rts, 1, 1);
-          ssSetInputPortWidth(rts, 1, 1);
+          _ssSetOutputPortNumDimensions(rts, 0, 1);
+          ssSetOutputPortWidth(rts, 0, 1);
+          ssSetOutputPortSignal(rts, 0, ((real_T *)
+            &PID_LoadCell_Magnet_B.LoadCell));
         }
       }
 
       /* path info */
-      ssSetModelName(rts,
-                     "Channel 0 -Control signal to \nmotor through amplifier ");
-      ssSetPath(rts,
-                "PID_LoadCell_Magnet/Channel 0 -Control signal to  motor through amplifier ");
+      ssSetModelName(rts, "Load Cell");
+      ssSetPath(rts, "PID_LoadCell_Magnet/Load Cell");
       ssSetRTModel(rts,PID_LoadCell_Magnet_M);
       ssSetParentSS(rts, (NULL));
       ssSetRootSS(rts, rts);
@@ -1409,33 +1457,19 @@ RT_MODEL_PID_LoadCell_Magnet_T *PID_LoadCell_Magnet(void)
       {
         mxArray **sfcnParams = (mxArray **)
           &PID_LoadCell_Magnet_M->NonInlinedSFcns.Sfcn2.params;
-        ssSetSFcnParamsCount(rts, 9);
+        ssSetSFcnParamsCount(rts, 7);
         ssSetSFcnParamsPtr(rts, &sfcnParams[0]);
-        ssSetSFcnParam(rts, 0, (mxArray*)
-                       PID_LoadCell_Magnet_P.Channel0Controlsignaltomotorthr);
-        ssSetSFcnParam(rts, 1, (mxArray*)
-                       PID_LoadCell_Magnet_P.Channel0Controlsignaltomotort_h);
-        ssSetSFcnParam(rts, 2, (mxArray*)
-                       PID_LoadCell_Magnet_P.Channel0Controlsignaltomotort_e);
-        ssSetSFcnParam(rts, 3, (mxArray*)
-                       PID_LoadCell_Magnet_P.Channel0Controlsignaltomotor_e1);
-        ssSetSFcnParam(rts, 4, (mxArray*)
-                       PID_LoadCell_Magnet_P.Channel0Controlsignaltomotor_cz);
-        ssSetSFcnParam(rts, 5, (mxArray*)
-                       PID_LoadCell_Magnet_P.Channel0Controlsignaltomotort_l);
-        ssSetSFcnParam(rts, 6, (mxArray*)
-                       PID_LoadCell_Magnet_P.Channel0Controlsignaltomotort_b);
-        ssSetSFcnParam(rts, 7, (mxArray*)
-                       PID_LoadCell_Magnet_P.Channel0Controlsignaltomotort_a);
-        ssSetSFcnParam(rts, 8, (mxArray*)
-                       PID_LoadCell_Magnet_P.Channel0Controlsignaltomotor_lv);
+        ssSetSFcnParam(rts, 0, (mxArray*)PID_LoadCell_Magnet_P.LoadCell_P1_Size);
+        ssSetSFcnParam(rts, 1, (mxArray*)PID_LoadCell_Magnet_P.LoadCell_P2_Size);
+        ssSetSFcnParam(rts, 2, (mxArray*)PID_LoadCell_Magnet_P.LoadCell_P3_Size);
+        ssSetSFcnParam(rts, 3, (mxArray*)PID_LoadCell_Magnet_P.LoadCell_P4_Size);
+        ssSetSFcnParam(rts, 4, (mxArray*)PID_LoadCell_Magnet_P.LoadCell_P5_Size);
+        ssSetSFcnParam(rts, 5, (mxArray*)PID_LoadCell_Magnet_P.LoadCell_P6_Size);
+        ssSetSFcnParam(rts, 6, (mxArray*)PID_LoadCell_Magnet_P.LoadCell_P7_Size);
       }
 
       /* work vectors */
-      ssSetRWork(rts, (real_T *)
-                 &PID_LoadCell_Magnet_DW.Channel0Controlsignaltomotorthr[0]);
-      ssSetIWork(rts, (int_T *)
-                 &PID_LoadCell_Magnet_DW.Channel0Controlsignaltomotort_l);
+      ssSetIWork(rts, (int_T *) &PID_LoadCell_Magnet_DW.LoadCell_IWORK[0]);
 
       {
         struct _ssDWorkRecord *dWorkRecord = (struct _ssDWorkRecord *)
@@ -1444,25 +1478,17 @@ RT_MODEL_PID_LoadCell_Magnet_T *PID_LoadCell_Magnet(void)
           &PID_LoadCell_Magnet_M->NonInlinedSFcns.Sfcn2.dWorkAux;
         ssSetSFcnDWork(rts, dWorkRecord);
         ssSetSFcnDWorkAux(rts, dWorkAuxRecord);
-        _ssSetNumDWork(rts, 2);
-
-        /* RWORK */
-        ssSetDWorkWidth(rts, 0, 16);
-        ssSetDWorkDataType(rts, 0,SS_DOUBLE);
-        ssSetDWorkComplexSignal(rts, 0, 0);
-        ssSetDWork(rts, 0,
-                   &PID_LoadCell_Magnet_DW.Channel0Controlsignaltomotorthr[0]);
+        _ssSetNumDWork(rts, 1);
 
         /* IWORK */
-        ssSetDWorkWidth(rts, 1, 1);
-        ssSetDWorkDataType(rts, 1,SS_INTEGER);
-        ssSetDWorkComplexSignal(rts, 1, 0);
-        ssSetDWork(rts, 1,
-                   &PID_LoadCell_Magnet_DW.Channel0Controlsignaltomotort_l);
+        ssSetDWorkWidth(rts, 0, 2);
+        ssSetDWorkDataType(rts, 0,SS_INTEGER);
+        ssSetDWorkComplexSignal(rts, 0, 0);
+        ssSetDWork(rts, 0, &PID_LoadCell_Magnet_DW.LoadCell_IWORK[0]);
       }
 
       /* registration */
-      daquanserq8(rts);
+      adquanserq8(rts);
       sfcnInitializeSizes(rts);
       sfcnInitializeSampleTimes(rts);
 
@@ -1475,25 +1501,23 @@ RT_MODEL_PID_LoadCell_Magnet_T *PID_LoadCell_Magnet(void)
       ssSetNumNonsampledZCs(rts, 0);
 
       /* Update connectivity flags for each port */
-      _ssSetInputPortConnected(rts, 0, 1);
-      _ssSetInputPortConnected(rts, 1, 1);
+      _ssSetOutputPortConnected(rts, 0, 1);
+      _ssSetOutputPortBeingMerged(rts, 0, 0);
 
       /* Update the BufferDstPort flags for each input port */
-      ssSetInputPortBufferDstPort(rts, 0, -1);
-      ssSetInputPortBufferDstPort(rts, 1, -1);
     }
   }
 
   /* Initialize Sizes */
-  PID_LoadCell_Magnet_M->Sizes.numContStates = (1);/* Number of continuous states */
+  PID_LoadCell_Magnet_M->Sizes.numContStates = (3);/* Number of continuous states */
   PID_LoadCell_Magnet_M->Sizes.numPeriodicContStates = (0);/* Number of periodic continuous states */
   PID_LoadCell_Magnet_M->Sizes.numY = (4);/* Number of model outputs */
   PID_LoadCell_Magnet_M->Sizes.numU = (0);/* Number of model inputs */
   PID_LoadCell_Magnet_M->Sizes.sysDirFeedThru = (0);/* The model is not direct feedthrough */
   PID_LoadCell_Magnet_M->Sizes.numSampTimes = (2);/* Number of sample times */
   PID_LoadCell_Magnet_M->Sizes.numBlocks = (39);/* Number of blocks */
-  PID_LoadCell_Magnet_M->Sizes.numBlockIO = (19);/* Number of block outputs */
-  PID_LoadCell_Magnet_M->Sizes.numBlockPrms = (108);/* Sum of parameter "widths" */
+  PID_LoadCell_Magnet_M->Sizes.numBlockIO = (20);/* Number of block outputs */
+  PID_LoadCell_Magnet_M->Sizes.numBlockPrms = (111);/* Sum of parameter "widths" */
   return PID_LoadCell_Magnet_M;
 }
 

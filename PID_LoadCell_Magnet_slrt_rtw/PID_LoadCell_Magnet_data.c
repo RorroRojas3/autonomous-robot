@@ -8,9 +8,9 @@
  *
  * Code generation for model "PID_LoadCell_Magnet".
  *
- * Model version              : 1.122
+ * Model version              : 1.125
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Sat Apr 14 10:37:10 2018
+ * C source code generated on : Sat Apr 14 17:38:16 2018
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -27,7 +27,7 @@ P_PID_LoadCell_Magnet_T PID_LoadCell_Magnet_P = {
   5.0,                                 /* Expression: 5
                                         * Referenced by: '<Root>/5V'
                                         */
-  0.0,                                 /* Expression: 0
+  90.0,                                /* Expression: 90
                                         * Referenced by: '<Root>/Degree'
                                         */
   1.0,                                 /* Expression: 1
@@ -132,75 +132,49 @@ P_PID_LoadCell_Magnet_T PID_LoadCell_Magnet_P = {
   -0.225,                              /* Expression: -360/1600
                                         * Referenced by: '<S4>/angular_position =  [relative_count//COUNTS_PER_REV] *360 degrees'
                                         */
-
-  /*  Computed Parameter: LoadCell_P1_Size
-   * Referenced by: '<Root>/Load Cell'
-   */
-  { 1.0, 1.0 },
-  2.0,                                 /* Expression: boardtype
-                                        * Referenced by: '<Root>/Load Cell'
+  -60.0,                               /* Computed Parameter: AnalogFilterDesign1_A
+                                        * Referenced by: '<Root>/Analog Filter Design1'
                                         */
-
-  /*  Computed Parameter: LoadCell_P2_Size
-   * Referenced by: '<Root>/Load Cell'
-   */
-  { 1.0, 1.0 },
-  1.0,                                 /* Expression: channel
-                                        * Referenced by: '<Root>/Load Cell'
+  60.0,                                /* Computed Parameter: AnalogFilterDesign1_B
+                                        * Referenced by: '<Root>/Analog Filter Design1'
                                         */
-
-  /*  Computed Parameter: LoadCell_P3_Size
-   * Referenced by: '<Root>/Load Cell'
-   */
-  { 1.0, 1.0 },
-  0.0,                                 /* Expression: index03
-                                        * Referenced by: '<Root>/Load Cell'
+  1.0,                                 /* Computed Parameter: AnalogFilterDesign1_C
+                                        * Referenced by: '<Root>/Analog Filter Design1'
                                         */
-
-  /*  Computed Parameter: LoadCell_P4_Size
-   * Referenced by: '<Root>/Load Cell'
-   */
-  { 0.0, 0.0 },
-
-  /*  Computed Parameter: LoadCell_P5_Size
-   * Referenced by: '<Root>/Load Cell'
-   */
-  { 1.0, 1.0 },
-  0.001,                               /* Expression: sampleTime
-                                        * Referenced by: '<Root>/Load Cell'
+  0.0,                                 /* Expression: 0
+                                        * Referenced by: '<Root>/Analog Filter Design1'
                                         */
-
-  /*  Computed Parameter: LoadCell_P6_Size
-   * Referenced by: '<Root>/Load Cell'
-   */
-  { 1.0, 1.0 },
-  0.0,                                 /* Expression: pciBus
-                                        * Referenced by: '<Root>/Load Cell'
+  100.0,                               /* Expression: 100
+                                        * Referenced by: '<Root>/gain1'
                                         */
-
-  /*  Computed Parameter: LoadCell_P7_Size
-   * Referenced by: '<Root>/Load Cell'
-   */
-  { 1.0, 1.0 },
-  -1.0,                                /* Expression: pciSlot
-                                        * Referenced by: '<Root>/Load Cell'
-                                        */
-  3.0,                                 /* Expression: 3
+  1.25,                                /* Expression: 1.25
                                         * Referenced by: '<Root>/DegreeErrorThresh'
                                         */
-  50.0,                                /* Expression: 50
+  -17.0,                               /* Computed Parameter: AnalogFilterDesign_A
+                                        * Referenced by: '<Root>/Analog Filter Design'
+                                        */
+  17.0,                                /* Computed Parameter: AnalogFilterDesign_B
+                                        * Referenced by: '<Root>/Analog Filter Design'
+                                        */
+  1.0,                                 /* Computed Parameter: AnalogFilterDesign_C
+                                        * Referenced by: '<Root>/Analog Filter Design'
+                                        */
+  0.0,                                 /* Expression: 0
+                                        * Referenced by: '<Root>/Analog Filter Design'
+                                        */
+  75.0,                                /* Expression: 75
                                         * Referenced by: '<Root>/RateErrorThresh'
                                         */
-  850.0,                               /* Expression: 850
+  2250.0,                              /* Expression: 2250
                                         * Referenced by: '<Root>/Kp'
                                         */
-  120.0,                               /* Expression: 120
+  500.0,                               /* Expression: 500
                                         * Referenced by: '<Root>/Kd'
                                         */
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<Root>/IntegratorPID'
                                         */
-  4.0,                                 /* Expression: 4
+  1.75,                                /* Expression: 1.75
                                         * Referenced by: '<Root>/Ki'
                                         */
   5.0,                                 /* Expression: 5
@@ -209,29 +183,11 @@ P_PID_LoadCell_Magnet_T PID_LoadCell_Magnet_P = {
   -5.0,                                /* Expression: -5
                                         * Referenced by: '<Root>/Saturation'
                                         */
-  5.0,                                 /* Expression: 5
-                                        * Referenced by: '<Root>/Sine Wave'
-                                        */
   0.0,                                 /* Expression: 0
-                                        * Referenced by: '<Root>/Sine Wave'
-                                        */
-  2500.0,                              /* Expression: 2500
-                                        * Referenced by: '<Root>/Sine Wave'
-                                        */
-  0.0,                                 /* Expression: 0
-                                        * Referenced by: '<Root>/Sine Wave'
-                                        */
-  0.0,                                 /* Expression: 0
-                                        * Referenced by: '<Root>/magnetDrop'
-                                        */
-  1.0,                                 /* Expression: 1
                                         * Referenced by: '<Root>/magnetOn'
                                         */
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<Root>/Switch1'
-                                        */
-  0.0,                                 /* Expression: 0
-                                        * Referenced by: '<Root>/Switch2'
                                         */
 
   /*  Computed Parameter: Channel0Controlsignaltomotorthr
@@ -313,7 +269,60 @@ P_PID_LoadCell_Magnet_T PID_LoadCell_Magnet_P = {
   -1.0,                                /* Expression: pciSlot
                                         * Referenced by: '<Root>/Channel 0 -Control signal to  motor through amplifier '
                                         */
-  1.0                                  /* Expression: 1
+  1.0,                                 /* Expression: 1
                                         * Referenced by: '<Root>/Gain'
+                                        */
+
+  /*  Computed Parameter: LoadCell_P1_Size
+   * Referenced by: '<Root>/Load Cell'
+   */
+  { 1.0, 1.0 },
+  2.0,                                 /* Expression: boardtype
+                                        * Referenced by: '<Root>/Load Cell'
+                                        */
+
+  /*  Computed Parameter: LoadCell_P2_Size
+   * Referenced by: '<Root>/Load Cell'
+   */
+  { 1.0, 1.0 },
+  1.0,                                 /* Expression: channel
+                                        * Referenced by: '<Root>/Load Cell'
+                                        */
+
+  /*  Computed Parameter: LoadCell_P3_Size
+   * Referenced by: '<Root>/Load Cell'
+   */
+  { 1.0, 1.0 },
+  0.0,                                 /* Expression: index03
+                                        * Referenced by: '<Root>/Load Cell'
+                                        */
+
+  /*  Computed Parameter: LoadCell_P4_Size
+   * Referenced by: '<Root>/Load Cell'
+   */
+  { 0.0, 0.0 },
+
+  /*  Computed Parameter: LoadCell_P5_Size
+   * Referenced by: '<Root>/Load Cell'
+   */
+  { 1.0, 1.0 },
+  0.001,                               /* Expression: sampleTime
+                                        * Referenced by: '<Root>/Load Cell'
+                                        */
+
+  /*  Computed Parameter: LoadCell_P6_Size
+   * Referenced by: '<Root>/Load Cell'
+   */
+  { 1.0, 1.0 },
+  0.0,                                 /* Expression: pciBus
+                                        * Referenced by: '<Root>/Load Cell'
+                                        */
+
+  /*  Computed Parameter: LoadCell_P7_Size
+   * Referenced by: '<Root>/Load Cell'
+   */
+  { 1.0, 1.0 },
+  -1.0                                 /* Expression: pciSlot
+                                        * Referenced by: '<Root>/Load Cell'
                                         */
 };

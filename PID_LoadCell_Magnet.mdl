@@ -33,7 +33,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.123"
+    ComputedModelVersion    "1.126"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -95,8 +95,8 @@ Model {
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
 	Extents			[3752.0, 1702.0]
-	ZoomFactor		[0.8]
-	Offset			[-439.76037295945594, -96.370311149234]
+	ZoomFactor		[1.5]
+	Offset			[58.8840714849938, -30.570311149234954]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -130,9 +130,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Rorro"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sat Apr 14 16:43:08 2018"
-  RTWModifiedTimeStamp	  445618738
-  ModelVersionFormat	  "1.%<AutoIncrement:123>"
+  LastModifiedDate	  "Sat Apr 14 17:56:05 2018"
+  RTWModifiedTimeStamp	  445629364
+  ModelVersionFormat	  "1.%<AutoIncrement:126>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1142,19 +1142,6 @@ Model {
       RndMeth		      "Floor"
     }
     Block {
-      BlockType		      Sin
-      SineType		      "Time based"
-      TimeSource	      "Use simulation time"
-      Amplitude		      "1"
-      Bias		      "0"
-      Frequency		      "1"
-      Phase		      "0"
-      Samples		      "10"
-      Offset		      "0"
-      SampleTime	      "-1"
-      VectorParams1D	      on
-    }
-    Block {
       BlockType		      SubSystem
       ShowPortLabels	      "FromPortIcon"
       Permissions	      "ReadWrite"
@@ -1233,9 +1220,9 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "80"
+    ZoomFactor		    "150"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "180"
+    SIDHighWatermark	    "197"
     Block {
       BlockType		      Constant
       Name		      "5V"
@@ -1262,10 +1249,50 @@ Model {
     }
     Block {
       BlockType		      Reference
+      Name		      "Analog\nFilter Design"
+      SID		      "195"
+      Ports		      [1, 1]
+      Position		      [270, 240, 300, 270]
+      ZOrder		      75
+      LibraryVersion	      "1.360"
+      SourceBlock	      "dsparch4/Analog\nFilter Design"
+      SourceType	      "Analog Filter Design"
+      SourceProductName	      "DSP System Toolbox"
+      SourceProductBaseCode   "DS"
+      method		      "Butterworth"
+      filttype		      "Lowpass"
+      N			      "1"
+      Wlo		      "17"
+      Whi		      "80"
+      Rp		      "2"
+      Rs		      "40"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Analog\nFilter Design1"
+      SID		      "196"
+      Ports		      [1, 1]
+      Position		      [930, 143, 965, 177]
+      ZOrder		      74
+      LibraryVersion	      "1.360"
+      SourceBlock	      "dsparch4/Analog\nFilter Design"
+      SourceType	      "Analog Filter Design"
+      SourceProductName	      "DSP System Toolbox"
+      SourceProductBaseCode   "DS"
+      method		      "Butterworth"
+      filttype		      "Lowpass"
+      N			      "1"
+      Wlo		      "60"
+      Whi		      "80"
+      Rp		      "2"
+      Rs		      "40"
+    }
+    Block {
+      BlockType		      Reference
       Name		      "Channel 0 -Control signal to \nmotor through amplifier "
       SID		      "10"
       Ports		      [2]
-      Position		      [735, 111, 840, 169]
+      Position		      [490, 121, 595, 179]
       ZOrder		      72
       BackgroundColor	      "cyan"
       LibraryVersion	      "1.52"
@@ -1332,13 +1359,13 @@ Model {
       SID		      "128"
       Position		      [515, 305, 545, 335]
       ZOrder		      32
-      Value		      "3"
+      Value		      "1.25"
     }
     Block {
       BlockType		      Derivative
       Name		      "DerivativePID"
       SID		      "2"
-      Position		      [290, 310, 320, 340]
+      Position		      [310, 310, 340, 340]
       ZOrder		      -3
     }
     Block {
@@ -1432,7 +1459,7 @@ Model {
       Position		      [605, 290, 655, 355]
       ZOrder		      22
       NumInputs		      "4"
-      IfExpression	      "u1 > u2 | u3 > u4"
+      IfExpression	      "u1 >= u2 | u3 >= u4"
     }
     Block {
       BlockType		      SubSystem
@@ -1508,7 +1535,7 @@ Model {
       Position		      [360, 304, 415, 346]
       ZOrder		      -7
       BackgroundColor	      "yellow"
-      Gain		      "120"
+      Gain		      "500"
       ParamDataTypeStr	      "Inherit: Inherit via internal rule"
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
       SaturateOnIntegerOverflow	off
@@ -1520,7 +1547,7 @@ Model {
       Position		      [360, 380, 420, 420]
       ZOrder		      -8
       BackgroundColor	      "yellow"
-      Gain		      "4"
+      Gain		      "1.75"
       ParamDataTypeStr	      "Inherit: Inherit via internal rule"
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
       SaturateOnIntegerOverflow	off
@@ -1532,7 +1559,7 @@ Model {
       Position		      [360, 236, 415, 274]
       ZOrder		      35
       BackgroundColor	      "yellow"
-      Gain		      "850"
+      Gain		      "2250"
       ParamDataTypeStr	      "Inherit: Inherit via internal rule"
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
       SaturateOnIntegerOverflow	off
@@ -1542,7 +1569,7 @@ Model {
       Name		      "Load Cell"
       SID		      "166"
       Ports		      [0, 1]
-      Position		      [890, 132, 990, 188]
+      Position		      [815, 132, 915, 188]
       ZOrder		      56
       LibraryVersion	      "1.52"
       SourceBlock	      "xpcquanserlib/A//D/Q4 AD"
@@ -1577,7 +1604,7 @@ Model {
       SID		      "129"
       Position		      [515, 385, 545, 415]
       ZOrder		      33
-      Value		      "50"
+      Value		      "75"
     }
     Block {
       BlockType		      SubSystem
@@ -1697,17 +1724,6 @@ Model {
       LowerLimit	      "-5"
     }
     Block {
-      BlockType		      Sin
-      Name		      "Sine Wave"
-      SID		      "177"
-      Ports		      [0, 1]
-      Position		      [300, 90, 330, 120]
-      ZOrder		      67
-      Amplitude		      "5"
-      Frequency		      "2500"
-      SampleTime	      "0"
-    }
-    Block {
       BlockType		      Sum
       Name		      "Sum1"
       SID		      "30"
@@ -1745,16 +1761,6 @@ Model {
       SID		      "172"
       Position		      [225, 142, 275, 188]
       ZOrder		      62
-      Criteria		      "u2 > Threshold"
-      InputSameDT	      off
-      SaturateOnIntegerOverflow	off
-    }
-    Block {
-      BlockType		      Switch
-      Name		      "Switch2"
-      SID		      "174"
-      Position		      [360, 127, 410, 173]
-      ZOrder		      64
       Criteria		      "u2 > Threshold"
       InputSameDT	      off
       SaturateOnIntegerOverflow	off
@@ -1812,12 +1818,16 @@ Model {
       }
     }
     Block {
-      BlockType		      Constant
-      Name		      "magnetDrop"
-      SID		      "175"
-      Position		      [235, 90, 265, 120]
-      ZOrder		      65
-      Value		      "0"
+      BlockType		      Gain
+      Name		      "gain1"
+      SID		      "197"
+      Position		      [980, 145, 1010, 175]
+      ZOrder		      76
+      NamePlacement	      "alternate"
+      Gain		      "100"
+      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
     }
     Block {
       BlockType		      Constant
@@ -1948,10 +1958,10 @@ Model {
       ZOrder		      3
       SrcBlock		      "DerivativePID"
       SrcPort		      1
-      Points		      [14, 0]
+      Points		      [0, 0]
       Branch {
 	ZOrder			231
-	Points			[0, 45]
+	Points			[1, 0; 0, 45]
 	DstBlock		"AbsDError"
 	DstPort			1
       }
@@ -2073,62 +2083,47 @@ Model {
       ZOrder		      30
       SrcBlock		      "Sum1"
       SrcPort		      1
-      Points		      [6, 0]
+      Points		      [5, 0]
       Branch {
-	ZOrder			492
-	Points			[0, 70]
+	ZOrder			673
+	Points			[1, 0; 0, -30; 167, 0]
 	Branch {
-	  ZOrder		  322
-	  DstBlock		  "DerivativePID"
-	  DstPort		  1
-	}
-	Branch {
-	  ZOrder		  35
-	  Points		  [0, 75]
-	  DstBlock		  "IntegratorPID"
-	  DstPort		  1
-	}
-      }
-      Branch {
-	ZOrder			179
-	Points			[84, 0]
-	Branch {
-	  ZOrder		  326
-	  Points		  [0, 35]
+	  ZOrder		  681
+	  Points		  [0, 65]
 	  DstBlock		  "AbsError"
 	  DstPort		  1
 	}
 	Branch {
-	  ZOrder		  325
-	  DstBlock		  "Kp"
-	  DstPort		  1
+	  ZOrder		  680
+	  Labels		  [1, 1]
+	  Points		  [431, 0]
+	  Branch {
+	    ZOrder		    252
+	    Points		    [59, 0; 0, 10]
+	    Branch {
+	      ZOrder		      255
+	      Points		      [0, 35]
+	      DstBlock		      "error signal"
+	      DstPort		      1
+	    }
+	    Branch {
+	      ZOrder		      254
+	      DstBlock		      "Mux"
+	      DstPort		      3
+	    }
+	  }
+	  Branch {
+	    ZOrder		    208
+	    Points		    [0, 45]
+	    DstBlock		    "errorSignal_Out"
+	    DstPort		    1
+	  }
 	}
       }
       Branch {
-	ZOrder			36
-	Labels			[2, 1]
-	Points			[0, -30; 598, 0]
-	Branch {
-	  ZOrder		  252
-	  Points		  [59, 0; 0, 10]
-	  Branch {
-	    ZOrder		    255
-	    Points		    [0, 35]
-	    DstBlock		    "error signal"
-	    DstPort		    1
-	  }
-	  Branch {
-	    ZOrder		    254
-	    DstBlock		    "Mux"
-	    DstPort		    3
-	  }
-	}
-	Branch {
-	  ZOrder		  208
-	  Points		  [0, 45]
-	  DstBlock		  "errorSignal_Out"
-	  DstPort		  1
-	}
+	ZOrder			672
+	DstBlock		"Analog\nFilter Design"
+	DstPort			1
       }
     }
     Line {
@@ -2217,23 +2212,6 @@ Model {
       DstPort		      1
     }
     Line {
-      ZOrder		      486
-      SrcBlock		      "Load Cell"
-      SrcPort		      1
-      Points		      [32, 0]
-      Branch {
-	ZOrder			490
-	DstBlock		"loadCell_In"
-	DstPort			1
-      }
-      Branch {
-	ZOrder			489
-	Points			[0, 90]
-	DstBlock		"Mux"
-	DstPort			4
-      }
-    }
-    Line {
       ZOrder		      496
       SrcBlock		      "5V"
       SrcPort		      1
@@ -2256,33 +2234,9 @@ Model {
       DstPort		      3
     }
     Line {
-      ZOrder		      501
+      ZOrder		      627
       SrcBlock		      "Switch1"
       SrcPort		      1
-      DstBlock		      "Switch2"
-      DstPort		      3
-    }
-    Line {
-      ZOrder		      502
-      SrcBlock		      "magnetDrop"
-      SrcPort		      1
-      Points		      [15, 0; 0, 45]
-      DstBlock		      "Switch2"
-      DstPort		      2
-    }
-    Line {
-      ZOrder		      503
-      SrcBlock		      "Sine Wave"
-      SrcPort		      1
-      Points		      [10, 0]
-      DstBlock		      "Switch2"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      534
-      SrcBlock		      "Switch2"
-      SrcPort		      1
-      Points		      [158, 0; 0, 5]
       DstBlock		      "Channel 0 -Control signal to \nmotor through amplifier "
       DstPort		      2
     }
@@ -2297,9 +2251,66 @@ Model {
       ZOrder		      536
       SrcBlock		      "Saturation"
       SrcPort		      1
-      Points		      [0, 114; 356, 0; 0, -367; -509, 0; 0, 28]
+      Points		      [0, 114; 356, 0; 0, -357; -762, 0; 0, 28]
       DstBlock		      "Channel 0 -Control signal to \nmotor through amplifier "
       DstPort		      1
+    }
+    Line {
+      ZOrder		      664
+      SrcBlock		      "Load Cell"
+      SrcPort		      1
+      DstBlock		      "Analog\nFilter Design1"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      674
+      SrcBlock		      "Analog\nFilter Design"
+      SrcPort		      1
+      Points		      [23, 0]
+      Branch {
+	ZOrder			676
+	Points			[0, 47; -63, 0; 0, 23]
+	Branch {
+	  ZOrder		  679
+	  DstBlock		  "DerivativePID"
+	  DstPort		  1
+	}
+	Branch {
+	  ZOrder		  678
+	  Points		  [0, 75]
+	  DstBlock		  "IntegratorPID"
+	  DstPort		  1
+	}
+      }
+      Branch {
+	ZOrder			675
+	DstBlock		"Kp"
+	DstPort			1
+      }
+    }
+    Line {
+      ZOrder		      682
+      SrcBlock		      "Analog\nFilter Design1"
+      SrcPort		      1
+      DstBlock		      "gain1"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      683
+      SrcBlock		      "gain1"
+      SrcPort		      1
+      Points		      [10, 0]
+      Branch {
+	ZOrder			685
+	Points			[0, 90]
+	DstBlock		"Mux"
+	DstPort			4
+      }
+      Branch {
+	ZOrder			684
+	DstBlock		"loadCell_In"
+	DstPort			1
+      }
     }
   }
 }

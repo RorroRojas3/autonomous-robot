@@ -216,17 +216,6 @@ Encoder Inputs </sigName>
           </parameter>
           </block>
             <block>
-            <blkName>magnetDrop</blkName>
-            <xpcblkName>magnetDrop</xpcblkName>
-            <SLblockPath>PID_LoadCell_Magnet/magnetDrop</SLblockPath>
-            <isSrc>[1 0 1]</isSrc>
-          <parameter>
-          <paramName>Value</paramName>
-          <dim>[1, 1]</dim>  
-		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
-          </parameter>
-          </block>
-            <block>
             <blkName>magnetOn</blkName>
             <xpcblkName>magnetOn</xpcblkName>
             <SLblockPath>PID_LoadCell_Magnet/magnetOn</SLblockPath>
@@ -285,6 +274,17 @@ Encoder Inputs </sigName>
             <blkName>gain</blkName>
             <xpcblkName>gain</xpcblkName>
             <SLblockPath>PID_LoadCell_Magnet/gain</SLblockPath>
+            <isSrc>[0 1 1]</isSrc>
+          <parameter>
+          <paramName>Gain</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>gain1</blkName>
+            <xpcblkName>gain1</xpcblkName>
+            <SLblockPath>PID_LoadCell_Magnet/gain1</SLblockPath>
             <isSrc>[0 1 1]</isSrc>
           <parameter>
           <paramName>Gain</paramName>
@@ -408,27 +408,55 @@ motor through amplifier </blkName>
           </parameter>
           </block>
             <block>
-            <blkName>Sine Wave</blkName>
-            <xpcblkName>Sine Wave</xpcblkName>
-            <SLblockPath>PID_LoadCell_Magnet/Sine Wave</SLblockPath>
-            <isSrc>[1 0 1]</isSrc>
+            <blkName>Analog
+Filter Design</blkName>
+            <xpcblkName>Analog Filter Design</xpcblkName>
+            <SLblockPath>PID_LoadCell_Magnet/Analog Filter Design</SLblockPath>
+            <isSrc>[0 1 1]</isSrc>
           <parameter>
-          <paramName>Amplitude</paramName>
+          <paramName>A</paramName>
           <dim>[1, 1]</dim>  
 		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
           </parameter>
           <parameter>
-          <paramName>Bias</paramName>
+          <paramName>B</paramName>
           <dim>[1, 1]</dim>  
 		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
           </parameter>
           <parameter>
-          <paramName>Frequency</paramName>
+          <paramName>C</paramName>
           <dim>[1, 1]</dim>  
 		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
           </parameter>
           <parameter>
-          <paramName>Phase</paramName>
+          <paramName>X0</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Analog
+Filter Design1</blkName>
+            <xpcblkName>Analog Filter Design1</xpcblkName>
+            <SLblockPath>PID_LoadCell_Magnet/Analog Filter Design1</SLblockPath>
+            <isSrc>[0 1 1]</isSrc>
+          <parameter>
+          <paramName>A</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>B</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>C</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>X0</paramName>
           <dim>[1, 1]</dim>  
 		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
           </parameter>
@@ -437,17 +465,6 @@ motor through amplifier </blkName>
             <blkName>Switch1</blkName>
             <xpcblkName>Switch1</xpcblkName>
             <SLblockPath>PID_LoadCell_Magnet/Switch1</SLblockPath>
-            <isSrc>[0 3 1]</isSrc>
-          <parameter>
-          <paramName>Threshold</paramName>
-          <dim>[1, 1]</dim>  
-		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
-          </parameter>
-          </block>
-            <block>
-            <blkName>Switch2</blkName>
-            <xpcblkName>Switch2</xpcblkName>
-            <SLblockPath>PID_LoadCell_Magnet/Switch2</SLblockPath>
             <isSrc>[0 3 1]</isSrc>
           <parameter>
           <paramName>Threshold</paramName>
@@ -539,6 +556,16 @@ motor through amplifier </blkName>
 			  
 			  
               <signal>
+              <sigName>gain1</sigName>
+              <xpcsigName>gain1</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
               <sigName>IntegratorPID</sigName>
               <xpcsigName>IntegratorPID</xpcsigName>
               <sigWidth>1</sigWidth>
@@ -579,8 +606,20 @@ motor through amplifier </blkName>
 			  
 			  
               <signal>
-              <sigName>Sine Wave</sigName>
-              <xpcsigName>Sine Wave</xpcsigName>
+              <sigName>Analog
+Filter Design</sigName>
+              <xpcsigName>Analog Filter Design</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>Analog
+Filter Design1</sigName>
+              <xpcsigName>Analog Filter Design1</xpcsigName>
               <sigWidth>1</sigWidth>
               <sigDim>[1, 1]</sigDim>
 			  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
@@ -612,16 +651,6 @@ motor through amplifier </blkName>
               <signal>
               <sigName>Switch1</sigName>
               <xpcsigName>Switch1</xpcsigName>
-              <sigWidth>1</sigWidth>
-              <sigDim>[1, 1]</sigDim>
-			  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
-			  <sigTestPoint>false</sigTestPoint>
-            </signal>
-			  
-			  
-              <signal>
-              <sigName>Switch2</sigName>
-              <xpcsigName>Switch2</xpcsigName>
               <sigWidth>1</sigWidth>
               <sigDim>[1, 1]</sigDim>
 			  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>

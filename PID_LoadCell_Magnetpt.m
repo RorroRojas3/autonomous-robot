@@ -67,7 +67,7 @@ pt(4).dtname     = 'real_T';
 
 
   
-pt(5).blockname = 'magnetDrop';
+pt(5).blockname = 'magnetOn';
 pt(5).paramname = 'Value';
 pt(5).class     = 'scalar';
 pt(5).nrows     = 1;
@@ -76,15 +76,15 @@ pt(5).subsource = 'SS_DOUBLE';
 pt(5).ndims     = '2';
 pt(5).size      = '[]';
 pt(5).isStruct  = false;
-pt(5).symbol     = 'PID_LoadCell_Magnet_P.magnetDrop_Value';
-pt(5).baseaddr   = '&PID_LoadCell_Magnet_P.magnetDrop_Value';
+pt(5).symbol     = 'PID_LoadCell_Magnet_P.magnetOn_Value';
+pt(5).baseaddr   = '&PID_LoadCell_Magnet_P.magnetOn_Value';
 pt(5).dtname     = 'real_T';
 
 
 
   
-pt(6).blockname = 'magnetOn';
-pt(6).paramname = 'Value';
+pt(6).blockname = 'Gain';
+pt(6).paramname = 'Gain';
 pt(6).class     = 'scalar';
 pt(6).nrows     = 1;
 pt(6).ncols     = 1;
@@ -92,14 +92,14 @@ pt(6).subsource = 'SS_DOUBLE';
 pt(6).ndims     = '2';
 pt(6).size      = '[]';
 pt(6).isStruct  = false;
-pt(6).symbol     = 'PID_LoadCell_Magnet_P.magnetOn_Value';
-pt(6).baseaddr   = '&PID_LoadCell_Magnet_P.magnetOn_Value';
+pt(6).symbol     = 'PID_LoadCell_Magnet_P.Gain_Gain';
+pt(6).baseaddr   = '&PID_LoadCell_Magnet_P.Gain_Gain';
 pt(6).dtname     = 'real_T';
 
 
 
   
-pt(7).blockname = 'Gain';
+pt(7).blockname = 'Kd';
 pt(7).paramname = 'Gain';
 pt(7).class     = 'scalar';
 pt(7).nrows     = 1;
@@ -108,14 +108,14 @@ pt(7).subsource = 'SS_DOUBLE';
 pt(7).ndims     = '2';
 pt(7).size      = '[]';
 pt(7).isStruct  = false;
-pt(7).symbol     = 'PID_LoadCell_Magnet_P.Gain_Gain';
-pt(7).baseaddr   = '&PID_LoadCell_Magnet_P.Gain_Gain';
+pt(7).symbol     = 'PID_LoadCell_Magnet_P.Kd_Gain';
+pt(7).baseaddr   = '&PID_LoadCell_Magnet_P.Kd_Gain';
 pt(7).dtname     = 'real_T';
 
 
 
   
-pt(8).blockname = 'Kd';
+pt(8).blockname = 'Ki';
 pt(8).paramname = 'Gain';
 pt(8).class     = 'scalar';
 pt(8).nrows     = 1;
@@ -124,14 +124,14 @@ pt(8).subsource = 'SS_DOUBLE';
 pt(8).ndims     = '2';
 pt(8).size      = '[]';
 pt(8).isStruct  = false;
-pt(8).symbol     = 'PID_LoadCell_Magnet_P.Kd_Gain';
-pt(8).baseaddr   = '&PID_LoadCell_Magnet_P.Kd_Gain';
+pt(8).symbol     = 'PID_LoadCell_Magnet_P.Ki_Gain';
+pt(8).baseaddr   = '&PID_LoadCell_Magnet_P.Ki_Gain';
 pt(8).dtname     = 'real_T';
 
 
 
   
-pt(9).blockname = 'Ki';
+pt(9).blockname = 'Kp';
 pt(9).paramname = 'Gain';
 pt(9).class     = 'scalar';
 pt(9).nrows     = 1;
@@ -140,14 +140,14 @@ pt(9).subsource = 'SS_DOUBLE';
 pt(9).ndims     = '2';
 pt(9).size      = '[]';
 pt(9).isStruct  = false;
-pt(9).symbol     = 'PID_LoadCell_Magnet_P.Ki_Gain';
-pt(9).baseaddr   = '&PID_LoadCell_Magnet_P.Ki_Gain';
+pt(9).symbol     = 'PID_LoadCell_Magnet_P.Kp_Gain';
+pt(9).baseaddr   = '&PID_LoadCell_Magnet_P.Kp_Gain';
 pt(9).dtname     = 'real_T';
 
 
 
   
-pt(10).blockname = 'Kp';
+pt(10).blockname = 'gain';
 pt(10).paramname = 'Gain';
 pt(10).class     = 'scalar';
 pt(10).nrows     = 1;
@@ -156,14 +156,14 @@ pt(10).subsource = 'SS_DOUBLE';
 pt(10).ndims     = '2';
 pt(10).size      = '[]';
 pt(10).isStruct  = false;
-pt(10).symbol     = 'PID_LoadCell_Magnet_P.Kp_Gain';
-pt(10).baseaddr   = '&PID_LoadCell_Magnet_P.Kp_Gain';
+pt(10).symbol     = 'PID_LoadCell_Magnet_P.gain_Gain';
+pt(10).baseaddr   = '&PID_LoadCell_Magnet_P.gain_Gain';
 pt(10).dtname     = 'real_T';
 
 
 
   
-pt(11).blockname = 'gain';
+pt(11).blockname = 'gain1';
 pt(11).paramname = 'Gain';
 pt(11).class     = 'scalar';
 pt(11).nrows     = 1;
@@ -172,8 +172,8 @@ pt(11).subsource = 'SS_DOUBLE';
 pt(11).ndims     = '2';
 pt(11).size      = '[]';
 pt(11).isStruct  = false;
-pt(11).symbol     = 'PID_LoadCell_Magnet_P.gain_Gain';
-pt(11).baseaddr   = '&PID_LoadCell_Magnet_P.gain_Gain';
+pt(11).symbol     = 'PID_LoadCell_Magnet_P.gain1_Gain';
+pt(11).baseaddr   = '&PID_LoadCell_Magnet_P.gain1_Gain';
 pt(11).dtname     = 'real_T';
 
 
@@ -467,8 +467,8 @@ pt(29).dtname     = 'real_T';
 
 
   
-pt(30).blockname = 'Sine Wave';
-pt(30).paramname = 'Amplitude';
+pt(30).blockname = 'Analog Filter Design';
+pt(30).paramname = 'A';
 pt(30).class     = 'scalar';
 pt(30).nrows     = 1;
 pt(30).ncols     = 1;
@@ -476,15 +476,15 @@ pt(30).subsource = 'SS_DOUBLE';
 pt(30).ndims     = '2';
 pt(30).size      = '[]';
 pt(30).isStruct  = false;
-pt(30).symbol     = 'PID_LoadCell_Magnet_P.SineWave_Amp';
-pt(30).baseaddr   = '&PID_LoadCell_Magnet_P.SineWave_Amp';
+pt(30).symbol     = 'PID_LoadCell_Magnet_P.AnalogFilterDesign_A';
+pt(30).baseaddr   = '&PID_LoadCell_Magnet_P.AnalogFilterDesign_A';
 pt(30).dtname     = 'real_T';
 
 
 
   
-pt(31).blockname = 'Sine Wave';
-pt(31).paramname = 'Bias';
+pt(31).blockname = 'Analog Filter Design';
+pt(31).paramname = 'B';
 pt(31).class     = 'scalar';
 pt(31).nrows     = 1;
 pt(31).ncols     = 1;
@@ -492,15 +492,15 @@ pt(31).subsource = 'SS_DOUBLE';
 pt(31).ndims     = '2';
 pt(31).size      = '[]';
 pt(31).isStruct  = false;
-pt(31).symbol     = 'PID_LoadCell_Magnet_P.SineWave_Bias';
-pt(31).baseaddr   = '&PID_LoadCell_Magnet_P.SineWave_Bias';
+pt(31).symbol     = 'PID_LoadCell_Magnet_P.AnalogFilterDesign_B';
+pt(31).baseaddr   = '&PID_LoadCell_Magnet_P.AnalogFilterDesign_B';
 pt(31).dtname     = 'real_T';
 
 
 
   
-pt(32).blockname = 'Sine Wave';
-pt(32).paramname = 'Frequency';
+pt(32).blockname = 'Analog Filter Design';
+pt(32).paramname = 'C';
 pt(32).class     = 'scalar';
 pt(32).nrows     = 1;
 pt(32).ncols     = 1;
@@ -508,15 +508,15 @@ pt(32).subsource = 'SS_DOUBLE';
 pt(32).ndims     = '2';
 pt(32).size      = '[]';
 pt(32).isStruct  = false;
-pt(32).symbol     = 'PID_LoadCell_Magnet_P.SineWave_Freq';
-pt(32).baseaddr   = '&PID_LoadCell_Magnet_P.SineWave_Freq';
+pt(32).symbol     = 'PID_LoadCell_Magnet_P.AnalogFilterDesign_C';
+pt(32).baseaddr   = '&PID_LoadCell_Magnet_P.AnalogFilterDesign_C';
 pt(32).dtname     = 'real_T';
 
 
 
   
-pt(33).blockname = 'Sine Wave';
-pt(33).paramname = 'Phase';
+pt(33).blockname = 'Analog Filter Design';
+pt(33).paramname = 'X0';
 pt(33).class     = 'scalar';
 pt(33).nrows     = 1;
 pt(33).ncols     = 1;
@@ -524,15 +524,15 @@ pt(33).subsource = 'SS_DOUBLE';
 pt(33).ndims     = '2';
 pt(33).size      = '[]';
 pt(33).isStruct  = false;
-pt(33).symbol     = 'PID_LoadCell_Magnet_P.SineWave_Phase';
-pt(33).baseaddr   = '&PID_LoadCell_Magnet_P.SineWave_Phase';
+pt(33).symbol     = 'PID_LoadCell_Magnet_P.AnalogFilterDesign_X0';
+pt(33).baseaddr   = '&PID_LoadCell_Magnet_P.AnalogFilterDesign_X0';
 pt(33).dtname     = 'real_T';
 
 
 
   
-pt(34).blockname = 'Switch1';
-pt(34).paramname = 'Threshold';
+pt(34).blockname = 'Analog Filter Design1';
+pt(34).paramname = 'A';
 pt(34).class     = 'scalar';
 pt(34).nrows     = 1;
 pt(34).ncols     = 1;
@@ -540,15 +540,15 @@ pt(34).subsource = 'SS_DOUBLE';
 pt(34).ndims     = '2';
 pt(34).size      = '[]';
 pt(34).isStruct  = false;
-pt(34).symbol     = 'PID_LoadCell_Magnet_P.Switch1_Threshold';
-pt(34).baseaddr   = '&PID_LoadCell_Magnet_P.Switch1_Threshold';
+pt(34).symbol     = 'PID_LoadCell_Magnet_P.AnalogFilterDesign1_A';
+pt(34).baseaddr   = '&PID_LoadCell_Magnet_P.AnalogFilterDesign1_A';
 pt(34).dtname     = 'real_T';
 
 
 
   
-pt(35).blockname = 'Switch2';
-pt(35).paramname = 'Threshold';
+pt(35).blockname = 'Analog Filter Design1';
+pt(35).paramname = 'B';
 pt(35).class     = 'scalar';
 pt(35).nrows     = 1;
 pt(35).ncols     = 1;
@@ -556,15 +556,15 @@ pt(35).subsource = 'SS_DOUBLE';
 pt(35).ndims     = '2';
 pt(35).size      = '[]';
 pt(35).isStruct  = false;
-pt(35).symbol     = 'PID_LoadCell_Magnet_P.Switch2_Threshold';
-pt(35).baseaddr   = '&PID_LoadCell_Magnet_P.Switch2_Threshold';
+pt(35).symbol     = 'PID_LoadCell_Magnet_P.AnalogFilterDesign1_B';
+pt(35).baseaddr   = '&PID_LoadCell_Magnet_P.AnalogFilterDesign1_B';
 pt(35).dtname     = 'real_T';
 
 
 
   
-pt(36).blockname = 'Real motor/angular_position =  [relative_count//COUNTS_PER_REV] *360 degrees';
-pt(36).paramname = 'Gain';
+pt(36).blockname = 'Analog Filter Design1';
+pt(36).paramname = 'C';
 pt(36).class     = 'scalar';
 pt(36).nrows     = 1;
 pt(36).ncols     = 1;
@@ -572,15 +572,15 @@ pt(36).subsource = 'SS_DOUBLE';
 pt(36).ndims     = '2';
 pt(36).size      = '[]';
 pt(36).isStruct  = false;
-pt(36).symbol     = 'PID_LoadCell_Magnet_P.angular_positionrelative_countC';
-pt(36).baseaddr   = '&PID_LoadCell_Magnet_P.angular_positionrelative_countC';
+pt(36).symbol     = 'PID_LoadCell_Magnet_P.AnalogFilterDesign1_C';
+pt(36).baseaddr   = '&PID_LoadCell_Magnet_P.AnalogFilterDesign1_C';
 pt(36).dtname     = 'real_T';
 
 
 
   
-pt(37).blockname = 'Real motor/Channel 0 of  Encoder Inputs ';
-pt(37).paramname = 'P1';
+pt(37).blockname = 'Analog Filter Design1';
+pt(37).paramname = 'X0';
 pt(37).class     = 'scalar';
 pt(37).nrows     = 1;
 pt(37).ncols     = 1;
@@ -588,15 +588,15 @@ pt(37).subsource = 'SS_DOUBLE';
 pt(37).ndims     = '2';
 pt(37).size      = '[]';
 pt(37).isStruct  = false;
-pt(37).symbol     = 'PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P1';
-pt(37).baseaddr   = '&PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P1';
+pt(37).symbol     = 'PID_LoadCell_Magnet_P.AnalogFilterDesign1_X0';
+pt(37).baseaddr   = '&PID_LoadCell_Magnet_P.AnalogFilterDesign1_X0';
 pt(37).dtname     = 'real_T';
 
 
 
   
-pt(38).blockname = 'Real motor/Channel 0 of  Encoder Inputs ';
-pt(38).paramname = 'P2';
+pt(38).blockname = 'Switch1';
+pt(38).paramname = 'Threshold';
 pt(38).class     = 'scalar';
 pt(38).nrows     = 1;
 pt(38).ncols     = 1;
@@ -604,15 +604,15 @@ pt(38).subsource = 'SS_DOUBLE';
 pt(38).ndims     = '2';
 pt(38).size      = '[]';
 pt(38).isStruct  = false;
-pt(38).symbol     = 'PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P2';
-pt(38).baseaddr   = '&PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P2';
+pt(38).symbol     = 'PID_LoadCell_Magnet_P.Switch1_Threshold';
+pt(38).baseaddr   = '&PID_LoadCell_Magnet_P.Switch1_Threshold';
 pt(38).dtname     = 'real_T';
 
 
 
   
-pt(39).blockname = 'Real motor/Channel 0 of  Encoder Inputs ';
-pt(39).paramname = 'P3';
+pt(39).blockname = 'Real motor/angular_position =  [relative_count//COUNTS_PER_REV] *360 degrees';
+pt(39).paramname = 'Gain';
 pt(39).class     = 'scalar';
 pt(39).nrows     = 1;
 pt(39).ncols     = 1;
@@ -620,15 +620,15 @@ pt(39).subsource = 'SS_DOUBLE';
 pt(39).ndims     = '2';
 pt(39).size      = '[]';
 pt(39).isStruct  = false;
-pt(39).symbol     = 'PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P3';
-pt(39).baseaddr   = '&PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P3';
+pt(39).symbol     = 'PID_LoadCell_Magnet_P.angular_positionrelative_countC';
+pt(39).baseaddr   = '&PID_LoadCell_Magnet_P.angular_positionrelative_countC';
 pt(39).dtname     = 'real_T';
 
 
 
   
 pt(40).blockname = 'Real motor/Channel 0 of  Encoder Inputs ';
-pt(40).paramname = 'P4';
+pt(40).paramname = 'P1';
 pt(40).class     = 'scalar';
 pt(40).nrows     = 1;
 pt(40).ncols     = 1;
@@ -636,15 +636,15 @@ pt(40).subsource = 'SS_DOUBLE';
 pt(40).ndims     = '2';
 pt(40).size      = '[]';
 pt(40).isStruct  = false;
-pt(40).symbol     = 'PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P4';
-pt(40).baseaddr   = '&PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P4';
+pt(40).symbol     = 'PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P1';
+pt(40).baseaddr   = '&PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P1';
 pt(40).dtname     = 'real_T';
 
 
 
   
 pt(41).blockname = 'Real motor/Channel 0 of  Encoder Inputs ';
-pt(41).paramname = 'P5';
+pt(41).paramname = 'P2';
 pt(41).class     = 'scalar';
 pt(41).nrows     = 1;
 pt(41).ncols     = 1;
@@ -652,15 +652,15 @@ pt(41).subsource = 'SS_DOUBLE';
 pt(41).ndims     = '2';
 pt(41).size      = '[]';
 pt(41).isStruct  = false;
-pt(41).symbol     = 'PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P5';
-pt(41).baseaddr   = '&PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P5';
+pt(41).symbol     = 'PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P2';
+pt(41).baseaddr   = '&PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P2';
 pt(41).dtname     = 'real_T';
 
 
 
   
 pt(42).blockname = 'Real motor/Channel 0 of  Encoder Inputs ';
-pt(42).paramname = 'P6';
+pt(42).paramname = 'P3';
 pt(42).class     = 'scalar';
 pt(42).nrows     = 1;
 pt(42).ncols     = 1;
@@ -668,15 +668,15 @@ pt(42).subsource = 'SS_DOUBLE';
 pt(42).ndims     = '2';
 pt(42).size      = '[]';
 pt(42).isStruct  = false;
-pt(42).symbol     = 'PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P6';
-pt(42).baseaddr   = '&PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P6';
+pt(42).symbol     = 'PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P3';
+pt(42).baseaddr   = '&PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P3';
 pt(42).dtname     = 'real_T';
 
 
 
   
 pt(43).blockname = 'Real motor/Channel 0 of  Encoder Inputs ';
-pt(43).paramname = 'P7';
+pt(43).paramname = 'P4';
 pt(43).class     = 'scalar';
 pt(43).nrows     = 1;
 pt(43).ncols     = 1;
@@ -684,15 +684,15 @@ pt(43).subsource = 'SS_DOUBLE';
 pt(43).ndims     = '2';
 pt(43).size      = '[]';
 pt(43).isStruct  = false;
-pt(43).symbol     = 'PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P7';
-pt(43).baseaddr   = '&PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P7';
+pt(43).symbol     = 'PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P4';
+pt(43).baseaddr   = '&PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P4';
 pt(43).dtname     = 'real_T';
 
 
 
   
 pt(44).blockname = 'Real motor/Channel 0 of  Encoder Inputs ';
-pt(44).paramname = 'P8';
+pt(44).paramname = 'P5';
 pt(44).class     = 'scalar';
 pt(44).nrows     = 1;
 pt(44).ncols     = 1;
@@ -700,15 +700,15 @@ pt(44).subsource = 'SS_DOUBLE';
 pt(44).ndims     = '2';
 pt(44).size      = '[]';
 pt(44).isStruct  = false;
-pt(44).symbol     = 'PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P8';
-pt(44).baseaddr   = '&PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P8';
+pt(44).symbol     = 'PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P5';
+pt(44).baseaddr   = '&PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P5';
 pt(44).dtname     = 'real_T';
 
 
 
   
 pt(45).blockname = 'Real motor/Channel 0 of  Encoder Inputs ';
-pt(45).paramname = 'P9';
+pt(45).paramname = 'P6';
 pt(45).class     = 'scalar';
 pt(45).nrows     = 1;
 pt(45).ncols     = 1;
@@ -716,15 +716,15 @@ pt(45).subsource = 'SS_DOUBLE';
 pt(45).ndims     = '2';
 pt(45).size      = '[]';
 pt(45).isStruct  = false;
-pt(45).symbol     = 'PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P9';
-pt(45).baseaddr   = '&PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P9';
+pt(45).symbol     = 'PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P6';
+pt(45).baseaddr   = '&PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P6';
 pt(45).dtname     = 'real_T';
 
 
 
   
 pt(46).blockname = 'Real motor/Channel 0 of  Encoder Inputs ';
-pt(46).paramname = 'P10';
+pt(46).paramname = 'P7';
 pt(46).class     = 'scalar';
 pt(46).nrows     = 1;
 pt(46).ncols     = 1;
@@ -732,15 +732,15 @@ pt(46).subsource = 'SS_DOUBLE';
 pt(46).ndims     = '2';
 pt(46).size      = '[]';
 pt(46).isStruct  = false;
-pt(46).symbol     = 'PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P10';
-pt(46).baseaddr   = '&PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P10';
+pt(46).symbol     = 'PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P7';
+pt(46).baseaddr   = '&PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P7';
 pt(46).dtname     = 'real_T';
 
 
 
   
 pt(47).blockname = 'Real motor/Channel 0 of  Encoder Inputs ';
-pt(47).paramname = 'P11';
+pt(47).paramname = 'P8';
 pt(47).class     = 'scalar';
 pt(47).nrows     = 1;
 pt(47).ncols     = 1;
@@ -748,15 +748,15 @@ pt(47).subsource = 'SS_DOUBLE';
 pt(47).ndims     = '2';
 pt(47).size      = '[]';
 pt(47).isStruct  = false;
-pt(47).symbol     = 'PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P11';
-pt(47).baseaddr   = '&PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P11';
+pt(47).symbol     = 'PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P8';
+pt(47).baseaddr   = '&PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P8';
 pt(47).dtname     = 'real_T';
 
 
 
   
 pt(48).blockname = 'Real motor/Channel 0 of  Encoder Inputs ';
-pt(48).paramname = 'P12';
+pt(48).paramname = 'P9';
 pt(48).class     = 'scalar';
 pt(48).nrows     = 1;
 pt(48).ncols     = 1;
@@ -764,11 +764,59 @@ pt(48).subsource = 'SS_DOUBLE';
 pt(48).ndims     = '2';
 pt(48).size      = '[]';
 pt(48).isStruct  = false;
-pt(48).symbol     = 'PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P12';
-pt(48).baseaddr   = '&PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P12';
+pt(48).symbol     = 'PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P9';
+pt(48).baseaddr   = '&PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P9';
 pt(48).dtname     = 'real_T';
 
 
+
+  
+pt(49).blockname = 'Real motor/Channel 0 of  Encoder Inputs ';
+pt(49).paramname = 'P10';
+pt(49).class     = 'scalar';
+pt(49).nrows     = 1;
+pt(49).ncols     = 1;
+pt(49).subsource = 'SS_DOUBLE';
+pt(49).ndims     = '2';
+pt(49).size      = '[]';
+pt(49).isStruct  = false;
+pt(49).symbol     = 'PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P10';
+pt(49).baseaddr   = '&PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P10';
+pt(49).dtname     = 'real_T';
+
+
+
+  
+pt(50).blockname = 'Real motor/Channel 0 of  Encoder Inputs ';
+pt(50).paramname = 'P11';
+pt(50).class     = 'scalar';
+pt(50).nrows     = 1;
+pt(50).ncols     = 1;
+pt(50).subsource = 'SS_DOUBLE';
+pt(50).ndims     = '2';
+pt(50).size      = '[]';
+pt(50).isStruct  = false;
+pt(50).symbol     = 'PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P11';
+pt(50).baseaddr   = '&PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P11';
+pt(50).dtname     = 'real_T';
+
+
+
+  
+pt(51).blockname = 'Real motor/Channel 0 of  Encoder Inputs ';
+pt(51).paramname = 'P12';
+pt(51).class     = 'scalar';
+pt(51).nrows     = 1;
+pt(51).ncols     = 1;
+pt(51).subsource = 'SS_DOUBLE';
+pt(51).ndims     = '2';
+pt(51).size      = '[]';
+pt(51).isStruct  = false;
+pt(51).symbol     = 'PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P12';
+pt(51).baseaddr   = '&PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P12';
+pt(51).dtname     = 'real_T';
+
+
 function len = getlenPT
-len = 48;
+len = 51;
 

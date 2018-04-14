@@ -72,7 +72,7 @@ S_FUNCTIONS     = adquanserq8.c daquanserq8.c encquanserq8.c
 S_FUNCTIONS_LIB = 
 NUMST           = 2
 TID01EQ         = 1
-NCSTATES        = 1
+NCSTATES        = 3
 BUILDARGS       =  ISPROTECTINGMODEL=NOTPROTECTING EXT_MODE=1
 MULTITASKING    = 0
 EXT_MODE        = 0

@@ -13,8 +13,6 @@ function [sortedCell] = sortDegreesAndColors(wellLocation, colors, degrees)
             if ((degrees(c2) > min) && (degrees(c2) < max))
                 sortedCell{c1}{2} = colors(c2);
                 sortedCell{c1}{3} = degrees(c2);
-                fprintf('%d\n', sortedCell{c1}{3});
-                fprintf('%d\n', c1);
             end
 
             min = 0;

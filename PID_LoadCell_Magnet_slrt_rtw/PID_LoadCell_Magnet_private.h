@@ -8,9 +8,9 @@
  *
  * Code generation for model "PID_LoadCell_Magnet".
  *
- * Model version              : 1.122
+ * Model version              : 1.125
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Sat Apr 14 10:37:10 2018
+ * C source code generated on : Sat Apr 14 17:38:16 2018
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -34,8 +34,8 @@ extern const bmmsglist1553 bmmsg1553ground;
 extern const char *getRefMdlPath(const char *refMdl);
 extern int getRefMdlSignalNumber(const char *mdlBlock, const char *signalName);
 extern void encquanserq8(SimStruct *rts);
-extern void adquanserq8(SimStruct *rts);
 extern void daquanserq8(SimStruct *rts);
+extern void adquanserq8(SimStruct *rts);
 extern void PID_LoadCell_Magnet_IfSubsystem(real_T rtu_In1, real_T *rty_Out1);
 
 /* private model entry point functions */
