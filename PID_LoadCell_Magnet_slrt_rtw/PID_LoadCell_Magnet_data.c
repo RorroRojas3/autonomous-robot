@@ -8,9 +8,9 @@
  *
  * Code generation for model "PID_LoadCell_Magnet".
  *
- * Model version              : 1.121
+ * Model version              : 1.122
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Fri Apr 13 17:57:45 2018
+ * C source code generated on : Sat Apr 14 10:37:10 2018
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -224,7 +224,7 @@ P_PID_LoadCell_Magnet_T PID_LoadCell_Magnet_P = {
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<Root>/magnetDrop'
                                         */
-  0.0,                                 /* Expression: 0
+  1.0,                                 /* Expression: 1
                                         * Referenced by: '<Root>/magnetOn'
                                         */
   0.0,                                 /* Expression: 0

@@ -9,11 +9,10 @@ function [a, s1, s2] = arduinoSetup()
     
     %Moves arm to original position on y-axis
     writePosition(s2, .99);
-    pause(3);
+    pause(1);
     writePosition(s2, .99);
    
     %Moves arm to work position on x-axis
-    writePosition(s1, .5);
-    pause(1);
+    writePosition(s1, .45);
     
 end
