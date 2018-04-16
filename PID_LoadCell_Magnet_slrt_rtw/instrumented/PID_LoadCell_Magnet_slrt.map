@@ -1,6 +1,6 @@
  PID_LoadCell_Magnet_slrt
 
- Timestamp is 5ad274d2 (Sat Apr 14 17:38:26 2018)
+ Timestamp is 5ad4c754 (Mon Apr 16 11:55:00 2018)
 
  Preferred load address is 10000000
 
@@ -17,8 +17,8 @@
  0002:00000834 00000104H .CRT$XPZ                DATA
  0002:00000938 00000104H .CRT$XTA                DATA
  0002:00000a3c 00000104H .CRT$XTZ                DATA
- 0002:00000b40 0000ddacH .rdata                  DATA
- 0002:0000e8ec 00000394H .rdata$r                DATA
+ 0002:00000b40 0000ddb0H .rdata                  DATA
+ 0002:0000e8f0 00000390H .rdata$r                DATA
  0002:0000ec80 00000110H .rdata$sxdata           DATA
  0002:0000ed90 000001ccH .rdata$zzzdbg           DATA
  0002:0000ef5c 00000104H .rtc$IAA                DATA
@@ -2521,8 +2521,8 @@
  0001:0005f850       __allmul                   10060850 f   LIBCMT:llmul.obj
  0001:0005f8a0       __alldvrm                  100608a0 f   LIBCMT:lldvrm.obj
  0001:0005f9c0       __aullshr                  100609c0 f   LIBCMT:ullshr.obj
- 0001:0005f9f0       __alloca_probe             100609f0 f   LIBCMT:chkstk.obj
  0001:0005f9f0       __chkstk                   100609f0 f   LIBCMT:chkstk.obj
+ 0001:0005f9f0       __alloca_probe             100609f0 f   LIBCMT:chkstk.obj
  0001:0005fa30       __alloca_probe_16          10060a30 f   LIBCMT:alloca16.obj
  0001:0005fa46       __alloca_probe_8           10060a46     LIBCMT:alloca16.obj
  0001:0005fa70       __allshl                   10060a70 f   LIBCMT:llshl.obj
@@ -2631,7 +2631,7 @@
  0002:00000b74       ??_C@_0CB@CNKEEOFE@PID_LoadCell_Magnet?1setpoint_Out@ 10065b74     PID_LoadCell_Magnet.obj
  0002:00000b9c       ??_C@_0CE@GEEEOEEM@PID_LoadCell_Magnet?1errorSignal_@ 10065b9c     PID_LoadCell_Magnet.obj
  0002:00000bc8       ??_C@_0CB@CDKIAAEG@PID_LoadCell_Magnet?1motorPos_Out@ 10065bc8     PID_LoadCell_Magnet.obj
- 0002:00000bf0       ??_C@_0CA@IENLMIAP@PID_LoadCell_Magnet?1loadCell_In?$AA@ 10065bf0     PID_LoadCell_Magnet.obj
+ 0002:00000bf0       ??_C@_0BN@PALCLIMP@PID_LoadCell_Magnet?1loadCell?$AA@ 10065bf0     PID_LoadCell_Magnet.obj
  0002:00000c18       _PID_LoadCell_Magnet_M     10065c18     PID_LoadCell_Magnet.obj
  0002:00000c94       ??_C@_0BI@PEBACBDB@Error?5creating?5scope?53?6?$AA@ 10065c94     PID_LoadCell_Magnet.obj
  0002:00000cb0       ??_C@_07PFAGFFFO@Gain?1s1?$AA@ 10065cb0     PID_LoadCell_Magnet.obj
@@ -3060,8 +3060,8 @@
  0002:00005958       ??_C@_0BP@PLOHCPAO@ConnectClientSocket?5not?5found?6?$AA@ 1006a958     xpcruntime:xpcimports.obj
  0002:00005980       ??_C@_0BC@NHHAOBPJ@CloseClientSocket?$AA@ 1006a980     xpcruntime:xpcimports.obj
  0002:00005998       ??_C@_0BN@PGKNOKGL@CloseClientSocket?5not?5found?6?$AA@ 1006a998     xpcruntime:xpcimports.obj
- 0002:00005a68       __pDefaultRawDllMain       1006aa68     LIBCMT:dll_dllmain.obj
  0002:00005a68       __pRawDllMain              1006aa68     LIBCMT:dll_dllmain.obj
+ 0002:00005a68       __pDefaultRawDllMain       1006aa68     LIBCMT:dll_dllmain.obj
  0002:00005a80       ??_C@_1BC@DNHGCMLG@?$AAa?$AAd?$AAv?$AAa?$AAp?$AAi?$AA3?$AA2?$AA?$AA@ 1006aa80     libvcruntime:winapi_downlevel.obj
  0002:00005a98       ??_C@_1DM@KHCHBNEB@?$AAa?$AAp?$AAi?$AA?9?$AAm?$AAs?$AA?9?$AAw?$AAi?$AAn?$AA?9?$AAc?$AAo?$AAr?$AAe?$AA?9?$AAf?$AAi?$AAb?$AAe?$AAr?$AAs?$AA?9?$AAl?$AA1?$AA?9?$AA1?$AA?9?$AA1?$AA?$AA@ 1006aa98     libvcruntime:winapi_downlevel.obj
  0002:00005ae0       ??_C@_1DK@LPPGFMPP@?$AAa?$AAp?$AAi?$AA?9?$AAm?$AAs?$AA?9?$AAw?$AAi?$AAn?$AA?9?$AAc?$AAo?$AAr?$AAe?$AA?9?$AAs?$AAy?$AAn?$AAc?$AAh?$AA?9?$AAl?$AA1?$AA?9?$AA2?$AA?9?$AA0?$AA?$AA@ 1006aae0     libvcruntime:winapi_downlevel.obj
@@ -4011,34 +4011,34 @@
  0002:0000ddf0       ___acrt_log10_table_cb     10072df0     libucrt:log10_tables.obj
  0002:0000e2d4       ??_7type_info@@6B@         100732d4     LIBCMT:std_type_info_static.obj
  0002:0000e318       __load_config_used         10073318     LIBCMT:loadcfg.obj
- 0002:0000e8ec       ??_R4DNameNode@@6B@        100738ec     libvcruntime:undname.obj
- 0002:0000e904       ??_R3DNameNode@@8          10073904     libvcruntime:undname.obj
- 0002:0000e918       ??_R2DNameNode@@8          10073918     libvcruntime:undname.obj
- 0002:0000e920       ??_R1A@?0A@EA@DNameNode@@8 10073920     libvcruntime:undname.obj
- 0002:0000e944       ??_R4charNode@@6B@         10073944     libvcruntime:undname.obj
- 0002:0000e95c       ??_R3charNode@@8           1007395c     libvcruntime:undname.obj
- 0002:0000e970       ??_R2charNode@@8           10073970     libvcruntime:undname.obj
- 0002:0000e97c       ??_R1A@?0A@EA@charNode@@8  1007397c     libvcruntime:undname.obj
- 0002:0000e9a0       ??_R4pcharNode@@6B@        100739a0     libvcruntime:undname.obj
- 0002:0000e9b8       ??_R3pcharNode@@8          100739b8     libvcruntime:undname.obj
- 0002:0000e9cc       ??_R2pcharNode@@8          100739cc     libvcruntime:undname.obj
- 0002:0000e9d8       ??_R1A@?0A@EA@pcharNode@@8 100739d8     libvcruntime:undname.obj
- 0002:0000e9fc       ??_R4pDNameNode@@6B@       100739fc     libvcruntime:undname.obj
- 0002:0000ea14       ??_R3pDNameNode@@8         10073a14     libvcruntime:undname.obj
- 0002:0000ea28       ??_R2pDNameNode@@8         10073a28     libvcruntime:undname.obj
- 0002:0000ea34       ??_R1A@?0A@EA@pDNameNode@@8 10073a34     libvcruntime:undname.obj
- 0002:0000ea58       ??_R4DNameStatusNode@@6B@  10073a58     libvcruntime:undname.obj
- 0002:0000ea70       ??_R3DNameStatusNode@@8    10073a70     libvcruntime:undname.obj
- 0002:0000ea84       ??_R2DNameStatusNode@@8    10073a84     libvcruntime:undname.obj
- 0002:0000ea90       ??_R1A@?0A@EA@DNameStatusNode@@8 10073a90     libvcruntime:undname.obj
- 0002:0000eab4       ??_R4pairNode@@6B@         10073ab4     libvcruntime:undname.obj
- 0002:0000eacc       ??_R3pairNode@@8           10073acc     libvcruntime:undname.obj
- 0002:0000eae0       ??_R2pairNode@@8           10073ae0     libvcruntime:undname.obj
- 0002:0000eaec       ??_R1A@?0A@EA@pairNode@@8  10073aec     libvcruntime:undname.obj
- 0002:0000eb10       ??_R4type_info@@6B@        10073b10     LIBCMT:std_type_info_static.obj
- 0002:0000eb28       ??_R3type_info@@8          10073b28     LIBCMT:std_type_info_static.obj
- 0002:0000eb3c       ??_R2type_info@@8          10073b3c     LIBCMT:std_type_info_static.obj
- 0002:0000eb44       ??_R1A@?0A@EA@type_info@@8 10073b44     LIBCMT:std_type_info_static.obj
+ 0002:0000e8f0       ??_R4DNameNode@@6B@        100738f0     libvcruntime:undname.obj
+ 0002:0000e908       ??_R3DNameNode@@8          10073908     libvcruntime:undname.obj
+ 0002:0000e91c       ??_R2DNameNode@@8          1007391c     libvcruntime:undname.obj
+ 0002:0000e924       ??_R1A@?0A@EA@DNameNode@@8 10073924     libvcruntime:undname.obj
+ 0002:0000e948       ??_R4charNode@@6B@         10073948     libvcruntime:undname.obj
+ 0002:0000e960       ??_R3charNode@@8           10073960     libvcruntime:undname.obj
+ 0002:0000e974       ??_R2charNode@@8           10073974     libvcruntime:undname.obj
+ 0002:0000e980       ??_R1A@?0A@EA@charNode@@8  10073980     libvcruntime:undname.obj
+ 0002:0000e9a4       ??_R4pcharNode@@6B@        100739a4     libvcruntime:undname.obj
+ 0002:0000e9bc       ??_R3pcharNode@@8          100739bc     libvcruntime:undname.obj
+ 0002:0000e9d0       ??_R2pcharNode@@8          100739d0     libvcruntime:undname.obj
+ 0002:0000e9dc       ??_R1A@?0A@EA@pcharNode@@8 100739dc     libvcruntime:undname.obj
+ 0002:0000ea00       ??_R4pDNameNode@@6B@       10073a00     libvcruntime:undname.obj
+ 0002:0000ea18       ??_R3pDNameNode@@8         10073a18     libvcruntime:undname.obj
+ 0002:0000ea2c       ??_R2pDNameNode@@8         10073a2c     libvcruntime:undname.obj
+ 0002:0000ea38       ??_R1A@?0A@EA@pDNameNode@@8 10073a38     libvcruntime:undname.obj
+ 0002:0000ea5c       ??_R4DNameStatusNode@@6B@  10073a5c     libvcruntime:undname.obj
+ 0002:0000ea74       ??_R3DNameStatusNode@@8    10073a74     libvcruntime:undname.obj
+ 0002:0000ea88       ??_R2DNameStatusNode@@8    10073a88     libvcruntime:undname.obj
+ 0002:0000ea94       ??_R1A@?0A@EA@DNameStatusNode@@8 10073a94     libvcruntime:undname.obj
+ 0002:0000eab8       ??_R4pairNode@@6B@         10073ab8     libvcruntime:undname.obj
+ 0002:0000ead0       ??_R3pairNode@@8           10073ad0     libvcruntime:undname.obj
+ 0002:0000eae4       ??_R2pairNode@@8           10073ae4     libvcruntime:undname.obj
+ 0002:0000eaf0       ??_R1A@?0A@EA@pairNode@@8  10073af0     libvcruntime:undname.obj
+ 0002:0000eb14       ??_R4type_info@@6B@        10073b14     LIBCMT:std_type_info_static.obj
+ 0002:0000eb2c       ??_R3type_info@@8          10073b2c     LIBCMT:std_type_info_static.obj
+ 0002:0000eb40       ??_R2type_info@@8          10073b40     LIBCMT:std_type_info_static.obj
+ 0002:0000eb48       ??_R1A@?0A@EA@type_info@@8 10073b48     LIBCMT:std_type_info_static.obj
  0002:0000ec80       ___safe_se_handler_table   10073c80     <linker-defined>
  0002:0000ef5c       ___rtc_iaa                 10073f5c     LIBCMT:_initsect_.obj
  0002:0000f060       ___rtc_izz                 10074060     LIBCMT:_initsect_.obj

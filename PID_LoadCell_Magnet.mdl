@@ -27,13 +27,13 @@ Model {
       UnitExpr		      "inherit"
     }
     Outport {
-      Name		      "loadCell_In"
+      Name		      "loadCell"
       BusObject		      ""
       BusOutputAsStruct	      "off"
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.127"
+    ComputedModelVersion    "1.129"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -94,9 +94,9 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[1828.0, 1684.0]
-	ZoomFactor		[1.5]
-	Offset			[58.8840714849938, -30.570311149234954]
+	Extents			[1828.0, 1685.0]
+	ZoomFactor		[0.59999999999999987]
+	Offset			[279.9174048183271, -387.03697781590148]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -116,7 +116,7 @@ Model {
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
       "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAADtAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAAYwD///8AAAd8AAAHDgAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAAYwD///8AAAd8AAAHDwAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAEL/////wAAAAAAAAAA/////wEAAAHa/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAALl/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAab/////wAAAAAAAAAA/"
@@ -130,9 +130,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Rorro"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sat Apr 14 18:58:03 2018"
-  RTWModifiedTimeStamp	  445633080
-  ModelVersionFormat	  "1.%<AutoIncrement:127>"
+  LastModifiedDate	  "Mon Apr 16 11:56:12 2018"
+  RTWModifiedTimeStamp	  445780521
+  ModelVersionFormat	  "1.%<AutoIncrement:129>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1220,7 +1220,7 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "150"
+    ZoomFactor		    "60"
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    "197"
     Block {
@@ -1351,7 +1351,7 @@ Model {
       SID		      "126"
       Position		      [110, 240, 140, 270]
       ZOrder		      30
-      Value		      "0"
+      Value		      "50"
     }
     Block {
       BlockType		      Constant
@@ -1939,7 +1939,7 @@ Model {
     }
     Block {
       BlockType		      Outport
-      Name		      "loadCell_In"
+      Name		      "loadCell"
       SID		      "167"
       Position		      [1055, 153, 1085, 167]
       ZOrder		      57
@@ -2308,7 +2308,7 @@ Model {
       }
       Branch {
 	ZOrder			684
-	DstBlock		"loadCell_In"
+	DstBlock		"loadCell"
 	DstPort			1
       }
     }

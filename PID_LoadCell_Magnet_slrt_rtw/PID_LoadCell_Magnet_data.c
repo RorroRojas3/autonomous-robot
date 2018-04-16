@@ -8,9 +8,9 @@
  *
  * Code generation for model "PID_LoadCell_Magnet".
  *
- * Model version              : 1.125
+ * Model version              : 1.128
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Sat Apr 14 17:38:16 2018
+ * C source code generated on : Mon Apr 16 11:54:45 2018
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -27,7 +27,7 @@ P_PID_LoadCell_Magnet_T PID_LoadCell_Magnet_P = {
   5.0,                                 /* Expression: 5
                                         * Referenced by: '<Root>/5V'
                                         */
-  90.0,                                /* Expression: 90
+  50.0,                                /* Expression: 50
                                         * Referenced by: '<Root>/Degree'
                                         */
   1.0,                                 /* Expression: 1

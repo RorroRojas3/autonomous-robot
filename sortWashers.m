@@ -9,7 +9,8 @@ function sortWashers(initialTable, finalTable, tg)
         finalColor = finalTable{c1, 2};
         
         %Checks if the user input a color in certain degree
-        if (((strcmp(finalColor, '')) == 0) && (terminate == 0))
+        if (terminate == 0)
+            if ((strcmp(finalColor, '') == 0))
             for c2 = 1:10
                 initialColor = initialTable{c2}{2};
                 %Compares the initial color and the color input by user
@@ -49,7 +50,7 @@ function sortWashers(initialTable, finalTable, tg)
                         pause(1);
                         
                         %Moves arm down to pick up washer
-                        writePosition(s2, 0.91);
+                        writePosition(s2, 0.75);
                         pause(2);
                                 
                         %Moves arm to initial position
@@ -57,12 +58,14 @@ function sortWashers(initialTable, finalTable, tg)
                         pause(2);
 
                         %Dummy asked user for weightPicked
-                        weightPicked = input('Enter weight: ');
-
+                        %weightPicked = input('Enter weight: ');
+                        loadCell = tg.getsignal('Load Cell');
+                        loadCell = loadCell * 100;
+                        fprintf('%f\n', loadCell);
                         %Checks the level of weight input by the user and
                         %the washer weight that has been picked up by the
                         %electro magnet
-                        if ((weightPicked == 1) && (washerWeight == 1))
+                        if ((loadCell > 127) && (loadCell < 137) && (washerWeight == 1))
                               
                               %Degree which the washer will be
                               %moved to
@@ -107,7 +110,7 @@ function sortWashers(initialTable, finalTable, tg)
                                   pause(1);
                                   
                                   %Drop the washer
-                                  writePosition(s2, 0.94);
+                                  writePosition(s2, 0.75);
                                   pause(2);
                                     
                                   %Move up arm
@@ -131,7 +134,7 @@ function sortWashers(initialTable, finalTable, tg)
                                 pause(1);
                                 
                                 %Move arm down
-                                writePosition(s2, 0.93);
+                                writePosition(s2, 0.75);
                                 pause(1);
                                 
                                 %Move arm up
@@ -179,7 +182,7 @@ function sortWashers(initialTable, finalTable, tg)
                                     end
                                     
                                     %Move arm down 
-                                    writePosition(s2, 0.93);
+                                    writePosition(s2, 0.75);
                                     pause(1);
                                     
                                     %Move arm up
@@ -208,7 +211,7 @@ function sortWashers(initialTable, finalTable, tg)
                                     pause(1);
                                     
                                     %Move arm down
-                                    writePosition(s2, 0.93);
+                                    writePosition(s2, 0.75);
                                     pause(1);
                                     
                                     %Move arm up
@@ -237,7 +240,7 @@ function sortWashers(initialTable, finalTable, tg)
                                     pause(1);
                                     
                                     %Move arm down
-                                    writePosition(s2, 0.93);
+                                    writePosition(s2, 0.75);
                                     pause(1);
                                     
                                     %Move arm up
@@ -266,7 +269,7 @@ function sortWashers(initialTable, finalTable, tg)
                                     pause(1);
                                     
                                     %Move arm down
-                                    writePosition(s2, 0.93);
+                                    writePosition(s2, 0.75);
                                     pause(1);
                                     
                                     %Move arm up
@@ -297,6 +300,7 @@ function sortWashers(initialTable, finalTable, tg)
                         end
                     end
                 end
+            end
             end
         else
             fprintf('No empty spots\n');

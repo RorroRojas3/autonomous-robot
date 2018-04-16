@@ -8,9 +8,9 @@
  *
  * Code generation for model "PID_LoadCell_Magnet".
  *
- * Model version              : 1.125
+ * Model version              : 1.128
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Sat Apr 14 17:38:16 2018
+ * C source code generated on : Mon Apr 16 11:54:45 2018
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -212,8 +212,8 @@ void PID_LoadCell_Magnet_output(void)
   PID_LoadCell_Magnet_B.gain1 = PID_LoadCell_Magnet_P.gain1_Gain *
     PID_LoadCell_Magnet_B.AnalogFilterDesign1;
 
-  /* Outport: '<Root>/loadCell_In' */
-  PID_LoadCell_Magnet_Y.loadCell_In = PID_LoadCell_Magnet_B.gain1;
+  /* Outport: '<Root>/loadCell' */
+  PID_LoadCell_Magnet_Y.loadCell = PID_LoadCell_Magnet_B.gain1;
 
   /* StateSpace: '<Root>/Analog Filter Design' */
   PID_LoadCell_Magnet_B.AnalogFilterDesign = 0.0;
@@ -859,7 +859,7 @@ RT_MODEL_PID_LoadCell_Magnet_T *PID_LoadCell_Magnet(void)
         &PID_LoadCell_Magnet_Y.setpoint_Out,
         &PID_LoadCell_Magnet_Y.errorSignal_Out,
         &PID_LoadCell_Magnet_Y.motorPos_Out,
-        &PID_LoadCell_Magnet_Y.loadCell_In
+        &PID_LoadCell_Magnet_Y.loadCell
       };
 
       rtliSetLogYSignalPtrs(PID_LoadCell_Magnet_M->rtwLogInfo,
@@ -933,7 +933,7 @@ RT_MODEL_PID_LoadCell_Magnet_T *PID_LoadCell_Magnet(void)
         "PID_LoadCell_Magnet/setpoint_Out",
         "PID_LoadCell_Magnet/errorSignal_Out",
         "PID_LoadCell_Magnet/motorPos_Out",
-        "PID_LoadCell_Magnet/loadCell_In" };
+        "PID_LoadCell_Magnet/loadCell" };
 
       static RTWLogDataTypeConvert rt_RTWLogDataTypeConvert[] = {
         { 0, SS_DOUBLE, SS_DOUBLE, 0, 0, 0, 1.0, 0, 0.0 },
