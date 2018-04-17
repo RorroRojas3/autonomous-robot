@@ -279,7 +279,7 @@ function sortWashers(initialTable, finalTable, tg)
                                     %Erase data from table
                                     initialTable{c2}{2} = '';
                                     initialTable{c4}{2} = colorOnWantedSpot;
-                                    initialTable{c5}{2} = finalTable{c1, 2};
+                                    initialTable{c5}{2} = 'Moved';
                                     finalTable{c1, 2} = '';
                                     finalTable{c1, 3} = '';
                                     break;
