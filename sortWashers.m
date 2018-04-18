@@ -87,7 +87,8 @@ function sortWashers(initialTable, finalTable, tg)
                               %Degree which washer will be moved is empty
                               if (strcmp(colorOnDesiredDegree, '') == 1)
 
-                                  fprintf('Here1\n');
+                                  fprintf('Found empty spot\n');
+                                  
                                   %Obtains degree value of empty hole
                                   emptyDegree = initialTable{c3}{1};
                                   
@@ -115,8 +116,6 @@ function sortWashers(initialTable, finalTable, tg)
                                   writePosition(s2, 0.65);
                                   pause(1);
                                   
-                                  
-                                    
                                   %Move up arm
                                   writePosition(s2, .99);
                                   pause(.5);
@@ -132,7 +131,9 @@ function sortWashers(initialTable, finalTable, tg)
                               %Degree which washer will be moved is not
                               %empty
                               else
-                                fprintf('Here2\n');
+                                  
+                                fprintf('Spot is filled\n');
+                                
                                 %Turn Magnet off
                                 tg.setparam(tg.getparamid('magnetOn','Value'), 0);
                                 pause(1);
