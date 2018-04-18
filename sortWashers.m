@@ -50,7 +50,7 @@ function sortWashers(initialTable, finalTable, tg)
                         pause(.5);
                         
                         %Moves arm down to pick up washer
-                        writePosition(s2, 0.75);
+                        writePosition(s2, 0.65);
                         pause(.5);
                                 
                         %Moves arm to initial position
@@ -59,13 +59,15 @@ function sortWashers(initialTable, finalTable, tg)
 
                         %Dummy asked user for weightPicked
                         %weightPicked = input('Enter weight: ');
+                        pause(2);
                         loadCell = tg.getsignal('Load Cell');
                         loadCell = loadCell * 100;
                         fprintf('%f\n', loadCell);
+                        
                         %Checks the level of weight input by the user and
                         %the washer weight that has been picked up by the
                         %electro magnet
-                        if ((loadCell > 127) && (loadCell < 137) && (washerWeight == 1))
+                        if ((loadCell > -97) && (loadCell < -92) && (washerWeight == 1))
                               
                               %Degree which the washer will be
                               %moved to
@@ -105,13 +107,15 @@ function sortWashers(initialTable, finalTable, tg)
                                       writePosition(s1, 0.35);
                                       pause(1);
                                   end
-
+                                  
                                   tg.setparam(tg.getparamid('magnetOn','Value'), 0);
-                                  pause(.5);
+                                  pause(1);
                                   
                                   %Drop the washer
-                                  writePosition(s2, 0.8);
-                                  pause(.5);
+                                  writePosition(s2, 0.65);
+                                  pause(1);
+                                  
+                                  
                                     
                                   %Move up arm
                                   writePosition(s2, .99);
@@ -129,13 +133,13 @@ function sortWashers(initialTable, finalTable, tg)
                               %empty
                               else
                                 fprintf('Here2\n');
-                                %Turn Magnet on
-                                tg.setparam(tg.getparamid('magnetOn','Value'), 1);
+                                %Turn Magnet off
+                                tg.setparam(tg.getparamid('magnetOn','Value'), 0);
                                 pause(1);
                                 
                                 %Move arm down
-                                writePosition(s2, 0.75);
-                                pause(.5);
+                                writePosition(s2, 0.65);
+                                pause(1);
                                 
                                 %Move arm up
                                 writePosition(s2, 0.99);
@@ -182,7 +186,7 @@ function sortWashers(initialTable, finalTable, tg)
                                     end
                                     
                                     %Move arm down 
-                                    writePosition(s2, 0.75);
+                                    writePosition(s2, 0.65);
                                     pause(.5);
                                     
                                     %Move arm up
@@ -205,14 +209,14 @@ function sortWashers(initialTable, finalTable, tg)
                                         writePosition(s1, 0.35);
                                         pause(1);
                                     end
-                                    
+        
                                     %Turn Magnet off
                                     tg.setparam(tg.getparamid('magnetOn','Value'), 0);
-                                    pause(.5);
+                                    pause(1);
                                     
                                     %Move arm down
-                                    writePosition(s2, 0.75);
-                                    pause(.5);
+                                    writePosition(s2, 0.65);
+                                    pause(1);
                                     
                                     %Move arm up
                                     writePosition(s2, 0.99);
@@ -240,8 +244,8 @@ function sortWashers(initialTable, finalTable, tg)
                                     pause(1);
                                     
                                     %Move arm down
-                                    writePosition(s2, 0.75);
-                                    pause(.5);
+                                    writePosition(s2, 0.65);
+                                    pause(1);
                                     
                                     %Move arm up
                                     writePosition(s2, 0.99);
@@ -265,12 +269,12 @@ function sortWashers(initialTable, finalTable, tg)
                                     end
                                     
                                     %Turn Magnet off
-                                    tg.setparam(tg.getparamid('magnetOn','Value'), 1);
-                                    pause(.5);
+                                    tg.setparam(tg.getparamid('magnetOn','Value'), 0);
+                                    pause(1);
                                     
                                     %Move arm down
-                                    writePosition(s2, 0.75);
-                                    pause(.5);
+                                    writePosition(s2, 0.65);
+                                    pause(1);
                                     
                                     %Move arm up
                                     writePosition(s2, 0.99);
@@ -290,7 +294,7 @@ function sortWashers(initialTable, finalTable, tg)
 
                               end
                                  
-                         elseif ((loadCell > 138) && (loadCell  < 141) && (washerWeight == 2))
+                         elseif ((loadCell > -89) && (loadCell  < -84) && (washerWeight == 2))
                              %Degree which the washer will be
                               %moved to
                               nextDegree = degreeArray(c1);
@@ -315,7 +319,7 @@ function sortWashers(initialTable, finalTable, tg)
                                   
                                   %Go to empty hole
                                   tg.setparam(tg.getparamid('Degree','Value'), emptyDegree);
-                                  pause(2);
+                                  pause(.5);
                                 
                                   %Checks distance that arm must travel in the x-axis
                                   %based on the degree value
@@ -329,17 +333,19 @@ function sortWashers(initialTable, finalTable, tg)
                                       writePosition(s1, 0.35);
                                       pause(1);
                                   end
-
-                                  tg.setparam(tg.getparamid('magnetOn','Value'), 1);
+                                  
+                                  tg.setparam(tg.getparamid('magnetOn','Value'), 0);
                                   pause(1);
                                   
                                   %Drop the washer
-                                  writePosition(s2, 0.75);
-                                  pause(2);
+                                  writePosition(s2, 0.65);
+                                  pause(1);
+                                  
+                                  
                                     
                                   %Move up arm
                                   writePosition(s2, .99);
-                                  pause(2);
+                                  pause(.5);
                                   
                                   %Delete position of washer in the initial
                                   %Table
@@ -353,17 +359,17 @@ function sortWashers(initialTable, finalTable, tg)
                               %empty
                               else
                                 fprintf('Here2\n');
-                                %Turn Magnet on
+                                %Turn Magnet off
                                 tg.setparam(tg.getparamid('magnetOn','Value'), 0);
                                 pause(1);
                                 
                                 %Move arm down
-                                writePosition(s2, 0.75);
+                                writePosition(s2, 0.65);
                                 pause(1);
                                 
                                 %Move arm up
                                 writePosition(s2, 0.99);
-                                pause(1);
+                                pause(.5);
                                 
                                 %Looks for empty spot on initial table  
                                 for c4 = 1:10
@@ -386,11 +392,11 @@ function sortWashers(initialTable, finalTable, tg)
                                     
                                     %Go to filled spot
                                     tg.setparam(tg.getparamid('Degree','Value'), nextDegree);
-                                    pause(2);
+                                    pause(.5);
                                     
                                     %Turn Magnet on
                                     tg.setparam(tg.getparamid('magnetOn','Value'), 1);
-                                    pause(1);
+                                    pause(.5);
                                     
                                     %Checks distance that arm must travel in the x-axis
                                     %based on the degree value
@@ -406,16 +412,16 @@ function sortWashers(initialTable, finalTable, tg)
                                     end
                                     
                                     %Move arm down 
-                                    writePosition(s2, 0.75);
-                                    pause(1);
+                                    writePosition(s2, 0.65);
+                                    pause(.5);
                                     
                                     %Move arm up
                                     writePosition(s2, 0.99);
-                                    pause(1);
+                                    pause(.5);
                                     
                                     %Go to empty spot
                                     tg.setparam(tg.getparamid('Degree','Value'), emptyDegree);
-                                    pause(2);
+                                    pause(.5);
                                     
                                     %Checks distance that arm must travel in the x-axis
                                     %based on the degree value
@@ -429,22 +435,22 @@ function sortWashers(initialTable, finalTable, tg)
                                         writePosition(s1, 0.35);
                                         pause(1);
                                     end
-                                    
+        
                                     %Turn Magnet off
                                     tg.setparam(tg.getparamid('magnetOn','Value'), 0);
                                     pause(1);
                                     
                                     %Move arm down
-                                    writePosition(s2, 0.75);
+                                    writePosition(s2, 0.65);
                                     pause(1);
                                     
                                     %Move arm up
                                     writePosition(s2, 0.99);
-                                    pause(1);
+                                    pause(.5);
                                     
                                     %Go to initial washer
                                     tg.setparam(tg.getparamid('Degree','Value'), degree);
-                                    pause(2);
+                                    pause(.5);
                                     
                                     %Checks distance that arm must travel in the x-axis
                                     %based on the degree value
@@ -464,16 +470,16 @@ function sortWashers(initialTable, finalTable, tg)
                                     pause(1);
                                     
                                     %Move arm down
-                                    writePosition(s2, 0.75);
+                                    writePosition(s2, 0.65);
                                     pause(1);
                                     
                                     %Move arm up
                                     writePosition(s2, 0.99);
-                                    pause(1);
+                                    pause(.5);
                                     
                                     %Go to desired position
                                     tg.setparam(tg.getparamid('Degree','Value'), nextDegree);
-                                    pause(2);
+                                    pause(.5);
                                     
                                     %Checks distance that arm must travel in the x-axis
                                     %based on the degree value
@@ -489,21 +495,21 @@ function sortWashers(initialTable, finalTable, tg)
                                     end
                                     
                                     %Turn Magnet off
-                                    tg.setparam(tg.getparamid('magnetOn','Value'), 1);
+                                    tg.setparam(tg.getparamid('magnetOn','Value'), 0);
                                     pause(1);
                                     
                                     %Move arm down
-                                    writePosition(s2, 0.75);
+                                    writePosition(s2, 0.65);
                                     pause(1);
                                     
                                     %Move arm up
                                     writePosition(s2, 0.99);
-                                    pause(1);
+                                    pause(.5);
                                     
                                     %Erase data from table
                                     initialTable{c2}{2} = '';
                                     initialTable{c4}{2} = colorOnWantedSpot;
-                                    initialTable{c5}{2} = finalTable{c1, 2};
+                                    initialTable{c5}{2} = 'Moved';
                                     finalTable{c1, 2} = '';
                                     finalTable{c1, 3} = '';
                                     break;
@@ -513,7 +519,7 @@ function sortWashers(initialTable, finalTable, tg)
                                 end
 
                               end
-                         elseif ((loadCell > 142) && (washerWeight == 3))
+                         elseif ((loadCell > -83.8) && (washerWeight == 3))
                              %Degree which the washer will be
                               %moved to
                               nextDegree = degreeArray(c1);
@@ -538,7 +544,7 @@ function sortWashers(initialTable, finalTable, tg)
                                   
                                   %Go to empty hole
                                   tg.setparam(tg.getparamid('Degree','Value'), emptyDegree);
-                                  pause(2);
+                                  pause(.5);
                                 
                                   %Checks distance that arm must travel in the x-axis
                                   %based on the degree value
@@ -552,17 +558,19 @@ function sortWashers(initialTable, finalTable, tg)
                                       writePosition(s1, 0.35);
                                       pause(1);
                                   end
-
-                                  tg.setparam(tg.getparamid('magnetOn','Value'), 1);
+                                  
+                                  tg.setparam(tg.getparamid('magnetOn','Value'), 0);
                                   pause(1);
                                   
                                   %Drop the washer
-                                  writePosition(s2, 0.75);
+                                  writePosition(s2, 0.65);
                                   pause(2);
+                                  
+                                  
                                     
                                   %Move up arm
                                   writePosition(s2, .99);
-                                  pause(2);
+                                  pause(.5);
                                   
                                   %Delete position of washer in the initial
                                   %Table
@@ -576,17 +584,17 @@ function sortWashers(initialTable, finalTable, tg)
                               %empty
                               else
                                 fprintf('Here2\n');
-                                %Turn Magnet on
+                                %Turn Magnet off
                                 tg.setparam(tg.getparamid('magnetOn','Value'), 0);
                                 pause(1);
                                 
                                 %Move arm down
-                                writePosition(s2, 0.75);
-                                pause(1);
+                                writePosition(s2, 0.65);
+                                pause(2);
                                 
                                 %Move arm up
                                 writePosition(s2, 0.99);
-                                pause(1);
+                                pause(.5);
                                 
                                 %Looks for empty spot on initial table  
                                 for c4 = 1:10
@@ -609,11 +617,11 @@ function sortWashers(initialTable, finalTable, tg)
                                     
                                     %Go to filled spot
                                     tg.setparam(tg.getparamid('Degree','Value'), nextDegree);
-                                    pause(2);
+                                    pause(.5);
                                     
                                     %Turn Magnet on
                                     tg.setparam(tg.getparamid('magnetOn','Value'), 1);
-                                    pause(1);
+                                    pause(.5);
                                     
                                     %Checks distance that arm must travel in the x-axis
                                     %based on the degree value
@@ -629,16 +637,16 @@ function sortWashers(initialTable, finalTable, tg)
                                     end
                                     
                                     %Move arm down 
-                                    writePosition(s2, 0.75);
-                                    pause(1);
+                                    writePosition(s2, 0.65);
+                                    pause(2);
                                     
                                     %Move arm up
                                     writePosition(s2, 0.99);
-                                    pause(1);
+                                    pause(.5);
                                     
                                     %Go to empty spot
                                     tg.setparam(tg.getparamid('Degree','Value'), emptyDegree);
-                                    pause(2);
+                                    pause(.5);
                                     
                                     %Checks distance that arm must travel in the x-axis
                                     %based on the degree value
@@ -652,22 +660,22 @@ function sortWashers(initialTable, finalTable, tg)
                                         writePosition(s1, 0.35);
                                         pause(1);
                                     end
-                                    
+        
                                     %Turn Magnet off
                                     tg.setparam(tg.getparamid('magnetOn','Value'), 0);
                                     pause(1);
                                     
                                     %Move arm down
-                                    writePosition(s2, 0.75);
-                                    pause(1);
+                                    writePosition(s2, 0.65);
+                                    pause(2);
                                     
                                     %Move arm up
                                     writePosition(s2, 0.99);
-                                    pause(1);
+                                    pause(.5);
                                     
                                     %Go to initial washer
                                     tg.setparam(tg.getparamid('Degree','Value'), degree);
-                                    pause(2);
+                                    pause(.5);
                                     
                                     %Checks distance that arm must travel in the x-axis
                                     %based on the degree value
@@ -687,16 +695,16 @@ function sortWashers(initialTable, finalTable, tg)
                                     pause(1);
                                     
                                     %Move arm down
-                                    writePosition(s2, 0.75);
-                                    pause(1);
+                                    writePosition(s2, 0.65);
+                                    pause(2);
                                     
                                     %Move arm up
                                     writePosition(s2, 0.99);
-                                    pause(1);
+                                    pause(.5);
                                     
                                     %Go to desired position
                                     tg.setparam(tg.getparamid('Degree','Value'), nextDegree);
-                                    pause(2);
+                                    pause(.5);
                                     
                                     %Checks distance that arm must travel in the x-axis
                                     %based on the degree value
@@ -712,21 +720,21 @@ function sortWashers(initialTable, finalTable, tg)
                                     end
                                     
                                     %Turn Magnet off
-                                    tg.setparam(tg.getparamid('magnetOn','Value'), 1);
+                                    tg.setparam(tg.getparamid('magnetOn','Value'), 0);
                                     pause(1);
                                     
                                     %Move arm down
-                                    writePosition(s2, 0.75);
-                                    pause(1);
+                                    writePosition(s2, 0.65);
+                                    pause(2);
                                     
                                     %Move arm up
                                     writePosition(s2, 0.99);
-                                    pause(1);
+                                    pause(.5);
                                     
                                     %Erase data from table
                                     initialTable{c2}{2} = '';
                                     initialTable{c4}{2} = colorOnWantedSpot;
-                                    initialTable{c5}{2} = finalTable{c1, 2};
+                                    initialTable{c5}{2} = 'Moved';
                                     finalTable{c1, 2} = '';
                                     finalTable{c1, 3} = '';
                                     break;
@@ -736,6 +744,18 @@ function sortWashers(initialTable, finalTable, tg)
                                 end
 
                               end
+                        else
+                            %Turn Magnet off
+                            tg.setparam(tg.getparamid('magnetOn','Value'), 0);
+                            pause(1);
+
+                            %Move arm down
+                            writePosition(s2, 0.65);
+                            pause(2);
+
+                            %Move arm up
+                            writePosition(s2, 0.99);
+                            pause(.5);
                         end
                      end
                  end
@@ -750,15 +770,15 @@ function sortWashers(initialTable, finalTable, tg)
     
     %Reset position of arm in the y-axis
     writePosition(s2, .99);
-    pause(.5);
+    pause(2);
     
     %Resets position of arm in the x-axis
     writePosition(s1, 1);
-    pause(.5);
+    pause(2);
     
     %Clears ARDUINO UNO
     clear a s1 s2;
-    pause(.5);
+    pause(2);
     
     %Moves gameboard to origin position
     tg.setparam(tg.getparamid('Degree', 'Value'), 0);

@@ -13,6 +13,6 @@ function [a, s1, s2] = arduinoSetup()
     
     %Moves arm to work position on x-axis
     writePosition(s1, 1);
-    pause(1);
+    pause(.3);
     
 end

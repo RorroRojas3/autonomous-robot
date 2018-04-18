@@ -17,7 +17,7 @@ tg.start;
 while (1)
     % Obtains value of the load cell
     %loadCell = tg.getparam(tg.getparamid('Q4 AD','Amplitude'));
-    loadCell = tg.getsignal('Load Cell');
+    loadCell = tg.getparamid('loadCell','Value');
     %Constant value of voltage given to Load Cell
     %voltageToCell = 7;
     %Constant value of voltage with NO weight on Load Cell

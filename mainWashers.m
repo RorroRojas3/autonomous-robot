@@ -6,7 +6,7 @@ imaqreset;
 
 %% Set Up Webcam
 gameState.cam = webcam('HP USB Webcam');
-preview(gameState.cam);
+%preview(gameState.cam);
 
 %% Align Board with Camera
 while (1)
