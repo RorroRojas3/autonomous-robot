@@ -8,9 +8,9 @@
  *
  * Code generation for model "PID_LoadCell_Magnet".
  *
- * Model version              : 1.130
+ * Model version              : 1.132
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Tue Apr 17 20:34:12 2018
+ * C source code generated on : Wed Apr 18 16:27:15 2018
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -837,8 +837,7 @@ typedef struct {
   real_T Channel0ofEncoderInputs;      /* '<S4>/Channel 0 of  Encoder Inputs ' */
   real_T angular_positionrelative_countC;/* '<S4>/angular_position =  [relative_count//COUNTS_PER_REV] *360 degrees' */
   real_T ErrorSigal;                   /* '<Root>/Sum1' */
-  real_T AnalogFilterDesign1;          /* '<Root>/Analog Filter Design1' */
-  real_T gain1;                        /* '<Root>/gain1' */
+  real_T LoadCell;                     /* '<Root>/Load Cell' */
   real_T AbsError;                     /* '<Root>/AbsError' */
   real_T AnalogFilterDesign;           /* '<Root>/Analog Filter Design' */
   real_T DerivativePID;                /* '<Root>/DerivativePID' */
@@ -852,7 +851,8 @@ typedef struct {
   real_T Saturation;                   /* '<Root>/Saturation' */
   real_T Switch1;                      /* '<Root>/Switch1' */
   real_T Gain[4];                      /* '<Root>/Gain' */
-  real_T LoadCell;                     /* '<Root>/Load Cell' */
+  real_T LED;                          /* '<Root>/LED' */
+  real_T Q4DI;                         /* '<Root>/Q4 DI ' */
 } B_PID_LoadCell_Magnet_T;
 
 /* Block states (auto storage) for system '<Root>' */
@@ -863,6 +863,7 @@ typedef struct {
   real_T LastUAtTimeB;                 /* '<Root>/DerivativePID' */
   real_T Channel0Controlsignaltomotorthr[16];/* '<Root>/Channel 0 -Control signal to  motor through amplifier ' */
   int_T Channel0ofEncoderInputs_IWORK[3];/* '<S4>/Channel 0 of  Encoder Inputs ' */
+  int_T LoadCell_IWORK[2];             /* '<Root>/Load Cell' */
   int_T Channel0Controlsignaltomotort_l;/* '<Root>/Channel 0 -Control signal to  motor through amplifier ' */
   struct {
     int_T AcquireOK;
@@ -880,7 +881,8 @@ typedef struct {
     int_T AcquireOK;
   } SFunction_IWORK_n;                 /* '<S7>/S-Function' */
 
-  int_T LoadCell_IWORK[2];             /* '<Root>/Load Cell' */
+  int_T Q4DO_IWORK;                    /* '<Root>/Q4 DO ' */
+  int_T Q4DI_IWORK;                    /* '<Root>/Q4 DI ' */
   int8_T If_ActiveSubsystem;           /* '<Root>/If' */
   DW_IfSubsystem_PID_LoadCell_M_T ElseSubsystem;/* '<Root>/Else Subsystem' */
   DW_IfSubsystem_PID_LoadCell_M_T IfSubsystem;/* '<Root>/If Subsystem' */
@@ -888,21 +890,18 @@ typedef struct {
 
 /* Continuous states (auto storage) */
 typedef struct {
-  real_T AnalogFilterDesign1_CSTATE;   /* '<Root>/Analog Filter Design1' */
   real_T AnalogFilterDesign_CSTATE;    /* '<Root>/Analog Filter Design' */
   real_T IntegratorPID_CSTATE;         /* '<Root>/IntegratorPID' */
 } X_PID_LoadCell_Magnet_T;
 
 /* State derivatives (auto storage) */
 typedef struct {
-  real_T AnalogFilterDesign1_CSTATE;   /* '<Root>/Analog Filter Design1' */
   real_T AnalogFilterDesign_CSTATE;    /* '<Root>/Analog Filter Design' */
   real_T IntegratorPID_CSTATE;         /* '<Root>/IntegratorPID' */
 } XDot_PID_LoadCell_Magnet_T;
 
 /* State disabled  */
 typedef struct {
-  boolean_T AnalogFilterDesign1_CSTATE;/* '<Root>/Analog Filter Design1' */
   boolean_T AnalogFilterDesign_CSTATE; /* '<Root>/Analog Filter Design' */
   boolean_T IntegratorPID_CSTATE;      /* '<Root>/IntegratorPID' */
 } XDis_PID_LoadCell_Magnet_T;
@@ -923,7 +922,7 @@ typedef struct {
   real_T setpoint_Out;                 /* '<Root>/setpoint_Out' */
   real_T errorSignal_Out;              /* '<Root>/errorSignal_Out' */
   real_T motorPos_Out;                 /* '<Root>/motorPos_Out' */
-  real_T loadCell;                     /* '<Root>/loadCell' */
+  real_T loadCell_In;                  /* '<Root>/loadCell_In' */
 } ExtY_PID_LoadCell_Magnet_T;
 
 /* Backward compatible GRT Identifiers */
@@ -1028,20 +1027,44 @@ struct P_PID_LoadCell_Magnet_T_ {
   real_T angular_positionrelative_countC;/* Expression: -360/1600
                                           * Referenced by: '<S4>/angular_position =  [relative_count//COUNTS_PER_REV] *360 degrees'
                                           */
-  real_T AnalogFilterDesign1_A;        /* Computed Parameter: AnalogFilterDesign1_A
-                                        * Referenced by: '<Root>/Analog Filter Design1'
+  real_T LoadCell_P1_Size[2];          /* Computed Parameter: LoadCell_P1_Size
+                                        * Referenced by: '<Root>/Load Cell'
                                         */
-  real_T AnalogFilterDesign1_B;        /* Computed Parameter: AnalogFilterDesign1_B
-                                        * Referenced by: '<Root>/Analog Filter Design1'
+  real_T LoadCell_P1;                  /* Expression: boardtype
+                                        * Referenced by: '<Root>/Load Cell'
                                         */
-  real_T AnalogFilterDesign1_C;        /* Computed Parameter: AnalogFilterDesign1_C
-                                        * Referenced by: '<Root>/Analog Filter Design1'
+  real_T LoadCell_P2_Size[2];          /* Computed Parameter: LoadCell_P2_Size
+                                        * Referenced by: '<Root>/Load Cell'
                                         */
-  real_T AnalogFilterDesign1_X0;       /* Expression: 0
-                                        * Referenced by: '<Root>/Analog Filter Design1'
+  real_T LoadCell_P2;                  /* Expression: channel
+                                        * Referenced by: '<Root>/Load Cell'
                                         */
-  real_T gain1_Gain;                   /* Expression: 100
-                                        * Referenced by: '<Root>/gain1'
+  real_T LoadCell_P3_Size[2];          /* Computed Parameter: LoadCell_P3_Size
+                                        * Referenced by: '<Root>/Load Cell'
+                                        */
+  real_T LoadCell_P3;                  /* Expression: index03
+                                        * Referenced by: '<Root>/Load Cell'
+                                        */
+  real_T LoadCell_P4_Size[2];          /* Computed Parameter: LoadCell_P4_Size
+                                        * Referenced by: '<Root>/Load Cell'
+                                        */
+  real_T LoadCell_P5_Size[2];          /* Computed Parameter: LoadCell_P5_Size
+                                        * Referenced by: '<Root>/Load Cell'
+                                        */
+  real_T LoadCell_P5;                  /* Expression: sampleTime
+                                        * Referenced by: '<Root>/Load Cell'
+                                        */
+  real_T LoadCell_P6_Size[2];          /* Computed Parameter: LoadCell_P6_Size
+                                        * Referenced by: '<Root>/Load Cell'
+                                        */
+  real_T LoadCell_P6;                  /* Expression: pciBus
+                                        * Referenced by: '<Root>/Load Cell'
+                                        */
+  real_T LoadCell_P7_Size[2];          /* Computed Parameter: LoadCell_P7_Size
+                                        * Referenced by: '<Root>/Load Cell'
+                                        */
+  real_T LoadCell_P7;                  /* Expression: pciSlot
+                                        * Referenced by: '<Root>/Load Cell'
                                         */
   real_T DegreeErrorThresh_Value;      /* Expression: 1.25
                                         * Referenced by: '<Root>/DegreeErrorThresh'
@@ -1142,44 +1165,92 @@ struct P_PID_LoadCell_Magnet_T_ {
   real_T Gain_Gain;                    /* Expression: 1
                                         * Referenced by: '<Root>/Gain'
                                         */
-  real_T LoadCell_P1_Size[2];          /* Computed Parameter: LoadCell_P1_Size
-                                        * Referenced by: '<Root>/Load Cell'
+  real_T LED_Value;                    /* Expression: 0
+                                        * Referenced by: '<Root>/LED'
                                         */
-  real_T LoadCell_P1;                  /* Expression: boardtype
-                                        * Referenced by: '<Root>/Load Cell'
+  real_T Q4DO_P1_Size[2];              /* Computed Parameter: Q4DO_P1_Size
+                                        * Referenced by: '<Root>/Q4 DO '
                                         */
-  real_T LoadCell_P2_Size[2];          /* Computed Parameter: LoadCell_P2_Size
-                                        * Referenced by: '<Root>/Load Cell'
+  real_T Q4DO_P1;                      /* Expression: boardtype
+                                        * Referenced by: '<Root>/Q4 DO '
                                         */
-  real_T LoadCell_P2;                  /* Expression: channel
-                                        * Referenced by: '<Root>/Load Cell'
+  real_T Q4DO_P2_Size[2];              /* Computed Parameter: Q4DO_P2_Size
+                                        * Referenced by: '<Root>/Q4 DO '
                                         */
-  real_T LoadCell_P3_Size[2];          /* Computed Parameter: LoadCell_P3_Size
-                                        * Referenced by: '<Root>/Load Cell'
+  real_T Q4DO_P2;                      /* Expression: channel
+                                        * Referenced by: '<Root>/Q4 DO '
                                         */
-  real_T LoadCell_P3;                  /* Expression: index03
-                                        * Referenced by: '<Root>/Load Cell'
+  real_T Q4DO_P3_Size[2];              /* Computed Parameter: Q4DO_P3_Size
+                                        * Referenced by: '<Root>/Q4 DO '
                                         */
-  real_T LoadCell_P4_Size[2];          /* Computed Parameter: LoadCell_P4_Size
-                                        * Referenced by: '<Root>/Load Cell'
+  real_T Q4DO_P3;                      /* Expression: control
+                                        * Referenced by: '<Root>/Q4 DO '
                                         */
-  real_T LoadCell_P5_Size[2];          /* Computed Parameter: LoadCell_P5_Size
-                                        * Referenced by: '<Root>/Load Cell'
+  real_T Q4DO_P4_Size[2];              /* Computed Parameter: Q4DO_P4_Size
+                                        * Referenced by: '<Root>/Q4 DO '
                                         */
-  real_T LoadCell_P5;                  /* Expression: sampleTime
-                                        * Referenced by: '<Root>/Load Cell'
+  real_T Q4DO_P4;                      /* Expression: reset
+                                        * Referenced by: '<Root>/Q4 DO '
                                         */
-  real_T LoadCell_P6_Size[2];          /* Computed Parameter: LoadCell_P6_Size
-                                        * Referenced by: '<Root>/Load Cell'
+  real_T Q4DO_P5_Size[2];              /* Computed Parameter: Q4DO_P5_Size
+                                        * Referenced by: '<Root>/Q4 DO '
                                         */
-  real_T LoadCell_P6;                  /* Expression: pciBus
-                                        * Referenced by: '<Root>/Load Cell'
+  real_T Q4DO_P5;                      /* Expression: initValue
+                                        * Referenced by: '<Root>/Q4 DO '
                                         */
-  real_T LoadCell_P7_Size[2];          /* Computed Parameter: LoadCell_P7_Size
-                                        * Referenced by: '<Root>/Load Cell'
+  real_T Q4DO_P6_Size[2];              /* Computed Parameter: Q4DO_P6_Size
+                                        * Referenced by: '<Root>/Q4 DO '
                                         */
-  real_T LoadCell_P7;                  /* Expression: pciSlot
-                                        * Referenced by: '<Root>/Load Cell'
+  real_T Q4DO_P6;                      /* Expression: sampleTime
+                                        * Referenced by: '<Root>/Q4 DO '
+                                        */
+  real_T Q4DO_P7_Size[2];              /* Computed Parameter: Q4DO_P7_Size
+                                        * Referenced by: '<Root>/Q4 DO '
+                                        */
+  real_T Q4DO_P7;                      /* Expression: pciBus
+                                        * Referenced by: '<Root>/Q4 DO '
+                                        */
+  real_T Q4DO_P8_Size[2];              /* Computed Parameter: Q4DO_P8_Size
+                                        * Referenced by: '<Root>/Q4 DO '
+                                        */
+  real_T Q4DO_P8;                      /* Expression: pciSlot
+                                        * Referenced by: '<Root>/Q4 DO '
+                                        */
+  real_T Q4DI_P1_Size[2];              /* Computed Parameter: Q4DI_P1_Size
+                                        * Referenced by: '<Root>/Q4 DI '
+                                        */
+  real_T Q4DI_P1;                      /* Expression: boardtype
+                                        * Referenced by: '<Root>/Q4 DI '
+                                        */
+  real_T Q4DI_P2_Size[2];              /* Computed Parameter: Q4DI_P2_Size
+                                        * Referenced by: '<Root>/Q4 DI '
+                                        */
+  real_T Q4DI_P2;                      /* Expression: channel
+                                        * Referenced by: '<Root>/Q4 DI '
+                                        */
+  real_T Q4DI_P3_Size[2];              /* Computed Parameter: Q4DI_P3_Size
+                                        * Referenced by: '<Root>/Q4 DI '
+                                        */
+  real_T Q4DI_P3;                      /* Expression: control
+                                        * Referenced by: '<Root>/Q4 DI '
+                                        */
+  real_T Q4DI_P4_Size[2];              /* Computed Parameter: Q4DI_P4_Size
+                                        * Referenced by: '<Root>/Q4 DI '
+                                        */
+  real_T Q4DI_P4;                      /* Expression: sampleTime
+                                        * Referenced by: '<Root>/Q4 DI '
+                                        */
+  real_T Q4DI_P5_Size[2];              /* Computed Parameter: Q4DI_P5_Size
+                                        * Referenced by: '<Root>/Q4 DI '
+                                        */
+  real_T Q4DI_P5;                      /* Expression: pciBus
+                                        * Referenced by: '<Root>/Q4 DI '
+                                        */
+  real_T Q4DI_P6_Size[2];              /* Computed Parameter: Q4DI_P6_Size
+                                        * Referenced by: '<Root>/Q4 DI '
+                                        */
+  real_T Q4DI_P6;                      /* Expression: pciSlot
+                                        * Referenced by: '<Root>/Q4 DI '
                                         */
 };
 
@@ -1204,14 +1275,14 @@ struct tag_RTM_PID_LoadCell_Magnet_T {
   struct {
     RTWSfcnInfo sfcnInfo;
     time_T *taskTimePtrs[2];
-    SimStruct childSFunctions[3];
-    SimStruct *childSFunctionPtrs[3];
-    struct _ssBlkInfo2 blkInfo2[3];
-    struct _ssSFcnModelMethods2 methods2[3];
-    struct _ssSFcnModelMethods3 methods3[3];
-    struct _ssSFcnModelMethods4 methods4[3];
-    struct _ssStatesInfo2 statesInfo2[3];
-    ssPeriodicStatesInfo periodicStatesInfo[3];
+    SimStruct childSFunctions[5];
+    SimStruct *childSFunctionPtrs[5];
+    struct _ssBlkInfo2 blkInfo2[5];
+    struct _ssSFcnModelMethods2 methods2[5];
+    struct _ssSFcnModelMethods3 methods3[5];
+    struct _ssSFcnModelMethods4 methods4[5];
+    struct _ssStatesInfo2 statesInfo2[5];
+    ssPeriodicStatesInfo periodicStatesInfo[5];
     struct {
       time_T sfcnPeriod[1];
       time_T sfcnOffset[1];
@@ -1227,6 +1298,17 @@ struct tag_RTM_PID_LoadCell_Magnet_T {
       time_T sfcnPeriod[1];
       time_T sfcnOffset[1];
       int_T sfcnTsMap[1];
+      struct _ssPortOutputs outputPortInfo[1];
+      uint_T attribs[7];
+      mxArray *params[7];
+      struct _ssDWorkRecord dWork[1];
+      struct _ssDWorkAuxRecord dWorkAux[1];
+    } Sfcn1;
+
+    struct {
+      time_T sfcnPeriod[1];
+      time_T sfcnOffset[1];
+      int_T sfcnTsMap[1];
       struct _ssPortInputs inputPortInfo[2];
       real_T const *UPtrs0[1];
       real_T const *UPtrs1[1];
@@ -1234,18 +1316,30 @@ struct tag_RTM_PID_LoadCell_Magnet_T {
       mxArray *params[9];
       struct _ssDWorkRecord dWork[2];
       struct _ssDWorkAuxRecord dWorkAux[2];
-    } Sfcn1;
+    } Sfcn2;
+
+    struct {
+      time_T sfcnPeriod[1];
+      time_T sfcnOffset[1];
+      int_T sfcnTsMap[1];
+      struct _ssPortInputs inputPortInfo[1];
+      real_T const *UPtrs0[1];
+      uint_T attribs[8];
+      mxArray *params[8];
+      struct _ssDWorkRecord dWork[1];
+      struct _ssDWorkAuxRecord dWorkAux[1];
+    } Sfcn3;
 
     struct {
       time_T sfcnPeriod[1];
       time_T sfcnOffset[1];
       int_T sfcnTsMap[1];
       struct _ssPortOutputs outputPortInfo[1];
-      uint_T attribs[7];
-      mxArray *params[7];
+      uint_T attribs[6];
+      mxArray *params[6];
       struct _ssDWorkRecord dWork[1];
       struct _ssDWorkAuxRecord dWorkAux[1];
-    } Sfcn2;
+    } Sfcn4;
   } NonInlinedSFcns;
 
   void *blockIO;
@@ -1263,8 +1357,8 @@ struct tag_RTM_PID_LoadCell_Magnet_T {
   boolean_T zCCacheNeedsReset;
   boolean_T derivCacheNeedsReset;
   boolean_T blkStateChange;
-  real_T odeY[3];
-  real_T odeF[3][3];
+  real_T odeY[2];
+  real_T odeF[3][2];
   ODE3_IntgData intgData;
   void *dwork;
 

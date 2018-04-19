@@ -1,14 +1,17 @@
 function sortWashers2(initialTable, finalTable, tg)
 % Sets up the Arm to initial position
 [a, s1, s2] = arduinoSetup();
-degreeArray = [- 25, - 57, - 90, - 120, - 155, 10, 45, 85, 135, 163];
+degreeArray = [-27.5, -60.5, -92.5, -120, -156, 13.50, 43.5, 87.5, 135, 163];
 terminate = 0;
+
+
 for c1 = 1:10
     emptySpot = 0;
     finalColor = finalTable{c1, 2};
- 
+    average = 0;
+    %status = get_param('Q4 DI', 'Shown')
     %Checks if the user input a color in certain degree
-    if (terminate == 0)
+    if ((terminate == 0))
         if ((strcmp(finalColor, '') == 0))
             for c2 = 1:10
                 initialColor = initialTable{c2}{2};
@@ -29,13 +32,13 @@ for c1 = 1:10
                      
                         %Rotates motor to the corresponding degree
                         tg.setparam(tg.getparamid('Degree', 'Value'), degree);
-                        pause(.5);
+                        pause(1.2);
                      
                         %Checks distance that arm must travel in the x-axis
                         %based on the degree value
                         degree2 = initialTable{c2}{1};
-                        if ((degree2 == - 57) || (degree2 == - 120) || ...
-                            (degree2 == 10) || (degree2 == 85) || ...
+                        if ((degree2 == -60.5) || (degree2 == -120) || ...
+                            (degree2 == 13.5) || (degree2 == 87.5) || ...
                             (degree2 == 163))
                             writePosition(s1, 0);
                             pause(1);
@@ -50,24 +53,45 @@ for c1 = 1:10
                      
                         %Moves arm down to pick up washer
                         writePosition(s2, 0.65);
-                        pause(1);
+                        pause(3.0);
                      
                         %Moves arm to initial position
                         writePosition(s2, .99);
+                        pause(.5);
+                        
+                        writePosition(s1, 0);
                         pause(.5);
                      
                         %Dummy asked user for weightPicked
                         %weightPicked = input('Enter weight: ');
                         pause(2);
-                        loadCell = tg.getsignal('Load Cell');
-                        loadCell = loadCell * 100;
-                        fprintf('%Weight Picked: %.2f\n', loadCell);
+                        for c6 = 1:20
+                            loadCell = tg.getsignal('Load Cell');
+                            loadCell = loadCell * 100;
+                            average = average + loadCell;
+                            pause(.01);
+                        end
+                        average = average / 20;
+                        loadCell = average;
+                        fprintf('Average: %.2f\n', average);
+                        
+                        degree2 = initialTable{c2}{1};
+                        if ((degree2 == -60.5) || (degree2 == -120) || ...
+                            (degree2 == 13.5) || (degree2 == 87.5) || ...
+                            (degree2 == 163))
+                            writePosition(s1, 0);
+                            pause(1);
+                        else
+                            writePosition(s1, 0.35);
+                            pause(1);
+                        end
+                        
                      
                         %Checks the level of weight input by the user and
                         %the washer weight that has been picked up by the
                         %electro magnet
-                        if ((loadCell > - 97) && (loadCell < - 92) && (washerWeight == 1))
-                         
+                        if ((loadCell > 263) && (loadCell <272) && (washerWeight == 1))
+                            fprintf('Level 1: %f\n', loadCell);
                             %Degree which the washer will be
                             %moved to
                             nextDegree = degreeArray(c1);
@@ -83,7 +107,7 @@ for c1 = 1:10
                      
                                 %Moves arm down
                                 writePosition(s2, 0.65);
-                                pause(1);
+                                pause(3.0);
                      
                                 %Moves arm up
                                 writePosition(s2, .99);
@@ -118,13 +142,13 @@ for c1 = 1:10
                              
                                 %Go to empty hole
                                 tg.setparam(tg.getparamid('Degree', 'Value'), emptyDegree);
-                                pause(.5);
+                                pause(1.2);
                              
                                 %Checks distance that arm must travel in the x-axis
                                 %based on the degree value
                                 degree2 = emptyDegree;
-                                if ((degree2 == - 57) || (degree2 == - 120) || ...
-                                    (degree2 == 10) || (degree2 == 85) || ...
+                                if ((degree2 == -60.5) || (degree2 == - 120) || ...
+                                    (degree2 == 13.5) || (degree2 == 87.5) || ...
                                     (degree2 == 163))
                                     writePosition(s1, 0);
                                     pause(1);
@@ -165,7 +189,7 @@ for c1 = 1:10
                              
                                 %Move arm down
                                 writePosition(s2, 0.65);
-                                pause(1);
+                                pause(3.0);
                              
                                 %Move arm up
                                 writePosition(s2, 0.99);
@@ -192,7 +216,7 @@ for c1 = 1:10
                                  
                                     %Go to filled spot
                                     tg.setparam(tg.getparamid('Degree', 'Value'), nextDegree);
-                                    pause(.5);
+                                    pause(1.2);
                                  
                                     %Turn Magnet on
                                     tg.setparam(tg.getparamid('magnetOn', 'Value'), 1);
@@ -201,8 +225,8 @@ for c1 = 1:10
                                     %Checks distance that arm must travel in the x-axis
                                     %based on the degree value
                                     degree2 = initialTable{c1}{1};
-                                    if ((degree2 == - 57) || (degree2 == - 120) || ...
-                                        (degree2 == 10) || (degree2 == 85) || ...
+                                    if ((degree2 == -60.5) || (degree2 == - 120) || ...
+                                        (degree2 == 13.5) || (degree2 == 87.5) || ...
                                         (degree2 == 163))
                                         writePosition(s1, 0);
                                         pause(1);
@@ -213,7 +237,7 @@ for c1 = 1:10
                                  
                                     %Move arm down
                                     writePosition(s2, 0.65);
-                                    pause(1);
+                                    pause(3.0);
                                  
                                     %Move arm up
                                     writePosition(s2, 0.99);
@@ -221,13 +245,13 @@ for c1 = 1:10
                                  
                                     %Go to empty spot
                                     tg.setparam(tg.getparamid('Degree', 'Value'), emptyDegree);
-                                    pause(.5);
+                                    pause(1.2);
                                  
                                     %Checks distance that arm must travel in the x-axis
                                     %based on the degree value
                                     degree2 = initialTable{c4}{1};
-                                    if ((degree2 == - 57) || (degree2 == - 120) || ...
-                                        (degree2 == 10) || (degree2 == 85) || ...
+                                    if ((degree2 == -60.5) || (degree2 == - 120) || ...
+                                        (degree2 == 13.5) || (degree2 == 87.5) || ...
                                         (degree2 == 163))
                                         writePosition(s1, 0);
                                         pause(1);
@@ -242,7 +266,7 @@ for c1 = 1:10
                                  
                                     %Move arm down
                                     writePosition(s2, 0.65);
-                                    pause(1);
+                                    pause(3.0);
                                  
                                     %Move arm up
                                     writePosition(s2, 0.99);
@@ -250,13 +274,13 @@ for c1 = 1:10
                                  
                                     %Go to initial washer
                                     tg.setparam(tg.getparamid('Degree', 'Value'), degree);
-                                    pause(.5);
+                                    pause(1.2);
                                  
                                     %Checks distance that arm must travel in the x-axis
                                     %based on the degree value
                                     degree2 = initialTable{c2}{1};
-                                    if ((degree2 == - 57) || (degree2 == - 120) || ...
-                                        (degree2 == 10) || (degree2 == 85) || ...
+                                    if ((degree2 == -60.5) || (degree2 == - 120) || ...
+                                        (degree2 == 13.5) || (degree2 == 87.5) || ...
                                         (degree2 == 163))
                                         writePosition(s1, 0);
                                         pause(1);
@@ -271,7 +295,7 @@ for c1 = 1:10
                                  
                                     %Move arm down
                                     writePosition(s2, 0.65);
-                                    pause(1);
+                                    pause(3.0);
                                  
                                     %Move arm up
                                     writePosition(s2, 0.99);
@@ -279,13 +303,13 @@ for c1 = 1:10
                                  
                                     %Go to desired position
                                     tg.setparam(tg.getparamid('Degree', 'Value'), nextDegree);
-                                    pause(.5);
+                                    pause(1.2);
                                  
                                     %Checks distance that arm must travel in the x-axis
                                     %based on the degree value
                                     degree2 = initialTable{c1}{1};
-                                    if ((degree2 == - 57) || (degree2 == - 120) || ...
-                                        (degree2 == 10) || (degree2 == 85) || ...
+                                    if ((degree2 == -60.5) || (degree2 == - 120) || ...
+                                        (degree2 == 13.5) || (degree2 == 87.5) || ...
                                         (degree2 == 163))
                                         writePosition(s1, 0);
                                         pause(1);
@@ -300,7 +324,7 @@ for c1 = 1:10
                                  
                                     %Move arm down
                                     writePosition(s2, 0.65);
-                                    pause(1);
+                                    pause(3.0);
                                  
                                     %Move arm up
                                     writePosition(s2, 0.99);
@@ -320,12 +344,12 @@ for c1 = 1:10
                              
                             end
                          
-                        elseif ((loadCell > - 89) && (loadCell < - 84) && (washerWeight == 2))
-                            
+                        elseif ((loadCell > 275) && (loadCell < 279) && (washerWeight == 2))
+                            fprintf('Level 2: %f\n', loadCell);
                             %Degree which the washer will be
                             %moved to
                             nextDegree = degreeArray(c1);
-                            originalDegree = initialTable{c2}{2};
+                            originalDegree = initialTable{c2}{1};
                             if (nextDegree == originalDegree)
                                 
                                 %Turn Magnet Off
@@ -334,7 +358,7 @@ for c1 = 1:10
                      
                                 %Moves arm down
                                 writePosition(s2, 0.65);
-                                pause(1);
+                                pause(3.0);
                      
                                 %Moves arm up
                                 writePosition(s2, .99);
@@ -368,13 +392,13 @@ for c1 = 1:10
                              
                                 %Go to empty hole
                                 tg.setparam(tg.getparamid('Degree', 'Value'), emptyDegree);
-                                pause(.5);
+                                pause(1.2);
                              
                                 %Checks distance that arm must travel in the x-axis
                                 %based on the degree value
                                 degree2 = emptyDegree;
-                                if ((degree2 == - 57) || (degree2 == - 120) || ...
-                                    (degree2 == 10) || (degree2 == 85) || ...
+                                if ((degree2 == -60.5) || (degree2 == - 120) || ...
+                                    (degree2 == 13.5) || (degree2 == 87.5) || ...
                                     (degree2 == 163))
                                     writePosition(s1, 0);
                                     pause(1);
@@ -415,7 +439,7 @@ for c1 = 1:10
                              
                                 %Move arm down
                                 writePosition(s2, 0.65);
-                                pause(1);
+                                pause(3.0);
                              
                                 %Move arm up
                                 writePosition(s2, 0.99);
@@ -442,7 +466,7 @@ for c1 = 1:10
                                  
                                     %Go to filled spot
                                     tg.setparam(tg.getparamid('Degree', 'Value'), nextDegree);
-                                    pause(.5);
+                                    pause(1.2);
                                  
                                     %Turn Magnet on
                                     tg.setparam(tg.getparamid('magnetOn', 'Value'), 1);
@@ -451,8 +475,8 @@ for c1 = 1:10
                                     %Checks distance that arm must travel in the x-axis
                                     %based on the degree value
                                     degree2 = initialTable{c1}{1};
-                                    if ((degree2 == - 57) || (degree2 == - 120) || ...
-                                        (degree2 == 10) || (degree2 == 85) || ...
+                                    if ((degree2 == -60.5) || (degree2 == - 120) || ...
+                                        (degree2 == 13.5) || (degree2 == 87.5) || ...
                                         (degree2 == 163))
                                         writePosition(s1, 0);
                                         pause(1);
@@ -463,7 +487,7 @@ for c1 = 1:10
                                  
                                     %Move arm down
                                     writePosition(s2, 0.65);
-                                    pause(1);
+                                    pause(3.0);
                                  
                                     %Move arm up
                                     writePosition(s2, 0.99);
@@ -471,13 +495,13 @@ for c1 = 1:10
                                  
                                     %Go to empty spot
                                     tg.setparam(tg.getparamid('Degree', 'Value'), emptyDegree);
-                                    pause(.5);
+                                    pause(1.2);
                                  
                                     %Checks distance that arm must travel in the x-axis
                                     %based on the degree value
                                     degree2 = initialTable{c4}{1};
-                                    if ((degree2 == - 57) || (degree2 == - 120) || ...
-                                        (degree2 == 10) || (degree2 == 85) || ...
+                                    if ((degree2 == -60.5) || (degree2 == - 120) || ...
+                                        (degree2 == 13.5) || (degree2 == 87.5) || ...
                                         (degree2 == 163))
                                         writePosition(s1, 0);
                                         pause(1);
@@ -492,7 +516,7 @@ for c1 = 1:10
                                  
                                     %Move arm down
                                     writePosition(s2, 0.65);
-                                    pause(1);
+                                    pause(3.0);
                                  
                                     %Move arm up
                                     writePosition(s2, 0.99);
@@ -500,13 +524,13 @@ for c1 = 1:10
                                  
                                     %Go to initial washer
                                     tg.setparam(tg.getparamid('Degree', 'Value'), degree);
-                                    pause(.5);
+                                    pause(1.2);
                                  
                                     %Checks distance that arm must travel in the x-axis
                                     %based on the degree value
                                     degree2 = initialTable{c2}{1};
-                                    if ((degree2 == - 57) || (degree2 == - 120) || ...
-                                        (degree2 == 10) || (degree2 == 85) || ...
+                                    if ((degree2 == -60.5) || (degree2 == - 120) || ...
+                                        (degree2 == 13.5) || (degree2 == 87.5) || ...
                                         (degree2 == 163))
                                         writePosition(s1, 0);
                                         pause(1);
@@ -521,7 +545,7 @@ for c1 = 1:10
                                  
                                     %Move arm down
                                     writePosition(s2, 0.65);
-                                    pause(1);
+                                    pause(3.0);
                                  
                                     %Move arm up
                                     writePosition(s2, 0.99);
@@ -529,13 +553,13 @@ for c1 = 1:10
                                  
                                     %Go to desired position
                                     tg.setparam(tg.getparamid('Degree', 'Value'), nextDegree);
-                                    pause(.5);
+                                    pause(1.2);
                                  
                                     %Checks distance that arm must travel in the x-axis
                                     %based on the degree value
                                     degree2 = initialTable{c1}{1};
-                                    if ((degree2 == - 57) || (degree2 == - 120) || ...
-                                        (degree2 == 10) || (degree2 == 85) || ...
+                                    if ((degree2 == -60.5) || (degree2 == - 120) || ...
+                                        (degree2 == 13.5) || (degree2 == 87.5) || ...
                                         (degree2 == 163))
                                         writePosition(s1, 0);
                                         pause(1);
@@ -550,7 +574,7 @@ for c1 = 1:10
                                  
                                     %Move arm down
                                     writePosition(s2, 0.65);
-                                    pause(1);
+                                    pause(3.0);
                                  
                                     %Move arm up
                                     writePosition(s2, 0.99);
@@ -569,14 +593,14 @@ for c1 = 1:10
                                 end
                              
                             end
-                        elseif ((loadCell > - 83.8) && (washerWeight == 3))
-                            
+                        elseif ((loadCell >= 279.5) && (washerWeight == 3))
+                            fprintf('Level 3: %f\n', loadCell);
                             %Degree which the washer will be
                             %moved to
                             nextDegree = degreeArray(c1);
                             
                             %Original degree of washer
-                            originalDegree = initialTable{c2}{2};
+                            originalDegree = initialTable{c2}{1};
                             
                             
                             if (nextDegree == originalDegree)
@@ -587,7 +611,7 @@ for c1 = 1:10
                      
                                 %Moves arm down
                                 writePosition(s2, 0.65);
-                                pause(1);
+                                pause(3.0);
                      
                                 %Moves arm up
                                 writePosition(s2, .99);
@@ -621,13 +645,13 @@ for c1 = 1:10
                              
                                 %Go to empty hole
                                 tg.setparam(tg.getparamid('Degree', 'Value'), emptyDegree);
-                                pause(.5);
+                                pause(1.2);
                              
                                 %Checks distance that arm must travel in the x-axis
                                 %based on the degree value
                                 degree2 = emptyDegree;
-                                if ((degree2 == - 57) || (degree2 == - 120) || ...
-                                    (degree2 == 10) || (degree2 == 85) || ...
+                                if ((degree2 == -60.5) || (degree2 == - 120) || ...
+                                    (degree2 == 13.5) || (degree2 == 87.5) || ...
                                     (degree2 == 163))
                                     writePosition(s1, 0);
                                     pause(1);
@@ -642,7 +666,7 @@ for c1 = 1:10
                              
                                 %Move arm down
                                 writePosition(s2, 0.65);
-                                pause(1);
+                                pause(3.0);
                              
                                 %Move up arm
                                 writePosition(s2, .99);
@@ -668,7 +692,7 @@ for c1 = 1:10
                              
                                 %Move arm down
                                 writePosition(s2, 0.65);
-                                pause(1);
+                                pause(3.0);
                              
                                 %Move arm up
                                 writePosition(s2, 0.99);
@@ -695,7 +719,7 @@ for c1 = 1:10
                                  
                                     %Go to filled spot
                                     tg.setparam(tg.getparamid('Degree', 'Value'), nextDegree);
-                                    pause(.5);
+                                    pause(1.2);
                                  
                                     %Turn Magnet On
                                     tg.setparam(tg.getparamid('magnetOn', 'Value'), 1);
@@ -704,8 +728,8 @@ for c1 = 1:10
                                     %Checks distance that arm must travel in the x-axis
                                     %based on the degree value
                                     degree2 = initialTable{c1}{1};
-                                    if ((degree2 == - 57) || (degree2 == - 120) || ...
-                                        (degree2 == 10) || (degree2 == 85) || ...
+                                    if ((degree2 == -60.5) || (degree2 == - 120) || ...
+                                        (degree2 == 13.5) || (degree2 == 87.5) || ...
                                         (degree2 == 163))
                                         writePosition(s1, 0);
                                         pause(1);
@@ -716,7 +740,7 @@ for c1 = 1:10
                                  
                                     %Move arm down
                                     writePosition(s2, 0.65);
-                                    pause(1);
+                                    pause(3.0);
                                  
                                     %Move arm up
                                     writePosition(s2, 0.99);
@@ -724,13 +748,13 @@ for c1 = 1:10
                                  
                                     %Go to empty spot
                                     tg.setparam(tg.getparamid('Degree', 'Value'), emptyDegree);
-                                    pause(.5);
+                                    pause(1.2);
                                  
                                     %Checks distance that arm must travel in the x-axis
                                     %based on the degree value
                                     degree2 = initialTable{c4}{1};
-                                    if ((degree2 == - 57) || (degree2 == - 120) || ...
-                                        (degree2 == 10) || (degree2 == 85) || ...
+                                    if ((degree2 == -60.5) || (degree2 == - 120) || ...
+                                        (degree2 == 13.5) || (degree2 == 87.5) || ...
                                         (degree2 == 163))
                                         writePosition(s1, 0);
                                         pause(1);
@@ -745,7 +769,7 @@ for c1 = 1:10
                                  
                                     %Move arm down
                                     writePosition(s2, 0.65);
-                                    pause(1);
+                                    pause(3.0);
                                  
                                     %Move arm up
                                     writePosition(s2, 0.99);
@@ -753,13 +777,13 @@ for c1 = 1:10
                                  
                                     %Go to initial washer
                                     tg.setparam(tg.getparamid('Degree', 'Value'), degree);
-                                    pause(.5);
+                                    pause(1.2);
                                  
                                     %Checks distance that arm must travel in the x-axis
                                     %based on the degree value
                                     degree2 = initialTable{c2}{1};
-                                    if ((degree2 == - 57) || (degree2 == - 120) || ...
-                                        (degree2 == 10) || (degree2 == 85) || ...
+                                    if ((degree2 == -60.5) || (degree2 == - 120) || ...
+                                        (degree2 == 13.5) || (degree2 == 87.5) || ...
                                         (degree2 == 163))
                                         writePosition(s1, 0);
                                         pause(1);
@@ -774,7 +798,7 @@ for c1 = 1:10
                                  
                                     %Move arm down
                                     writePosition(s2, 0.65);
-                                    pause(1);
+                                    pause(3.0);
                                  
                                     %Move arm up
                                     writePosition(s2, 0.99);
@@ -782,13 +806,13 @@ for c1 = 1:10
                                  
                                     %Go to desired position
                                     tg.setparam(tg.getparamid('Degree', 'Value'), nextDegree);
-                                    pause(.5);
+                                    pause(1.2);
                                  
                                     %Checks distance that arm must travel in the x-axis
                                     %based on the degree value
                                     degree2 = initialTable{c1}{1};
-                                    if ((degree2 == - 57) || (degree2 == - 120) || ...
-                                        (degree2 == 10) || (degree2 == 85) || ...
+                                    if ((degree2 == -60.5) || (degree2 == - 120) || ...
+                                        (degree2 == 13.5) || (degree2 == 87.5) || ...
                                         (degree2 == 163))
                                         writePosition(s1, 0);
                                         pause(1);
@@ -803,7 +827,7 @@ for c1 = 1:10
                                  
                                     %Move arm down
                                     writePosition(s2, 0.65);
-                                    pause(1);
+                                    pause(3.0);
                                  
                                     %Move arm up
                                     writePosition(s2, 0.99);
@@ -829,7 +853,7 @@ for c1 = 1:10
                          
                             %Move arm down
                             writePosition(s2, 0.65);
-                            pause(1);
+                            pause(3.0);
                          
                             %Move arm up
                             writePosition(s2, 0.99);
@@ -840,7 +864,7 @@ for c1 = 1:10
             end
         end
     else
-        fprintf('No empty spots\n');
+        fprintf('Error\n');
         fprintf('Program will be terminated\n');
         break;
     end
@@ -858,8 +882,10 @@ pause(1);
 clear a s1 s2;
 pause(1);
 
-%Moves gameboard to origin position
-tg.setparam(tg.getparamid('Degree', 'Value'), 0);
-pause(1);
+%if (status == 0)
+    %Moves gameboard to origin position
+    tg.setparam(tg.getparamid('Degree', 'Value'), 0);
+    pause(3.0);
+%end
 
 end

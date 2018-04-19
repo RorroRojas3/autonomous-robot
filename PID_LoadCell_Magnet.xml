@@ -205,6 +205,17 @@ Encoder Inputs </sigName>
           </parameter>
           </block>
             <block>
+            <blkName>LED</blkName>
+            <xpcblkName>LED</xpcblkName>
+            <SLblockPath>PID_LoadCell_Magnet/LED</SLblockPath>
+            <isSrc>[1 0 1]</isSrc>
+          <parameter>
+          <paramName>Value</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
+          </parameter>
+          </block>
+            <block>
             <blkName>RateErrorThresh</blkName>
             <xpcblkName>RateErrorThresh</xpcblkName>
             <SLblockPath>PID_LoadCell_Magnet/RateErrorThresh</SLblockPath>
@@ -274,17 +285,6 @@ Encoder Inputs </sigName>
             <blkName>gain</blkName>
             <xpcblkName>gain</xpcblkName>
             <SLblockPath>PID_LoadCell_Magnet/gain</SLblockPath>
-            <isSrc>[0 1 1]</isSrc>
-          <parameter>
-          <paramName>Gain</paramName>
-          <dim>[1, 1]</dim>  
-		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
-          </parameter>
-          </block>
-            <block>
-            <blkName>gain1</blkName>
-            <xpcblkName>gain1</xpcblkName>
-            <SLblockPath>PID_LoadCell_Magnet/gain1</SLblockPath>
             <isSrc>[0 1 1]</isSrc>
           <parameter>
           <paramName>Gain</paramName>
@@ -408,37 +408,92 @@ motor through amplifier </blkName>
           </parameter>
           </block>
             <block>
-            <blkName>Analog
-Filter Design</blkName>
-            <xpcblkName>Analog Filter Design</xpcblkName>
-            <SLblockPath>PID_LoadCell_Magnet/Analog Filter Design</SLblockPath>
-            <isSrc>[0 1 1]</isSrc>
+            <blkName>Q4 DI </blkName>
+            <xpcblkName>Q4 DI </xpcblkName>
+            <SLblockPath>PID_LoadCell_Magnet/Q4 DI </SLblockPath>
+            <isSrc>[1 0 1]</isSrc>
           <parameter>
-          <paramName>A</paramName>
+          <paramName>P1</paramName>
           <dim>[1, 1]</dim>  
 		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
           </parameter>
           <parameter>
-          <paramName>B</paramName>
+          <paramName>P2</paramName>
           <dim>[1, 1]</dim>  
 		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
           </parameter>
           <parameter>
-          <paramName>C</paramName>
+          <paramName>P3</paramName>
           <dim>[1, 1]</dim>  
 		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
           </parameter>
           <parameter>
-          <paramName>X0</paramName>
+          <paramName>P4</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P5</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P6</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
+          </parameter>
+          </block>
+            <block>
+            <blkName>Q4 DO </blkName>
+            <xpcblkName>Q4 DO </xpcblkName>
+            <SLblockPath>PID_LoadCell_Magnet/Q4 DO </SLblockPath>
+            <isSrc>[0 1 0]</isSrc>
+          <parameter>
+          <paramName>P1</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P2</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P3</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P4</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P5</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P6</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P7</paramName>
+          <dim>[1, 1]</dim>  
+		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
+          </parameter>
+          <parameter>
+          <paramName>P8</paramName>
           <dim>[1, 1]</dim>  
 		  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
           </parameter>
           </block>
             <block>
             <blkName>Analog
-Filter Design1</blkName>
-            <xpcblkName>Analog Filter Design1</xpcblkName>
-            <SLblockPath>PID_LoadCell_Magnet/Analog Filter Design1</SLblockPath>
+Filter Design</blkName>
+            <xpcblkName>Analog Filter Design</xpcblkName>
+            <SLblockPath>PID_LoadCell_Magnet/Analog Filter Design</SLblockPath>
             <isSrc>[0 1 1]</isSrc>
           <parameter>
           <paramName>A</paramName>
@@ -487,6 +542,16 @@ Filter Design1</blkName>
               <signal>
               <sigName>AbsError</sigName>
               <xpcsigName>AbsError</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+			  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
+			  <sigTestPoint>false</sigTestPoint>
+            </signal>
+			  
+			  
+              <signal>
+              <sigName>LED</sigName>
+              <xpcsigName>LED</xpcsigName>
               <sigWidth>1</sigWidth>
               <sigDim>[1, 1]</sigDim>
 			  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
@@ -556,16 +621,6 @@ Filter Design1</blkName>
 			  
 			  
               <signal>
-              <sigName>gain1</sigName>
-              <xpcsigName>gain1</xpcsigName>
-              <sigWidth>1</sigWidth>
-              <sigDim>[1, 1]</sigDim>
-			  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
-			  <sigTestPoint>false</sigTestPoint>
-            </signal>
-			  
-			  
-              <signal>
               <sigName>IntegratorPID</sigName>
               <xpcsigName>IntegratorPID</xpcsigName>
               <sigWidth>1</sigWidth>
@@ -606,9 +661,8 @@ Filter Design1</blkName>
 			  
 			  
               <signal>
-              <sigName>Analog
-Filter Design</sigName>
-              <xpcsigName>Analog Filter Design</xpcsigName>
+              <sigName>Q4 DI </sigName>
+              <xpcsigName>Q4 DI </xpcsigName>
               <sigWidth>1</sigWidth>
               <sigDim>[1, 1]</sigDim>
 			  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>
@@ -618,8 +672,8 @@ Filter Design</sigName>
 			  
               <signal>
               <sigName>Analog
-Filter Design1</sigName>
-              <xpcsigName>Analog Filter Design1</xpcsigName>
+Filter Design</sigName>
+              <xpcsigName>Analog Filter Design</xpcsigName>
               <sigWidth>1</sigWidth>
               <sigDim>[1, 1]</sigDim>
 			  <SubSystemName>PID_LoadCell_Magnet</SubSystemName>

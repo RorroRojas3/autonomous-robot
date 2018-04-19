@@ -8,9 +8,9 @@
  *
  * Code generation for model "PID_LoadCell_Magnet".
  *
- * Model version              : 1.130
+ * Model version              : 1.132
  * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C source code generated on : Tue Apr 17 20:34:12 2018
+ * C source code generated on : Wed Apr 18 16:27:15 2018
  *
  * Target selection: slrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -52,26 +52,26 @@ static const rtwCAPI_Signals rtBlockSignals[] = {
   { 1, 0, TARGET_STRING("AbsError"),
     TARGET_STRING(""), 0, 0, 0, 0, 1 },
 
-  { 2, 0, TARGET_STRING("DerivativePID"),
+  { 2, 0, TARGET_STRING("LED"),
+    TARGET_STRING(""), 0, 0, 0, 0, 1 },
+
+  { 3, 0, TARGET_STRING("DerivativePID"),
     TARGET_STRING(""), 0, 0, 0, 0, 0 },
 
-  { 3, 0, TARGET_STRING("Gain"),
-    TARGET_STRING(""), 0, 0, 1, 0, 0 },
+  { 4, 0, TARGET_STRING("Gain"),
+    TARGET_STRING(""), 0, 0, 1, 0, 1 },
 
-  { 4, 0, TARGET_STRING("Kd"),
+  { 5, 0, TARGET_STRING("Kd"),
     TARGET_STRING(""), 0, 0, 0, 0, 0 },
 
-  { 5, 0, TARGET_STRING("Ki"),
+  { 6, 0, TARGET_STRING("Ki"),
     TARGET_STRING(""), 0, 0, 0, 0, 0 },
 
-  { 6, 0, TARGET_STRING("Kp"),
+  { 7, 0, TARGET_STRING("Kp"),
     TARGET_STRING(""), 0, 0, 0, 0, 0 },
 
-  { 7, 0, TARGET_STRING("gain"),
+  { 8, 0, TARGET_STRING("gain"),
     TARGET_STRING("Setpoint"), 0, 0, 0, 0, 1 },
-
-  { 8, 0, TARGET_STRING("gain1"),
-    TARGET_STRING(""), 0, 0, 0, 0, 0 },
 
   { 9, 0, TARGET_STRING("IntegratorPID"),
     TARGET_STRING(""), 0, 0, 0, 0, 0 },
@@ -85,10 +85,10 @@ static const rtwCAPI_Signals rtBlockSignals[] = {
   { 12, 0, TARGET_STRING("Load Cell"),
     TARGET_STRING(""), 0, 0, 0, 0, 1 },
 
-  { 13, 0, TARGET_STRING("Analog Filter Design"),
-    TARGET_STRING(""), 0, 0, 0, 0, 0 },
+  { 13, 0, TARGET_STRING("Q4 DI "),
+    TARGET_STRING(""), 0, 0, 0, 0, 1 },
 
-  { 14, 0, TARGET_STRING("Analog Filter Design1"),
+  { 14, 0, TARGET_STRING("Analog Filter Design"),
     TARGET_STRING(""), 0, 0, 0, 0, 0 },
 
   { 15, 0, TARGET_STRING("Sum1"),
@@ -131,28 +131,28 @@ static const rtwCAPI_BlockParameters rtBlockParameters[] = {
   { 24, TARGET_STRING("DegreeErrorThresh"),
     TARGET_STRING("Value"), 0, 0, 0 },
 
-  { 25, TARGET_STRING("RateErrorThresh"),
+  { 25, TARGET_STRING("LED"),
     TARGET_STRING("Value"), 0, 0, 0 },
 
-  { 26, TARGET_STRING("magnetOn"),
+  { 26, TARGET_STRING("RateErrorThresh"),
     TARGET_STRING("Value"), 0, 0, 0 },
 
-  { 27, TARGET_STRING("Gain"),
+  { 27, TARGET_STRING("magnetOn"),
+    TARGET_STRING("Value"), 0, 0, 0 },
+
+  { 28, TARGET_STRING("Gain"),
     TARGET_STRING("Gain"), 0, 0, 0 },
 
-  { 28, TARGET_STRING("Kd"),
+  { 29, TARGET_STRING("Kd"),
     TARGET_STRING("Gain"), 0, 0, 0 },
 
-  { 29, TARGET_STRING("Ki"),
+  { 30, TARGET_STRING("Ki"),
     TARGET_STRING("Gain"), 0, 0, 0 },
 
-  { 30, TARGET_STRING("Kp"),
+  { 31, TARGET_STRING("Kp"),
     TARGET_STRING("Gain"), 0, 0, 0 },
 
-  { 31, TARGET_STRING("gain"),
-    TARGET_STRING("Gain"), 0, 0, 0 },
-
-  { 32, TARGET_STRING("gain1"),
+  { 32, TARGET_STRING("gain"),
     TARGET_STRING("Gain"), 0, 0, 0 },
 
   { 33, TARGET_STRING("IntegratorPID"),
@@ -209,70 +209,100 @@ static const rtwCAPI_BlockParameters rtBlockParameters[] = {
   { 50, TARGET_STRING("Load Cell"),
     TARGET_STRING("P7"), 0, 0, 0 },
 
-  { 51, TARGET_STRING("Analog Filter Design"),
-    TARGET_STRING("A"), 0, 0, 0 },
-
-  { 52, TARGET_STRING("Analog Filter Design"),
-    TARGET_STRING("B"), 0, 0, 0 },
-
-  { 53, TARGET_STRING("Analog Filter Design"),
-    TARGET_STRING("C"), 0, 0, 0 },
-
-  { 54, TARGET_STRING("Analog Filter Design"),
-    TARGET_STRING("X0"), 0, 0, 0 },
-
-  { 55, TARGET_STRING("Analog Filter Design1"),
-    TARGET_STRING("A"), 0, 0, 0 },
-
-  { 56, TARGET_STRING("Analog Filter Design1"),
-    TARGET_STRING("B"), 0, 0, 0 },
-
-  { 57, TARGET_STRING("Analog Filter Design1"),
-    TARGET_STRING("C"), 0, 0, 0 },
-
-  { 58, TARGET_STRING("Analog Filter Design1"),
-    TARGET_STRING("X0"), 0, 0, 0 },
-
-  { 59, TARGET_STRING("Switch1"),
-    TARGET_STRING("Threshold"), 0, 0, 0 },
-
-  { 60, TARGET_STRING("Real motor/angular_position =  [relative_count//COUNTS_PER_REV] *360 degrees"),
-    TARGET_STRING("Gain"), 0, 0, 0 },
-
-  { 61, TARGET_STRING("Real motor/Channel 0 of  Encoder Inputs "),
+  { 51, TARGET_STRING("Q4 DI "),
     TARGET_STRING("P1"), 0, 0, 0 },
 
-  { 62, TARGET_STRING("Real motor/Channel 0 of  Encoder Inputs "),
+  { 52, TARGET_STRING("Q4 DI "),
     TARGET_STRING("P2"), 0, 0, 0 },
 
-  { 63, TARGET_STRING("Real motor/Channel 0 of  Encoder Inputs "),
+  { 53, TARGET_STRING("Q4 DI "),
     TARGET_STRING("P3"), 0, 0, 0 },
 
-  { 64, TARGET_STRING("Real motor/Channel 0 of  Encoder Inputs "),
+  { 54, TARGET_STRING("Q4 DI "),
     TARGET_STRING("P4"), 0, 0, 0 },
 
-  { 65, TARGET_STRING("Real motor/Channel 0 of  Encoder Inputs "),
+  { 55, TARGET_STRING("Q4 DI "),
     TARGET_STRING("P5"), 0, 0, 0 },
 
-  { 66, TARGET_STRING("Real motor/Channel 0 of  Encoder Inputs "),
+  { 56, TARGET_STRING("Q4 DI "),
     TARGET_STRING("P6"), 0, 0, 0 },
 
-  { 67, TARGET_STRING("Real motor/Channel 0 of  Encoder Inputs "),
+  { 57, TARGET_STRING("Q4 DO "),
+    TARGET_STRING("P1"), 0, 0, 0 },
+
+  { 58, TARGET_STRING("Q4 DO "),
+    TARGET_STRING("P2"), 0, 0, 0 },
+
+  { 59, TARGET_STRING("Q4 DO "),
+    TARGET_STRING("P3"), 0, 0, 0 },
+
+  { 60, TARGET_STRING("Q4 DO "),
+    TARGET_STRING("P4"), 0, 0, 0 },
+
+  { 61, TARGET_STRING("Q4 DO "),
+    TARGET_STRING("P5"), 0, 0, 0 },
+
+  { 62, TARGET_STRING("Q4 DO "),
+    TARGET_STRING("P6"), 0, 0, 0 },
+
+  { 63, TARGET_STRING("Q4 DO "),
     TARGET_STRING("P7"), 0, 0, 0 },
 
-  { 68, TARGET_STRING("Real motor/Channel 0 of  Encoder Inputs "),
+  { 64, TARGET_STRING("Q4 DO "),
     TARGET_STRING("P8"), 0, 0, 0 },
 
-  { 69, TARGET_STRING("Real motor/Channel 0 of  Encoder Inputs "),
-    TARGET_STRING("P9"), 0, 0, 0 },
+  { 65, TARGET_STRING("Analog Filter Design"),
+    TARGET_STRING("A"), 0, 0, 0 },
 
-  { 70, TARGET_STRING("Real motor/Channel 0 of  Encoder Inputs "),
-    TARGET_STRING("P10"), 0, 0, 0 },
+  { 66, TARGET_STRING("Analog Filter Design"),
+    TARGET_STRING("B"), 0, 0, 0 },
+
+  { 67, TARGET_STRING("Analog Filter Design"),
+    TARGET_STRING("C"), 0, 0, 0 },
+
+  { 68, TARGET_STRING("Analog Filter Design"),
+    TARGET_STRING("X0"), 0, 0, 0 },
+
+  { 69, TARGET_STRING("Switch1"),
+    TARGET_STRING("Threshold"), 0, 0, 0 },
+
+  { 70, TARGET_STRING("Real motor/angular_position =  [relative_count//COUNTS_PER_REV] *360 degrees"),
+    TARGET_STRING("Gain"), 0, 0, 0 },
 
   { 71, TARGET_STRING("Real motor/Channel 0 of  Encoder Inputs "),
-    TARGET_STRING("P11"), 0, 0, 0 },
+    TARGET_STRING("P1"), 0, 0, 0 },
 
   { 72, TARGET_STRING("Real motor/Channel 0 of  Encoder Inputs "),
+    TARGET_STRING("P2"), 0, 0, 0 },
+
+  { 73, TARGET_STRING("Real motor/Channel 0 of  Encoder Inputs "),
+    TARGET_STRING("P3"), 0, 0, 0 },
+
+  { 74, TARGET_STRING("Real motor/Channel 0 of  Encoder Inputs "),
+    TARGET_STRING("P4"), 0, 0, 0 },
+
+  { 75, TARGET_STRING("Real motor/Channel 0 of  Encoder Inputs "),
+    TARGET_STRING("P5"), 0, 0, 0 },
+
+  { 76, TARGET_STRING("Real motor/Channel 0 of  Encoder Inputs "),
+    TARGET_STRING("P6"), 0, 0, 0 },
+
+  { 77, TARGET_STRING("Real motor/Channel 0 of  Encoder Inputs "),
+    TARGET_STRING("P7"), 0, 0, 0 },
+
+  { 78, TARGET_STRING("Real motor/Channel 0 of  Encoder Inputs "),
+    TARGET_STRING("P8"), 0, 0, 0 },
+
+  { 79, TARGET_STRING("Real motor/Channel 0 of  Encoder Inputs "),
+    TARGET_STRING("P9"), 0, 0, 0 },
+
+  { 80, TARGET_STRING("Real motor/Channel 0 of  Encoder Inputs "),
+    TARGET_STRING("P10"), 0, 0, 0 },
+
+  { 81, TARGET_STRING("Real motor/Channel 0 of  Encoder Inputs "),
+    TARGET_STRING("P11"), 0, 0, 0 },
+
+  { 82, TARGET_STRING("Real motor/Channel 0 of  Encoder Inputs "),
     TARGET_STRING("P12"), 0, 0, 0 },
 
   {
@@ -292,19 +322,19 @@ static const rtwCAPI_ModelParameters rtModelParameters[] = {
 static void* rtDataAddrMap[] = {
   &PID_LoadCell_Magnet_B.AbsDError,    /* 0: Signal */
   &PID_LoadCell_Magnet_B.AbsError,     /* 1: Signal */
-  &PID_LoadCell_Magnet_B.DerivativePID,/* 2: Signal */
-  &PID_LoadCell_Magnet_B.Gain[0],      /* 3: Signal */
-  &PID_LoadCell_Magnet_B.Kd,           /* 4: Signal */
-  &PID_LoadCell_Magnet_B.Ki,           /* 5: Signal */
-  &PID_LoadCell_Magnet_B.Kp,           /* 6: Signal */
-  &PID_LoadCell_Magnet_B.Setpoint,     /* 7: Signal */
-  &PID_LoadCell_Magnet_B.gain1,        /* 8: Signal */
+  &PID_LoadCell_Magnet_B.LED,          /* 2: Signal */
+  &PID_LoadCell_Magnet_B.DerivativePID,/* 3: Signal */
+  &PID_LoadCell_Magnet_B.Gain[0],      /* 4: Signal */
+  &PID_LoadCell_Magnet_B.Kd,           /* 5: Signal */
+  &PID_LoadCell_Magnet_B.Ki,           /* 6: Signal */
+  &PID_LoadCell_Magnet_B.Kp,           /* 7: Signal */
+  &PID_LoadCell_Magnet_B.Setpoint,     /* 8: Signal */
   &PID_LoadCell_Magnet_B.IntegratorPID,/* 9: Signal */
   &PID_LoadCell_Magnet_B.Merge,        /* 10: Signal */
   &PID_LoadCell_Magnet_B.Saturation,   /* 11: Signal */
   &PID_LoadCell_Magnet_B.LoadCell,     /* 12: Signal */
-  &PID_LoadCell_Magnet_B.AnalogFilterDesign,/* 13: Signal */
-  &PID_LoadCell_Magnet_B.AnalogFilterDesign1,/* 14: Signal */
+  &PID_LoadCell_Magnet_B.Q4DI,         /* 13: Signal */
+  &PID_LoadCell_Magnet_B.AnalogFilterDesign,/* 14: Signal */
   &PID_LoadCell_Magnet_B.ErrorSigal,   /* 15: Signal */
   &PID_LoadCell_Magnet_B.Sum4,         /* 16: Signal */
   &PID_LoadCell_Magnet_B.Switch1,      /* 17: Signal */
@@ -315,14 +345,14 @@ static void* rtDataAddrMap[] = {
   &PID_LoadCell_Magnet_P.uV_Value,     /* 22: Block Parameter */
   &PID_LoadCell_Magnet_P.Degree_Value, /* 23: Block Parameter */
   &PID_LoadCell_Magnet_P.DegreeErrorThresh_Value,/* 24: Block Parameter */
-  &PID_LoadCell_Magnet_P.RateErrorThresh_Value,/* 25: Block Parameter */
-  &PID_LoadCell_Magnet_P.magnetOn_Value,/* 26: Block Parameter */
-  &PID_LoadCell_Magnet_P.Gain_Gain,    /* 27: Block Parameter */
-  &PID_LoadCell_Magnet_P.Kd_Gain,      /* 28: Block Parameter */
-  &PID_LoadCell_Magnet_P.Ki_Gain,      /* 29: Block Parameter */
-  &PID_LoadCell_Magnet_P.Kp_Gain,      /* 30: Block Parameter */
-  &PID_LoadCell_Magnet_P.gain_Gain,    /* 31: Block Parameter */
-  &PID_LoadCell_Magnet_P.gain1_Gain,   /* 32: Block Parameter */
+  &PID_LoadCell_Magnet_P.LED_Value,    /* 25: Block Parameter */
+  &PID_LoadCell_Magnet_P.RateErrorThresh_Value,/* 26: Block Parameter */
+  &PID_LoadCell_Magnet_P.magnetOn_Value,/* 27: Block Parameter */
+  &PID_LoadCell_Magnet_P.Gain_Gain,    /* 28: Block Parameter */
+  &PID_LoadCell_Magnet_P.Kd_Gain,      /* 29: Block Parameter */
+  &PID_LoadCell_Magnet_P.Ki_Gain,      /* 30: Block Parameter */
+  &PID_LoadCell_Magnet_P.Kp_Gain,      /* 31: Block Parameter */
+  &PID_LoadCell_Magnet_P.gain_Gain,    /* 32: Block Parameter */
   &PID_LoadCell_Magnet_P.IntegratorPID_IC,/* 33: Block Parameter */
   &PID_LoadCell_Magnet_P.Saturation_UpperSat,/* 34: Block Parameter */
   &PID_LoadCell_Magnet_P.Saturation_LowerSat,/* 35: Block Parameter */
@@ -341,28 +371,38 @@ static void* rtDataAddrMap[] = {
   &PID_LoadCell_Magnet_P.LoadCell_P5,  /* 48: Block Parameter */
   &PID_LoadCell_Magnet_P.LoadCell_P6,  /* 49: Block Parameter */
   &PID_LoadCell_Magnet_P.LoadCell_P7,  /* 50: Block Parameter */
-  &PID_LoadCell_Magnet_P.AnalogFilterDesign_A,/* 51: Block Parameter */
-  &PID_LoadCell_Magnet_P.AnalogFilterDesign_B,/* 52: Block Parameter */
-  &PID_LoadCell_Magnet_P.AnalogFilterDesign_C,/* 53: Block Parameter */
-  &PID_LoadCell_Magnet_P.AnalogFilterDesign_X0,/* 54: Block Parameter */
-  &PID_LoadCell_Magnet_P.AnalogFilterDesign1_A,/* 55: Block Parameter */
-  &PID_LoadCell_Magnet_P.AnalogFilterDesign1_B,/* 56: Block Parameter */
-  &PID_LoadCell_Magnet_P.AnalogFilterDesign1_C,/* 57: Block Parameter */
-  &PID_LoadCell_Magnet_P.AnalogFilterDesign1_X0,/* 58: Block Parameter */
-  &PID_LoadCell_Magnet_P.Switch1_Threshold,/* 59: Block Parameter */
-  &PID_LoadCell_Magnet_P.angular_positionrelative_countC,/* 60: Block Parameter */
-  &PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P1,/* 61: Block Parameter */
-  &PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P2,/* 62: Block Parameter */
-  &PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P3,/* 63: Block Parameter */
-  &PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P4,/* 64: Block Parameter */
-  &PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P5,/* 65: Block Parameter */
-  &PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P6,/* 66: Block Parameter */
-  &PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P7,/* 67: Block Parameter */
-  &PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P8,/* 68: Block Parameter */
-  &PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P9,/* 69: Block Parameter */
-  &PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P10,/* 70: Block Parameter */
-  &PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P11,/* 71: Block Parameter */
-  &PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P12,/* 72: Block Parameter */
+  &PID_LoadCell_Magnet_P.Q4DI_P1,      /* 51: Block Parameter */
+  &PID_LoadCell_Magnet_P.Q4DI_P2,      /* 52: Block Parameter */
+  &PID_LoadCell_Magnet_P.Q4DI_P3,      /* 53: Block Parameter */
+  &PID_LoadCell_Magnet_P.Q4DI_P4,      /* 54: Block Parameter */
+  &PID_LoadCell_Magnet_P.Q4DI_P5,      /* 55: Block Parameter */
+  &PID_LoadCell_Magnet_P.Q4DI_P6,      /* 56: Block Parameter */
+  &PID_LoadCell_Magnet_P.Q4DO_P1,      /* 57: Block Parameter */
+  &PID_LoadCell_Magnet_P.Q4DO_P2,      /* 58: Block Parameter */
+  &PID_LoadCell_Magnet_P.Q4DO_P3,      /* 59: Block Parameter */
+  &PID_LoadCell_Magnet_P.Q4DO_P4,      /* 60: Block Parameter */
+  &PID_LoadCell_Magnet_P.Q4DO_P5,      /* 61: Block Parameter */
+  &PID_LoadCell_Magnet_P.Q4DO_P6,      /* 62: Block Parameter */
+  &PID_LoadCell_Magnet_P.Q4DO_P7,      /* 63: Block Parameter */
+  &PID_LoadCell_Magnet_P.Q4DO_P8,      /* 64: Block Parameter */
+  &PID_LoadCell_Magnet_P.AnalogFilterDesign_A,/* 65: Block Parameter */
+  &PID_LoadCell_Magnet_P.AnalogFilterDesign_B,/* 66: Block Parameter */
+  &PID_LoadCell_Magnet_P.AnalogFilterDesign_C,/* 67: Block Parameter */
+  &PID_LoadCell_Magnet_P.AnalogFilterDesign_X0,/* 68: Block Parameter */
+  &PID_LoadCell_Magnet_P.Switch1_Threshold,/* 69: Block Parameter */
+  &PID_LoadCell_Magnet_P.angular_positionrelative_countC,/* 70: Block Parameter */
+  &PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P1,/* 71: Block Parameter */
+  &PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P2,/* 72: Block Parameter */
+  &PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P3,/* 73: Block Parameter */
+  &PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P4,/* 74: Block Parameter */
+  &PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P5,/* 75: Block Parameter */
+  &PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P6,/* 76: Block Parameter */
+  &PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P7,/* 77: Block Parameter */
+  &PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P8,/* 78: Block Parameter */
+  &PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P9,/* 79: Block Parameter */
+  &PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P10,/* 80: Block Parameter */
+  &PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P11,/* 81: Block Parameter */
+  &PID_LoadCell_Magnet_P.Channel0ofEncoderInputs_P12,/* 82: Block Parameter */
 };
 
 /* Declare Data Run-Time Dimension Buffer Addresses statically */
@@ -451,7 +491,7 @@ static rtwCAPI_ModelMappingStaticInfo mmiStatic = {
     (NULL), 0,
     (NULL), 0 },
 
-  { rtBlockParameters, 51,
+  { rtBlockParameters, 61,
     rtModelParameters, 0 },
 
   { (NULL), 0 },
@@ -460,10 +500,10 @@ static rtwCAPI_ModelMappingStaticInfo mmiStatic = {
     rtElementMap, rtSampleTimeMap, rtDimensionArray },
   "float",
 
-  { 1949849595U,
-    2973596363U,
-    3982496661U,
-    1949736578U },
+  { 561546060U,
+    2518167312U,
+    3576076899U,
+    1048522354U },
   (NULL), 0,
   0
 };

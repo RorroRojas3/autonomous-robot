@@ -27,13 +27,13 @@ Model {
       UnitExpr		      "inherit"
     }
     Outport {
-      Name		      "loadCell"
+      Name		      "loadCell_In"
       BusObject		      ""
       BusOutputAsStruct	      "off"
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.131"
+    ComputedModelVersion    "1.133"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -70,7 +70,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [762.0, 0.0, 779.0, 830.0]
+      Location		      [-6.0, -6.0, 1549.0, 837.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -94,9 +94,9 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[1828.0, 1685.0]
+	Extents			[3752.0, 1702.0]
 	ZoomFactor		[1.0]
-	Offset			[95.117404818324644, -83.798882577805557]
+	Offset			[-227.9159285150065, 3.2796838439748512]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -116,7 +116,7 @@ Model {
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
       "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAADtAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAAYwD///8AAAd8AAAHDwAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAAYwD///8AAA8AAAAHIAAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAEL/////wAAAAAAAAAA/////wEAAAHa/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAALl/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAab/////wAAAAAAAAAA/"
@@ -130,9 +130,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Rorro"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Apr 17 22:42:43 2018"
-  RTWModifiedTimeStamp	  445900547
-  ModelVersionFormat	  "1.%<AutoIncrement:131>"
+  LastModifiedDate	  "Wed Apr 18 21:33:35 2018"
+  RTWModifiedTimeStamp	  445981217
+  ModelVersionFormat	  "1.%<AutoIncrement:133>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1142,6 +1142,9 @@ Model {
       RndMeth		      "Floor"
     }
     Block {
+      BlockType		      Stop
+    }
+    Block {
       BlockType		      SubSystem
       ShowPortLabels	      "FromPortIcon"
       Permissions	      "ReadWrite"
@@ -1207,7 +1210,7 @@ Model {
   }
   System {
     Name		    "PID_LoadCell_Magnet"
-    Location		    [762, 0, 1541, 830]
+    Location		    [-6, -6, 1543, 831]
     Open		    on
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  off
@@ -1222,7 +1225,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "197"
+    SIDHighWatermark	    "202"
     Block {
       BlockType		      Constant
       Name		      "5V"
@@ -1263,26 +1266,6 @@ Model {
       filttype		      "Lowpass"
       N			      "1"
       Wlo		      "17"
-      Whi		      "80"
-      Rp		      "2"
-      Rs		      "40"
-    }
-    Block {
-      BlockType		      Reference
-      Name		      "Analog\nFilter Design1"
-      SID		      "196"
-      Ports		      [1, 1]
-      Position		      [930, 143, 965, 177]
-      ZOrder		      74
-      LibraryVersion	      "1.360"
-      SourceBlock	      "dsparch4/Analog\nFilter Design"
-      SourceType	      "Analog Filter Design"
-      SourceProductName	      "DSP System Toolbox"
-      SourceProductBaseCode   "DS"
-      method		      "Butterworth"
-      filttype		      "Lowpass"
-      N			      "1"
-      Wlo		      "60"
       Whi		      "80"
       Rp		      "2"
       Rs		      "40"
@@ -1565,6 +1548,14 @@ Model {
       SaturateOnIntegerOverflow	off
     }
     Block {
+      BlockType		      Constant
+      Name		      "LED"
+      SID		      "202"
+      Position		      [295, 60, 325, 90]
+      ZOrder		      81
+      Value		      "0"
+    }
+    Block {
       BlockType		      Reference
       Name		      "Load Cell"
       SID		      "166"
@@ -1597,6 +1588,40 @@ Model {
       ZOrder		      -10
       ShowName		      off
       DisplayOption	      "bar"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Q4 DI "
+      SID		      "198"
+      Ports		      [0, 1]
+      Position		      [105, 47, 205, 103]
+      ZOrder		      77
+      LibraryVersion	      "1.52"
+      SourceBlock	      "xpcquanserlib/Digital\nInput/Q4 DI "
+      SourceType	      "quanser_q4_di"
+      SourceProductName	      "Simulink Real-Time"
+      SourceProductBaseCode   "XP"
+      channel		      "[1]"
+      sampleTime	      "0.001"
+      slot		      "-1"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Q4 DO "
+      SID		      "201"
+      Ports		      [1]
+      Position		      [345, 46, 450, 104]
+      ZOrder		      80
+      LibraryVersion	      "1.52"
+      SourceBlock	      "xpcquanserlib/Digital\nOutput/Q4 DO "
+      SourceType	      "quanser_q4_do"
+      SourceProductName	      "Simulink Real-Time"
+      SourceProductBaseCode   "XP"
+      channel		      "[2]"
+      reset		      "[1]"
+      initValue		      "[0]"
+      sampleTime	      ".001"
+      slot		      "-1"
     }
     Block {
       BlockType		      Constant
@@ -1724,6 +1749,13 @@ Model {
       LowerLimit	      "-5"
     }
     Block {
+      BlockType		      Stop
+      Name		      "Stop Simulation"
+      SID		      "199"
+      Position		      [235, 57, 270, 93]
+      ZOrder		      78
+    }
+    Block {
       BlockType		      Sum
       Name		      "Sum1"
       SID		      "30"
@@ -1816,18 +1848,6 @@ Model {
 	PortNumber		1
 	Name			"Setpoint"
       }
-    }
-    Block {
-      BlockType		      Gain
-      Name		      "gain1"
-      SID		      "197"
-      Position		      [980, 145, 1010, 175]
-      ZOrder		      76
-      NamePlacement	      "alternate"
-      Gain		      "100"
-      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      SaturateOnIntegerOverflow	off
     }
     Block {
       BlockType		      Constant
@@ -1938,7 +1958,7 @@ Model {
     }
     Block {
       BlockType		      Outport
-      Name		      "loadCell"
+      Name		      "loadCell_In"
       SID		      "167"
       Position		      [1055, 153, 1085, 167]
       ZOrder		      57
@@ -2255,13 +2275,6 @@ Model {
       DstPort		      1
     }
     Line {
-      ZOrder		      664
-      SrcBlock		      "Load Cell"
-      SrcPort		      1
-      DstBlock		      "Analog\nFilter Design1"
-      DstPort		      1
-    }
-    Line {
       ZOrder		      674
       SrcBlock		      "Analog\nFilter Design"
       SrcPort		      1
@@ -2289,27 +2302,38 @@ Model {
     }
     Line {
       ZOrder		      682
-      SrcBlock		      "Analog\nFilter Design1"
-      SrcPort		      1
-      DstBlock		      "gain1"
-      DstPort		      1
+      Points		      [965, 160; 15, 0]
     }
     Line {
-      ZOrder		      683
-      SrcBlock		      "gain1"
+      ZOrder		      722
+      SrcBlock		      "Load Cell"
       SrcPort		      1
-      Points		      [10, 0]
+      Points		      [103, 0]
       Branch {
-	ZOrder			685
+	ZOrder			718
 	Points			[0, 90]
 	DstBlock		"Mux"
 	DstPort			4
       }
       Branch {
-	ZOrder			684
-	DstBlock		"loadCell"
+	ZOrder			717
+	DstBlock		"loadCell_In"
 	DstPort			1
       }
+    }
+    Line {
+      ZOrder		      719
+      SrcBlock		      "Q4 DI "
+      SrcPort		      1
+      DstBlock		      "Stop Simulation"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      721
+      SrcBlock		      "LED"
+      SrcPort		      1
+      DstBlock		      "Q4 DO "
+      DstPort		      1
     }
   }
 }

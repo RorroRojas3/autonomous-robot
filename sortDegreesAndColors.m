@@ -2,7 +2,7 @@ function [sortedCell] = sortDegreesAndColors(wellLocation, colors, degrees)
     
     %Cell with corresponding degrees
     sortedCell = {{'', '', ''},{'', '', ''},{'', '', ''},{'', '', ''},{'', '', ''},{'', '', ''},{'', '', ''},{'', '', ''},{'', '', ''},{'', '', ''}};
-    degreeArray = [-25, -57, -90, -120, -155, 10, 45, 85, 135, 163];
+    degreeArray = [-27.5, -60.5, -92.5, -120, -156, 13.50, 43.5, 87.5, 135, 163];
     %Determines washer detected in their corresponding degree and adds it
     %to cell array
     for c1 = 1:10

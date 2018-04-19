@@ -68,11 +68,11 @@ MATLAB_BIN      = C:\Program Files\MATLAB\R2017a\bin
 ALT_MATLAB_BIN  = C:\PROGRA~1\MATLAB\R2017a\bin
 MASTER_ANCHOR_DIR = 
 START_DIR       = C:\Users\Rorro\Documents\github\image-recognition
-S_FUNCTIONS     = adquanserq8.c daquanserq8.c encquanserq8.c
+S_FUNCTIONS     = adquanserq8.c daquanserq8.c diquanserq8.c doquanserq8.c encquanserq8.c
 S_FUNCTIONS_LIB = 
 NUMST           = 2
 TID01EQ         = 1
-NCSTATES        = 3
+NCSTATES        = 2
 BUILDARGS       =  ISPROTECTINGMODEL=NOTPROTECTING EXT_MODE=1
 MULTITASKING    = 0
 EXT_MODE        = 0
